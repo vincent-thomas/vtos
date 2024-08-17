@@ -3,6 +3,7 @@
     vt.config.onepassword = {
       sshIntegration = lib.mkOption {
         type = lib.types.bool;
+        default = false;
         description = "Ssh";
       };
 
@@ -23,10 +24,10 @@
   };
 
   config = {
-    programs.ssh.extraConfig =
+    home.file.".ssh/config".text =
       lib.mkIf config.vt.config.onepassword.sshIntegration ''
         Host *
-            IdentityAgent "~/.1passord/agent.sock"
+            IdentityAgent "~/.1password/agent.sock"
       '';
 
     programs.zsh.shellAliases = {
