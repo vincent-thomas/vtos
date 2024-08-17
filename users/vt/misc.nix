@@ -8,6 +8,8 @@
     cargo
     gcc
     wl-clipboard
+
+    spotify-unwrapped
   ];
 
   programs.btop.enable = true;

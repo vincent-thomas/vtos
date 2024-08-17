@@ -1,1 +1,1 @@
-{ ... }: { imports = [ ./spotifyd.nix ./picom.nix ]; }
+{ ... }: { imports = [ ./picom.nix ]; }

@@ -53,7 +53,6 @@
   vt.zellij.enable = true;
 
   # Setup
-  vt.spotifyd.enable = true;
   vt.picom.enable = true;
   vt.qtile.config.enable = true;
   vt.firefox.enable = true;

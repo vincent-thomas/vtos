@@ -6,4 +6,5 @@
     pulse.enable = true;
     audio.enable = true;
   };
+
 }
