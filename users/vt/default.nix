@@ -6,7 +6,7 @@
     ./monitor-setup.nix
     ./git.nix
     ./misc.nix
-    inputs.ags.homeManagerModules.default
+    # inputs.ags.homeManagerModules.default
   ];
 
   dconf.settings = {

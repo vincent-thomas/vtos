@@ -11,6 +11,8 @@
     programs.neovim = {
       enable = true;
       defaultEditor = config.vt.nvim.defaultEditor;
+
+      package = pkgs.unstable.neovim;
       extraPackages = with pkgs; [
 
         # Rust

@@ -4,12 +4,12 @@
   home.packages = with pkgs; [
     nix-output-monitor
     nerdfetch
-    obsidian
+    # obsidian
     cargo
     gcc
     wl-clipboard
 
-    spotify-unwrapped
+    # spotify-unwrapped
   ];
 
   programs.btop.enable = true;

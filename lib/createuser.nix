@@ -4,6 +4,6 @@
   users.users.${username} = {
     isNormalUser = !isRoot;
     extraGroups = userGroups;
-    shell = pkgs.${shell};
+    shell = shell;
   };
 }
