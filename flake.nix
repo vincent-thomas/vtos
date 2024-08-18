@@ -3,6 +3,7 @@
   inputs = {
     nixpkgs.url = "nixpkgs/nixos-24.05";
     nixpkgs-unstable.url = "nixpkgs/nixos-unstable";
+    nur.url = "github:nix-community/NUR";
 
     home-manager = {
       url = "github:nix-community/home-manager/release-24.05";
@@ -15,11 +16,6 @@
         nixpkgs.follows = "nixpkgs";
         darwin.follows = "";
       };
-    };
-
-    firefox-addons = {
-      url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     catppuccin.url = "github:catppuccin/nix";
@@ -42,14 +38,16 @@
     in {
       nixosModules.default = import ./nixosModules;
       homeManagerModules.default = import ./homeModules;
-      overlays = overlays;
+
+      inherit overlays;
 
       devShells = forAllSystems (system:
         let pkgs = nixpkgs.legacyPackages.${system};
         in {
           default = pkgs.mkShell {
             NIX_CONFIG = "extra-experimental-features = nix-command flakes";
-            packages = [ inputs.agenix.packages.${system}.default pkgs.age ];
+            packages =
+              [ inputs.agenix.packages.${system}.default pkgs.age pkgs.statix ];
           };
         });
 
@@ -57,7 +55,7 @@
         vt-pc = lib.nixosSystem {
           system = "x86_64-linux";
 
-          pkgs = pkgs;
+          inherit pkgs;
 
           specialArgs = { inherit inputs outputs; };
           modules = [

@@ -1,6 +1,4 @@
-{ inputs, user, lib, config, pkgs, ... }:
-let exts = inputs.firefox-addons.packages."x86_64-linux";
-in {
+{ user, lib, config, pkgs, ... }: {
 
   options = { vt.firefox.enable = lib.mkEnableOption "Enable firefox"; };
 
@@ -11,14 +9,20 @@ in {
         userChrome = builtins.readFile ./userChrome.css;
         extraConfig = builtins.readFile ./user.js;
 
-        extensions = with exts; [
+        extensions = with pkgs.nur.repos.rycee.firefox-addons; [
+          # Privacy
           ublock-origin
-          sponsorblock
-          darkreader
-          multi-account-containers
-          firefox-color
-          facebook-container
           clearurls
+          facebook-container
+          multi-account-containers
+          addy_io
+          decentraleyes
+
+          # Essential
+          darkreader
+          sponsorblock
+          firefox-color
+          onepassword-password-manager
         ];
 
         search = {
