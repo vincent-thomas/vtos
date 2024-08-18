@@ -36,18 +36,7 @@
       pkgs = import nixpkgs {
         system = "x86_64-linux";
         overlays = builtins.attrValues overlays;
-
-        config = {
-          allowUnfreePredicate = pkg:
-            builtins.elem (lib.getName pkg) [
-              "1password"
-              "1password-cli"
-              "nvidia-x11"
-              "todoist-electron"
-              "discord"
-              "davinci-resolve"
-            ];
-        };
+        config = import ./nixpkgsConfig.nix { inherit lib; };
       };
 
     in {
