@@ -46,7 +46,7 @@
 
   # Dev Setup
   vt.nvim = {
-    enable = true;
+    enable = false;
     defaultEditor = true;
   };
   vt.zellij.enable = true;

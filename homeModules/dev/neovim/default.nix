@@ -12,7 +12,7 @@
       enable = true;
       inherit (config.vt.nvim) defaultEditor;
 
-      package = pkgs.unstable.neovim;
+      # package = pkgs.neovim;
       extraPackages = with pkgs; [
 
         # Rust
