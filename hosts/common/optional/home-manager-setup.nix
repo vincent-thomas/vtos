@@ -1,16 +1,15 @@
-{ inputs, ... }:
+{ inputs, outputs, ... }:
 
-user: {
+{ user }: {
   home-manager = {
     useGlobalPkgs = true;
     useUserPackages = true;
-    extraSpecialArgs = { inherit user; };
+    extraSpecialArgs = { inherit user inputs; };
     users.${user} = {
       imports = [
-        ../users/${user}
-        ../homeModules
-
+        ../../../users/${user}
         inputs.catppuccin.homeManagerModules.catppuccin
+        outputs.homeManagerModules.default
       ];
 
       catppuccin = {

@@ -1,8 +1,8 @@
-{ pkgs, lib, config, user, ... }: {
+{ pkgs, lib, config, ... }: {
   options = { vt.services.polkit.enable = lib.mkEnableOption "Polkit"; };
   config = {
-    users.users.${user}.packages =
-      lib.mkIf config.vt.services.polkit.enable [ pkgs.polkit_gnome ];
+    # users.users.${user}.packages =
+    #   lib.mkIf config.vt.services.polkit.enable [ pkgs.polkit_gnome ];
 
     systemd = {
       user.services.polkit-gnome-authentication-agent-1 =

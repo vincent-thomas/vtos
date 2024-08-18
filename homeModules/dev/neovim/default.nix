@@ -10,7 +10,7 @@
     home.file.".config/nvim".source = ./nvim;
     programs.neovim = {
       enable = true;
-      defaultEditor = config.vt.nvim.defaultEditor;
+      inherit (config.vt.nvim) defaultEditor;
 
       package = pkgs.unstable.neovim;
       extraPackages = with pkgs; [
@@ -27,12 +27,13 @@
         # Nix
         nixd
         nixfmt
+        statix
 
         # Python
         pyright
 
         # TS/JS 
-        typescript-language-server
+        nodePackages.typescript-language-server
 
         # Markdown
         marksman

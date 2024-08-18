@@ -1,13 +1,16 @@
-{ inputs, pkgs, ... }:
+{ inputs, pkgs, outputs, ... }:
 let
   networkingModule =
     import ../common/core/services/networking.nix { hostname = "vt-pc"; };
 
-  homeManagerSetup =
-    import ../common/optional/home-manager-setup.nix { inherit inputs; };
+  homeManagerSetup = import ../common/optional/home-manager-setup.nix {
+    inherit inputs outputs;
+  };
 
   homeManagerModule = homeManagerSetup { user = "vt"; };
-in networkingModule // homeManagerModule // {
+
+  _1passwordModule = import ../common/optional/1password.nix { user = "vt"; };
+in {
   programs.virt-manager.enable = true;
   virtualisation.libvirtd.enable = true;
 
@@ -35,7 +38,6 @@ in networkingModule // homeManagerModule // {
     ../common/core/age.nix
 
     ../common/optional/hyprland.nix
-    ../common/optional/1password.nix
     ../common/optional/fonts.nix
 
     ../common/optional/services/printing.nix
@@ -45,6 +47,10 @@ in networkingModule // homeManagerModule // {
     ../common/users/vt
 
     ./hardware.nix
+
+    homeManagerModule
+    networkingModule
+    _1passwordModule
   ];
 
   programs.gnupg.agent = {

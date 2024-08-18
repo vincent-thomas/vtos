@@ -31,6 +31,10 @@ function M.setup()
     capabilities,
   })
 
+  lspconfig.statix.setup({
+    capabilities,
+  })
+
   lspconfig.lua_ls.setup({
     capabilities,
     settings = {

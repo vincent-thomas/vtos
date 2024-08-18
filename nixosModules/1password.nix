@@ -10,11 +10,10 @@
   };
 
   config = {
-    programs._1password.enable =
-      lib.mkIf config.vt.apps.onepassword.enable true;
+    programs._1password.enable = config.vt.apps.onepassword.enable;
 
     programs._1password-gui = {
-      enable = config.vt.apps.onepassword.enable;
+      inherit (config.vt.apps.onepassword) enable;
       polkitPolicyOwners = [ config.vt.apps.onepassword.username ];
     };
   };

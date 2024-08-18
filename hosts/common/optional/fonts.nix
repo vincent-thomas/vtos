@@ -3,5 +3,4 @@
     (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
     font-awesome
   ];
-
 }
