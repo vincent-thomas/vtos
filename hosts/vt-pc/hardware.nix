@@ -6,10 +6,14 @@
 {
   imports = [ (modulesPath + "/installer/scan/not-detected.nix") ];
 
-  boot.initrd.availableKernelModules =
-    [ "nvme" "xhci_pci" "ahci" "usb_storage" "usbhid" "sd_mod" ];
-  boot.initrd.kernelModules = [ ];
-  boot.extraModulePackages = [ ];
+  boot = {
+    initrd = {
+      availableKernelModules =
+        [ "nvme" "xhci_pci" "ahci" "usb_storage" "usbhid" "sd_mod" ];
+      kernelModules = [ ];
+    };
+    extraModulePackages = [ ];
+  };
 
   fileSystems."/" = {
     device = "/dev/disk/by-uuid/480f695a-670d-44d7-8eec-1d794c8b8b1c";
@@ -34,21 +38,6 @@
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
 
-  hardware.nvidia = {
-    package = config.boot.kernelPackages.nvidiaPackages.stable;
-    modesetting.enable = true;
-
-    # Don't change this.
-    powerManagement.enable = false;
-
-    # Don't run this.
-    powerManagement.finegrained = false;
-
-    # This is buggy
-    open = false;
-
-    nvidiaSettings = false;
-  };
   hardware.cpu.amd.updateMicrocode =
     lib.mkDefault config.hardware.enableRedistributableFirmware;
 }

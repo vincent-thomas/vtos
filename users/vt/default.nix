@@ -1,12 +1,7 @@
-{ inputs, ... }: {
+{ pkgs, ... }: {
   home.stateVersion = "23.11";
 
-  imports = [
-    ./modules/desktop
-    ./monitor-setup.nix
-    ./git.nix
-    ./misc.nix
-  ];
+  imports = [ ./modules/desktop ./git.nix ];
 
   dconf.settings = {
     "org/virt-manager/virt-manager/connections" = {
@@ -14,47 +9,56 @@
       uris = [ "qemu:///system" ];
     };
   };
+  home.packages = with pkgs; [ nerdfetch cargo gcc ];
+
+  programs.btop.enable = true;
 
   services.blueman-applet.enable = true;
 
   # General
-  vt.dot.wallpapers = true;
-  vt.dot.scripts = true;
-  vt.dot.zshIntegration = true;
+  vt = {
+    dot = {
+      wallpapers = true;
+      scripts = true;
+      zshIntegration = true;
+    };
 
-  vt.wm.hyprland.enable = true;
+    wm.hyprland.enable = true;
 
-  # Terminal / Shell
-  vt.kitty.enable = true;
+    # Terminal / Shell
+    kitty.enable = true;
 
-  vt.starship.enable = true;
-  vt.zsh = {
-    enable = true;
-    starshipIntegration = true;
-    zoxideIntegration = true;
-    nvimAlias = true;
+    starship.enable = true;
+    zsh = {
+      enable = true;
+      starshipIntegration = true;
+      zoxideIntegration = true;
+      nvimAlias = true;
+    };
+
+    config.onepassword = {
+      sshIntegration = true;
+      zshOpPlugins.gh = true;
+      zshOpPlugins.cargo = true;
+    };
+
+    cliTools = {
+      enable = true;
+      zshIntegration = true;
+    };
+
+    # Dev Setup
+    nvim = {
+      enable = true;
+      defaultEditor = true;
+    };
+    zellij.enable = true;
+
+    # Setup
+    picom.enable = true;
+    qtile.config.enable = true;
+    firefox.enable = true;
   };
-
-  vt.config.onepassword = {
-    sshIntegration = true;
-    zshOpPlugins.gh = true;
-    zshOpPlugins.cargo = true;
-  };
-
-  vt.cliTools.enable = true;
-  vt.cliTools.zshIntegration = true;
-
-  # Dev Setup
-  vt.nvim = {
-    enable = true;
-    defaultEditor = true;
-  };
-  vt.zellij.enable = true;
-
-  # Setup
-  vt.picom.enable = true;
-  vt.qtile.config.enable = true;
-  vt.firefox.enable = true;
 
   programs.imv.enable = true;
 

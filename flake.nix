@@ -26,6 +26,8 @@
       inherit (nixpkgs) lib;
       inherit (self) outputs;
 
+      mkSystem = import ./lib/mksystem.nix { inherit inputs outputs; };
+
       forAllSystems = nixpkgs.lib.genAttrs [ "x86_64-linux" ];
 
       overlays = import ./overlays { inherit inputs outputs; };
@@ -52,18 +54,13 @@
         });
 
       nixosConfigurations = {
-        vt-pc = lib.nixosSystem {
+        vt-pc = mkSystem "vt-pc" {
           system = "x86_64-linux";
-
           inherit pkgs;
-
-          specialArgs = { inherit inputs outputs; };
-          modules = [
-            ./hosts/vt-pc
+          extraModules = [
             inputs.agenix.nixosModules.default
             inputs.catppuccin.nixosModules.catppuccin
             inputs.home-manager.nixosModules.home-manager
-            outputs.nixosModules.default
           ];
         };
       };

@@ -2,7 +2,6 @@
   programs.git = {
     enable = true;
     userName = "Vincent Thomas";
-    userEmail = "22414954-vincent_thomas1@users.noreply.gitlab.com";
     aliases = {
       st = "status";
       cm = "commit -m";

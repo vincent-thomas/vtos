@@ -1,16 +1,33 @@
 { inputs, pkgs, outputs, ... }:
 let
-  networkingModule =
-    import ../common/core/services/networking.nix { hostname = "vt-pc"; };
+  coreModule = import ../common/core { hostname = "vt-pc"; };
 
-  homeManagerSetup = import ../common/optional/home-manager-setup.nix {
+  homeManagerModule = import ../common/optional/home-manager-setup.nix {
     inherit inputs outputs;
   };
 
-  homeManagerModule = homeManagerSetup { user = "vt"; };
-
   _1passwordModule = import ../common/optional/1password.nix { user = "vt"; };
 in {
+  imports = [
+    coreModule
+
+    ../common/optional/hyprland.nix
+    ../common/optional/fonts.nix
+
+    ../common/optional/services/printing.nix
+    ../common/optional/services/polkit.nix
+    ../common/optional/services/bluetooth.nix
+    ../common/optional/services/audio.nix
+
+    ../common/users/vt
+
+    ./hardware.nix
+    ../common/hardware/nvidia.nix
+
+    (homeManagerModule { user = "vt"; })
+    _1passwordModule
+  ];
+
   programs.virt-manager.enable = true;
   virtualisation.libvirtd.enable = true;
 
@@ -20,7 +37,6 @@ in {
   boot.loader.efi.canTouchEfiVariables = true;
 
   security.rtkit.enable = true;
-  # hardware.graphics.enable = true;
 
   vt.xserver = {
     enable = true;
@@ -28,30 +44,6 @@ in {
     qtile = true;
     nvidiaDrivers = true;
   };
-
-  imports = [
-    ../common/core/locales.nix
-    ../common/core/nix-settings.nix
-    ../common/core/zsh.nix
-    ../common/core/services/ssh.nix
-    ../common/core/services/polkit.nix
-    ../common/core/age.nix
-
-    ../common/optional/hyprland.nix
-    ../common/optional/fonts.nix
-
-    ../common/optional/services/printing.nix
-    ../common/optional/services/bluetooth.nix
-    ../common/optional/services/audio.nix
-
-    ../common/users/vt
-
-    ./hardware.nix
-
-    homeManagerModule
-    networkingModule
-    _1passwordModule
-  ];
 
   programs.gnupg.agent = {
     enable = true;

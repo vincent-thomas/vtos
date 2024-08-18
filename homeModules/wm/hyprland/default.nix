@@ -12,13 +12,14 @@
     programs.fuzzel.enable = true;
 
     home = lib.mkIf config.vt.wm.hyprland.enable {
-      packages = [ pkgs.wpaperd pkgs.waybar pkgs.pavucontrol ];
+      packages =
+        [ pkgs.wpaperd pkgs.waybar pkgs.pavucontrol pkgs.wl-clipboard ];
       file = {
         ".config/wpaperd/config.toml".text = ''
           [any]
           path = '~/.vt/wallpapers'
         '';
-      ".config/waybar".source = ./waybar;
+        ".config/waybar".source = ./waybar;
       };
     };
   };

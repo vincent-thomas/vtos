@@ -16,40 +16,41 @@
 
   config = lib.mkIf config.vt.zsh.enable {
 
-    programs.zoxide = {
-      enable = config.vt.zsh.zoxideIntegration;
-      enableZshIntegration = true;
-    };
+    programs = {
+      zoxide = {
+        enable = config.vt.zsh.zoxideIntegration;
+        enableZshIntegration = true;
+      };
 
-    programs.starship.enableZshIntegration = config.vt.zsh.starshipIntegration;
+      starship.enableZshIntegration = config.vt.zsh.starshipIntegration;
+      direnv = {
+        enable = true;
+        enableZshIntegration = true;
+      };
+      zsh = {
+        enable = true;
+        sessionVariables = { HOME_MNGR_DIR = "$HOME/nix"; };
+        dotDir = ".config/zsh";
+
+        shellAliases = { v = lib.mkIf config.vt.zsh.nvimAlias "nvim"; };
+
+        initExtra = ''
+          # Yazi can change directory when exists
+          function yy() {
+            local tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
+            yazi "$@" --cwd-file="$tmp"
+            if cwd="$(cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+              builtin cd -- "$cwd"
+            fi
+            rm -f -- "$tmp"
+          }
+
+          nerdfetch
+        '';
+      };
+
+    };
 
     home.packages = with pkgs; [ nerdfetch ];
-
-    programs.direnv = {
-      enable = true;
-      enableZshIntegration = true;
-    };
-
-    programs.zsh = {
-      enable = true;
-      sessionVariables = { HOME_MNGR_DIR = "$HOME/nix"; };
-      dotDir = ".config/zsh";
-
-      shellAliases = { v = lib.mkIf config.vt.zsh.nvimAlias "nvim"; };
-
-      initExtra = ''
-        # Yazi can change directory when exists
-        function yy() {
-          local tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
-          yazi "$@" --cwd-file="$tmp"
-          if cwd="$(cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
-            builtin cd -- "$cwd"
-          fi
-          rm -f -- "$tmp"
-        }
-
-        nerdfetch
-      '';
-    };
   };
 }
