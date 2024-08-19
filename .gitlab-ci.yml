@@ -6,4 +6,4 @@ stages:
 check:
   stage: check
   script:
-    - nix flake check
+    - nix flake check --extra-experimental-features nix-command --extra-experimental-features flakes
