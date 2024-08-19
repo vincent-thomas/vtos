@@ -13,6 +13,7 @@ in {
 
     ../common/optional/hyprland.nix
     ../common/optional/fonts.nix
+    ../common/optional/virt-manager.nix
 
     ../common/optional/services/printing.nix
     ../common/optional/services/polkit.nix
@@ -28,9 +29,6 @@ in {
     _1passwordModule
   ];
 
-  programs.virt-manager.enable = true;
-  virtualisation.libvirtd.enable = true;
-
   system.stateVersion = "24.05";
 
   boot.loader.systemd-boot.enable = true;
@@ -41,7 +39,6 @@ in {
   vt.xserver = {
     enable = true;
     gdm = true;
-    qtile = true;
     nvidiaDrivers = true;
   };
 

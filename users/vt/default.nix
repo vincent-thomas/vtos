@@ -1,14 +1,12 @@
 { pkgs, ... }: {
   home.stateVersion = "23.11";
 
-  imports = [ ./modules/desktop ./git.nix ];
+  imports = [
+    ./modules/desktop
+    ../common/optional/git.nix
+    ../common/optional/virt-manager.nix
+  ];
 
-  dconf.settings = {
-    "org/virt-manager/virt-manager/connections" = {
-      autoconnect = [ "qemu:///system" ];
-      uris = [ "qemu:///system" ];
-    };
-  };
   home.packages = with pkgs; [ nerdfetch cargo gcc ];
 
   programs.btop.enable = true;

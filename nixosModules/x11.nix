@@ -3,7 +3,11 @@
     vt.xserver = {
       enable = lib.mkEnableOption "XServer";
       gdm = lib.mkEnableOption "GDM";
-      qtile = lib.mkEnableOption "qTile";
+      qtile = lib.mkOption {
+        default = false;
+        type = lib.types.bool;
+        description = "Enables qtile as window manager";
+      };
       nvidiaDrivers = lib.mkOption {
         type = lib.types.bool;
         default = false;
@@ -12,8 +16,8 @@
     };
   };
   config = {
-    services.xserver = lib.mkIf config.vt.xserver.enable {
-      enable = true;
+    services.xserver = {
+      enable = config.vt.xserver.enable;
       videoDrivers = lib.mkIf config.vt.xserver.nvidiaDrivers [ "nvidia" ];
       xkb = {
         layout = "us";
