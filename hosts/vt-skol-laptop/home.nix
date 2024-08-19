@@ -23,11 +23,6 @@
       zshIntegration = true;
     };
 
-    # Dev Setup
-    nvim = {
-      enable = true;
-      defaultEditor = true;
-    };
     zellij.enable = true;
   };
 }

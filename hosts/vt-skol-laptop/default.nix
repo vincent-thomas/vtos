@@ -1,7 +1,7 @@
 # NixOS-WSL specific options are documented on the NixOS-WSL repository:
 # https://github.com/nix-community/NixOS-WSL
 
-{ inputs, outputs, ... }:
+{ inputs, pkgs, outputs, ... }:
 let
   
   coreModule = import ../common/core { hostname = "vt-skol-laptop"; };
@@ -22,4 +22,8 @@ in {
   wsl.defaultUser = "vt";
   
   system.stateVersion = "24.05"; # Don't change
+
+  users.users.vt.packages = with pkgs; [
+    vt-nvim
+  ];
 }
