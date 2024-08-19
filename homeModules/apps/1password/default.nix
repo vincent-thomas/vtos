@@ -24,11 +24,12 @@
   };
 
   config = {
-    home.file.".ssh/config".text =
-      lib.mkIf config.vt.config.onepassword.sshIntegration ''
+    home.file = lib.mkIf config.vt.config.onepassword.sshIntegration {
+      ".ssh/config".text = ''
         Host *
             IdentityAgent "~/.1password/agent.sock"
       '';
+    };
 
     programs.zsh.shellAliases = {
       gh = lib.mkIf config.vt.config.onepassword.zshOpPlugins.gh

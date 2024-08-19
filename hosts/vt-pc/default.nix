@@ -25,7 +25,7 @@ in {
     ./hardware.nix
     ../common/hardware/nvidia.nix
 
-    (homeManagerModule { user = "vt"; })
+    (homeManagerModule { user = "vt"; homePath = ../../users/vt; })
     _1passwordModule
   ];
 

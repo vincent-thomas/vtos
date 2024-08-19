@@ -12,8 +12,12 @@
 
   config = {
     home.file = {
-      ".vt/scripts".source = lib.mkIf config.vt.dot.scripts ./scripts;
-      ".vt/wallpapers".source = lib.mkIf config.vt.dot.wallpapers ./wallpapers;
+      ".vt/scripts" = lib.mkIf config.vt.dot.scripts {
+        source = ./scripts;
+      };
+      ".vt/wallpapers" = lib.mkIf config.vt.dot.scripts {
+        source = ./wallpapers;
+      };
     };
 
     programs.zsh.initExtra = lib.mkIf config.vt.dot.zshIntegration ''

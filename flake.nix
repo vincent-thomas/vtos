@@ -5,6 +5,8 @@
     nixpkgs-unstable.url = "nixpkgs/nixos-unstable";
     nur.url = "github:nix-community/NUR";
 
+    nixos-wsl.url = "github:nix-community/NixOS-WSL/main";
+
     home-manager = {
       url = "github:nix-community/home-manager/release-24.05";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -45,6 +47,16 @@
             inputs.agenix.nixosModules.default
             inputs.catppuccin.nixosModules.catppuccin
             inputs.home-manager.nixosModules.home-manager
+          ];
+        };
+
+        vt-skol-laptop = mkSystem "vt-skol-laptop" {
+          system = "x86_64-linux";
+          overlays = builtins.attrValues overlays;
+          extraModules = [
+            inputs.agenix.nixosModules.default
+            inputs.home-manager.nixosModules.home-manager
+            inputs.nixos-wsl.nixosModules.default
           ];
         };
       };
