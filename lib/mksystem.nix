@@ -1,10 +1,14 @@
 { inputs, outputs }:
+hostname:
+{ system, overlays ? [ ], extraModules ? [ ] }:
 let inherit (inputs.nixpkgs) lib;
-in hostname:
-{ system, pkgs, extraModules }:
+in lib.nixosSystem {
+  inherit system;
 
-lib.nixosSystem {
-  inherit system pkgs;
+  pkgs = import inputs.nixpkgs {
+    inherit system overlays;
+    config = import ../nixpkgsConfig.nix { inherit lib; };
+  };
   specialArgs = { inherit inputs outputs; };
   modules = extraModules
     ++ [ ../hosts/${hostname} outputs.nixosModules.default ];

@@ -28,14 +28,7 @@
 
       mkSystem = import ./lib/mksystem.nix { inherit inputs outputs; };
 
-      forAllSystems = nixpkgs.lib.genAttrs [ "x86_64-linux" ];
-
       overlays = import ./overlays { inherit inputs outputs; };
-      pkgs = import nixpkgs {
-        system = "x86_64-linux";
-        overlays = builtins.attrValues overlays;
-        config = import ./nixpkgsConfig.nix { inherit lib; };
-      };
 
     in {
       nixosModules.default = import ./nixosModules;
@@ -43,20 +36,11 @@
 
       inherit overlays;
 
-      devShells = forAllSystems (system:
-        let pkgs = nixpkgs.legacyPackages.${system};
-        in {
-          default = pkgs.mkShell {
-            NIX_CONFIG = "extra-experimental-features = nix-command flakes";
-            packages =
-              [ inputs.agenix.packages.${system}.default pkgs.age pkgs.statix ];
-          };
-        });
-
+      devShells = import ./devShells.nix { inherit inputs lib; };
       nixosConfigurations = {
         vt-pc = mkSystem "vt-pc" {
           system = "x86_64-linux";
-          inherit pkgs;
+          overlays = builtins.attrValues overlays;
           extraModules = [
             inputs.agenix.nixosModules.default
             inputs.catppuccin.nixosModules.catppuccin
