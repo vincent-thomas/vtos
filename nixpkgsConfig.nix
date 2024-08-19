@@ -7,6 +7,7 @@
       "nvidia-x11"
       "todoist-electron"
       "discord"
+      "spotify"
       "davinci-resolve"
     ];
 }

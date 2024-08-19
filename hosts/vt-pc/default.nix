@@ -51,6 +51,8 @@ in {
     localsend
     todoist-electron
     discord
+    spotify
+    # spotify-tray
 
     pcmanfm
     networkmanagerapplet
