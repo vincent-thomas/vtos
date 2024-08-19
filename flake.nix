@@ -23,7 +23,14 @@
       };
     };
 
+    nixvim = {
+      url = "github:nix-community/nixvim/nixos-24.05";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     catppuccin.url = "github:catppuccin/nix";
+
+    
   };
 
   outputs = { nixpkgs, self, ... }@inputs:
@@ -31,9 +38,14 @@
       inherit (nixpkgs) lib;
       inherit (self) outputs;
 
-      mkSystem = import ./lib/mksystem.nix { inherit inputs outputs; };
-
       overlays = import ./overlays { inherit inputs outputs; };
+
+      mkSystem = import ./lib/mksystem.nix { inherit inputs outputs; };
+      forAllSystems = import ./lib/forAllSystems.nix { inherit lib; };
+      mkPkgs = import ./lib/mkPkgs.nix {
+        inherit inputs lib;
+        overlays = builtins.attrValues overlays;
+      };
 
       sharedModules = [
         inputs.agenix.nixosModules.default
@@ -46,7 +58,14 @@
 
       inherit overlays;
 
-      devShells = import ./devShells.nix { inherit inputs lib; };
+      packages = forAllSystems (system:
+        import ./pkgs {
+          inherit inputs system;
+          pkgs = mkPkgs { inherit system; };
+        });
+
+      devShells = forAllSystems
+        (system: import ./devShells.nix { inherit inputs system; });
 
       nixosConfigurations = {
         vt-pc = mkSystem "vt-pc" {

@@ -52,6 +52,7 @@ in {
     todoist-electron
     discord
     spotify
+    vt-nvim
     # spotify-tray
 
     pcmanfm

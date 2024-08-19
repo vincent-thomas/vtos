@@ -3,6 +3,7 @@
 
   imports = [
     ./modules/desktop
+    # ../common/optional/dev-setup
     ../common/optional/git.nix
     ../common/optional/virt-manager.nix
   ];
@@ -46,10 +47,9 @@
     };
 
     # Dev Setup
-    nvim = {
-      enable = true;
-      defaultEditor = true;
-    };
+    # nvim     #   enable = true;
+    #   defaultEditor = true;
+    # };
     zellij.enable = true;
 
     # Setup

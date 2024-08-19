@@ -41,20 +41,20 @@ return {
       require("vt.config.lualine").setup()
     end,
   },
-  {
-    "epwalsh/obsidian.nvim",
-    version = "*",
-    lazy = true,
-    event = {
-      "BufReadPre " .. vim.fn.expand("~") .. "/Obsidian/VT/**.md",
-    },
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-    },
-    config = function()
-      require("vt.config.obsidian").setup()
-    end,
-  },
+  -- {
+  --   "epwalsh/obsidian.nvim",
+  --   version = "*",
+  --   lazy = true,
+  --   event = {
+  --     "BufReadPre " .. vim.fn.expand("~") .. "/Obsidian/VT/**.md",
+  --   },
+  --   dependencies = {
+  --     "nvim-lua/plenary.nvim",
+  --   },
+  --   config = function()
+  --     require("vt.config.obsidian").setup()
+  --   end,
+  -- },
   {
     "stevearc/oil.nvim",
     dependencies = {
@@ -98,6 +98,13 @@ return {
       vim.cmd("colorscheme catppuccin")
     end,
   },
+  -- {
+  --   "folke/todo-comments.nvim",
+  --   dependencies = { "nvim-lua/plenary.nvim" },
+  --   config = function()
+  --     require("todo-comments").setup({})
+  --   end,
+  -- },
   {
     "numToStr/Comment.nvim",
     opts = {
