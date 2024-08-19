@@ -1,0 +1,9 @@
+image: nixos/nix
+
+stages:
+  - check
+
+check:
+  stage: check
+  script:
+    - nix flake check
