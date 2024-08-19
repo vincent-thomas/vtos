@@ -5,7 +5,10 @@
     nixpkgs-unstable.url = "nixpkgs/nixos-unstable";
     nur.url = "github:nix-community/NUR";
 
-    nixos-wsl.url = "github:nix-community/NixOS-WSL/main";
+    nixos-wsl = {
+      url = "github:nix-community/NixOS-WSL/main";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     home-manager = {
       url = "github:nix-community/home-manager/release-24.05";
@@ -32,6 +35,11 @@
 
       overlays = import ./overlays { inherit inputs outputs; };
 
+      sharedModules = [
+        inputs.agenix.nixosModules.default
+        inputs.home-manager.nixosModules.home-manager
+      ];
+
     in {
       nixosModules.default = import ./nixosModules;
       homeManagerModules.default = import ./homeModules;
@@ -39,25 +47,19 @@
       inherit overlays;
 
       devShells = import ./devShells.nix { inherit inputs lib; };
+
       nixosConfigurations = {
         vt-pc = mkSystem "vt-pc" {
           system = "x86_64-linux";
           overlays = builtins.attrValues overlays;
-          extraModules = [
-            inputs.agenix.nixosModules.default
-            inputs.catppuccin.nixosModules.catppuccin
-            inputs.home-manager.nixosModules.home-manager
-          ];
+          extraModules = sharedModules
+            ++ [ inputs.catppuccin.nixosModules.catppuccin ];
         };
-
         vt-skol-laptop = mkSystem "vt-skol-laptop" {
           system = "x86_64-linux";
           overlays = builtins.attrValues overlays;
-          extraModules = [
-            inputs.agenix.nixosModules.default
-            inputs.home-manager.nixosModules.home-manager
-            inputs.nixos-wsl.nixosModules.default
-          ];
+          extraModules = sharedModules
+            ++ [ inputs.nixos-wsl.nixosModules.default ];
         };
       };
     };

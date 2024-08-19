@@ -17,6 +17,7 @@ function M.setup()
   vim.keymap.set("n", "<leader>g", fzf.live_grep)
   vim.keymap.set("n", "<leader>e", fzf.lsp_document_diagnostics)
   vim.keymap.set("n", "<leader>a", fzf.lsp_code_actions)
+  vim.keymap.set("n", "<leader>b", fzf.buffers)
 end
 
 return M
