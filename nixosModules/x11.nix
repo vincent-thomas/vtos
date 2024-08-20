@@ -3,6 +3,7 @@
     vt.xserver = {
       enable = lib.mkEnableOption "XServer";
       gdm = lib.mkEnableOption "GDM";
+      plasma = lib.mkEnableOption "Plasma";
       qtile = lib.mkOption {
         default = false;
         type = lib.types.bool;
@@ -26,6 +27,7 @@
 
       windowManager.qtile.enable = config.vt.xserver.qtile;
       displayManager.gdm.enable = config.vt.xserver.gdm;
+      desktopManager.plasma6.enable = config.vt.xserver.plasma;
     };
   };
 }

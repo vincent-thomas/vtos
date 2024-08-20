@@ -39,6 +39,7 @@ in {
   vt.xserver = {
     enable = true;
     gdm = true;
+    plasma = true;
     nvidiaDrivers = true;
   };
 
