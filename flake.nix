@@ -29,8 +29,6 @@
     };
 
     catppuccin.url = "github:catppuccin/nix";
-
-    
   };
 
   outputs = { nixpkgs, self, ... }@inputs:

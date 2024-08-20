@@ -41,6 +41,26 @@
           tsserver = { enable = config.lsp.servers.typescript.enable; };
         };
       };
+      keymaps = [
+        {
+          key = "[d";
+          mode = ["n"];
+          action = "<Cmd>lua vim.diagnostic.goto_prev()<CR>";
+          options = {
+            silent = true;
+            desc = "Previous Diagnostic";
+          };
+        }
+        {
+          key = "]d";
+          mode = ["n"];
+          action = "<Cmd>lua vim.diagnostic.goto_next()<CR>";
+          options = {
+            silent = true;
+            desc = "Next Diagnostic";
+          };
+        }
+      ];
     };
   };
 }
