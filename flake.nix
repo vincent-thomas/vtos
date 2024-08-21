@@ -23,6 +23,11 @@
       };
     };
 
+    nixos-generators = {
+      url = "github:nix-community/nixos-generators";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     nixvim = {
       url = "github:nix-community/nixvim/nixos-24.05";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -58,7 +63,7 @@
 
       packages = forAllSystems (system:
         import ./pkgs {
-          inherit inputs system;
+          inherit inputs system outputs;
           pkgs = mkPkgs { inherit system; };
         });
 

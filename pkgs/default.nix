@@ -1,3 +1,4 @@
-{ inputs, system, pkgs, ... }: {
+{ inputs, system, pkgs, outputs, ... }: {
   vt-nvim = import ./neovim { inherit inputs system pkgs; };
+  vt-iso = import ./iso { inherit inputs system pkgs outputs; };
 }

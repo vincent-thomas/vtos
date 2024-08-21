@@ -1,4 +1,4 @@
-{ hostname }: {
+{ hostname, ... }: {
   imports = [
     ./age.nix
     ./zsh.nix

@@ -3,10 +3,10 @@
     enable = true;
     settings = {
       padding = true;
-      toggler = {
-        line = "gl";
-        block = "gb";
-      };
+      # toggler = {
+      #   line = "gl";
+      #   block = "gb";
+      # };
     };
   };
 }
