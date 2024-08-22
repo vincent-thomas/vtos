@@ -2,17 +2,10 @@
   home.stateVersion = "23.11";
 
   imports = [
-    ./modules/desktop
-    # ../common/optional/dev-setup
-    ../common/optional/git.nix
-    ../common/optional/virt-manager.nix
+    ../common/home/desktop
+    ../common/home/git.nix
+    ../common/home/virt-manager.nix
   ];
-
-  home.packages = with pkgs; [ nerdfetch cargo gcc ];
-
-  programs.btop.enable = true;
-
-  services.blueman-applet.enable = true;
 
   # General
   vt = {
@@ -46,10 +39,6 @@
       zshIntegration = true;
     };
 
-    # Dev Setup
-    # nvim     #   enable = true;
-    #   defaultEditor = true;
-    # };
     zellij.enable = true;
 
     # Setup
@@ -57,6 +46,12 @@
     qtile.config.enable = true;
     firefox.enable = true;
   };
+
+  home.packages = with pkgs; [ nerdfetch cargo gcc ];
+
+  programs.btop.enable = true;
+
+  services.blueman-applet.enable = true;
 
   programs.imv.enable = true;
 

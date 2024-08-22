@@ -1,31 +1,34 @@
 { inputs, pkgs, outputs, ... }:
 let
-  coreModule = import ../common/core { hostname = "vt-pc"; };
+  coreModule = import ../common/nixos/core { hostname = "vt-pc"; };
 
-  homeManagerModule = import ../common/optional/home-manager-setup.nix {
-    inherit inputs outputs;
-  };
+  homeManagerModule =
+    import ../common/home/setup.nix { inherit inputs outputs; };
 
-  _1passwordModule = import ../common/optional/1password.nix { user = "vt"; };
+  _1passwordModule =
+    import ../common/nixos/optional/1password.nix { user = "vt"; };
 in {
   imports = [
     coreModule
 
-    ../common/optional/hyprland.nix
-    ../common/optional/fonts.nix
-    ../common/optional/virt-manager.nix
+    ../common/nixos/optional/hyprland.nix
+    ../common/nixos/optional/fonts.nix
+    ../common/nixos/optional/virt-manager.nix
 
-    ../common/optional/services/printing.nix
-    ../common/optional/services/polkit.nix
-    ../common/optional/services/bluetooth.nix
-    ../common/optional/services/audio.nix
+    ../common/nixos/optional/services/printing.nix
+    ../common/nixos/optional/services/polkit.nix
+    ../common/nixos/optional/services/bluetooth.nix
+    ../common/nixos/optional/services/audio.nix
 
-    ../common/users/vt
+    ../common/nixos/users/vt
 
     ./hardware.nix
-    ../common/hardware/nvidia.nix
+    ../common/nixos/hardware/nvidia.nix
 
-    (homeManagerModule { user = "vt"; homePath = ../../users/vt; })
+    (homeManagerModule {
+      user = "vt";
+      homePath = ./home.nix;
+    })
     _1passwordModule
   ];
 
