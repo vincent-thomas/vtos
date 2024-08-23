@@ -5,15 +5,14 @@
 let
 
   coreModule = import ../common/nixos/core { hostname = "vt-skol-laptop"; };
-  homeManagerModule = import ../common/optional/home-manager-setup.nix {
-    inherit inputs outputs;
-  };
+  homeManagerModule =
+    import ../common/home/setup.nix { inherit inputs outputs; };
 
 in {
   imports = [
     coreModule
 
-    ../common/users/vt
+    ../common/nixos/users/vt
 
     (homeManagerModule {
       user = "vt";

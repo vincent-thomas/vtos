@@ -1,7 +1,7 @@
 { pkgs, ... }: {
   home.stateVersion = "23.11";
 
-  imports = [ ../../users/common/home/optional/git.nix ];
+  imports = [ ../common/home/git.nix ];
 
   home.packages = with pkgs; [ nerdfetch cargo gcc ];
 
