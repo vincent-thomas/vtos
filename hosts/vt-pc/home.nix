@@ -9,11 +9,7 @@
 
   # General
   vt = {
-    dot = {
-      wallpapers = true;
-      scripts = true;
-      zshIntegration = true;
-    };
+    wallpapers = true;
 
     wm.hyprland.enable = true;
 
@@ -48,7 +44,7 @@
     firefox.enable = true;
   };
 
-  home.packages = with pkgs; [ nerdfetch cargo gcc vlc ];
+  home.packages = with pkgs; [ nerdfetch unstable.cargo gcc vlc ];
 
   programs.btop.enable = true;
 
