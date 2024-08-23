@@ -63,6 +63,7 @@ in {
     # Own packages
     vt-nvim
     tmux-sessionizer
+    powertools
 
     pcmanfm
     networkmanagerapplet

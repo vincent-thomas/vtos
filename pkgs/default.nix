@@ -3,4 +3,5 @@
   vt-iso = import ./iso { inherit inputs system pkgs outputs; };
 
   tmux-sessionizer = import ./tmux-sessionizer { inherit pkgs; };
+  powertools = import ./powertools { inherit pkgs; };
 }
