@@ -10,26 +10,29 @@ let
 in {
   imports = [
     coreModule
-
+    # Optional
     ../common/nixos/optional/hyprland.nix
     ../common/nixos/optional/fonts.nix
     ../common/nixos/optional/virt-manager.nix
-
-    ../common/nixos/optional/services/printing.nix
-    ../common/nixos/optional/services/polkit.nix
-    ../common/nixos/optional/services/bluetooth.nix
-    ../common/nixos/optional/services/audio.nix
-
-    ../common/nixos/users/vt
-
-    ./hardware.nix
-    ../common/nixos/hardware/nvidia.nix
-
     (homeManagerModule {
       user = "vt";
       homePath = ./home.nix;
     })
+
+    # Services (background)
+    ../common/nixos/optional/services/printing.nix
+    ../common/nixos/optional/services/polkit.nix
+    ../common/nixos/optional/services/bluetooth.nix
+    ../common/nixos/optional/services/audio.nix
     _1passwordModule
+
+    # Chosen user
+    ../common/nixos/users/vt
+
+    # Hardware related config (real hardware/drivers)
+    ./hardware.nix
+    ../common/nixos/hardware/nvidia.nix
+
   ];
 
   system.stateVersion = "24.05";
@@ -57,7 +60,6 @@ in {
     discord
     spotify
     vt-nvim
-    # spotify-tray
 
     pcmanfm
     networkmanagerapplet

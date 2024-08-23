@@ -4,24 +4,26 @@
 { inputs, pkgs, outputs, ... }:
 let
 
+  username = "vt";
+
   coreModule = import ../common/nixos/core { hostname = "vt-skol-laptop"; };
   homeManagerModule =
     import ../common/home/setup.nix { inherit inputs outputs; };
 
+  wslModule = import ../common/nixos/hardware/wsl.nix { inherit username; };
+
 in {
   imports = [
     coreModule
+    wslModule
 
-    ../common/nixos/users/vt
+    ../common/nixos/users/${username}
 
     (homeManagerModule {
-      user = "vt";
+      user = username;
       homePath = ./home.nix;
     })
   ];
-
-  wsl.enable = true;
-  wsl.defaultUser = "vt";
 
   system.stateVersion = "24.05"; # Don't change
 

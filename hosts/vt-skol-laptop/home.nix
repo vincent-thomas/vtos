@@ -7,8 +7,6 @@
 
   programs.btop.enable = true;
 
-  programs.git.extraConfig.safe.directory = [ "/home/vt/vtos" ];
-
   # General
   vt = {
     starship.enable = true;
