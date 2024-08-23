@@ -1,5 +1,5 @@
 { pkgs, config, ... }: {
-  imports = [ ../. ];
+  imports = [ ../. ../root-ssh-keys ];
   users.users.vt = {
     home = "/home/vt";
     isNormalUser = true;
