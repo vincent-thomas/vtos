@@ -15,6 +15,10 @@
       starshipIntegration = true;
       zoxideIntegration = true;
       nvimAlias = true;
+      extraConfig = ''
+        eval $(ssh-agent) &> /dev/null
+        ssh-add ~/.ssh/gitlab &> /dev/null
+      '';
     };
     cliTools = {
       enable = true;

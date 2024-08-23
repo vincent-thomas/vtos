@@ -11,6 +11,12 @@
         description = "Enables zoxide";
       };
 
+      extraConfig = lib.mkOption {
+        type = lib.types.str;
+        default = "";
+        description = "Any extra config";
+      };
+
     };
   };
 
@@ -35,6 +41,7 @@
 
         shellAliases = { v = lib.mkIf config.vt.zsh.nvimAlias "nvim"; };
 
+        # More .zshrc
         initExtra = ''
           # Yazi can change directory when exists
           function yy() {
@@ -45,6 +52,8 @@
             fi
             rm -f -- "$tmp"
           }
+
+          ${config.vt.zsh.extraConfig}
 
           nerdfetch
         '';
