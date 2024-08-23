@@ -40,6 +40,7 @@
     };
 
     zellij.enable = true;
+    tmux.enable = true;
 
     # Setup
     picom.enable = true;
@@ -47,7 +48,7 @@
     firefox.enable = true;
   };
 
-  home.packages = with pkgs; [ nerdfetch cargo gcc ];
+  home.packages = with pkgs; [ nerdfetch cargo gcc vlc ];
 
   programs.btop.enable = true;
 

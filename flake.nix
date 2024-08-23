@@ -56,8 +56,8 @@
       ];
 
     in {
-      nixosModules.default = import ./nixosModules;
-      homeManagerModules.default = import ./homeModules;
+      nixosModules.default = import ./modules/nixos;
+      homeManagerModules.default = import ./modules/home;
 
       inherit overlays;
 

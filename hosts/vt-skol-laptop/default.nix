@@ -3,27 +3,28 @@
 
 { inputs, pkgs, outputs, ... }:
 let
-  
-  coreModule = import ../common/core { hostname = "vt-skol-laptop"; };
+
+  coreModule = import ../common/nixos/core { hostname = "vt-skol-laptop"; };
   homeManagerModule = import ../common/optional/home-manager-setup.nix {
     inherit inputs outputs;
   };
-   
+
 in {
   imports = [
     coreModule
-    
+
     ../common/users/vt
 
-    (homeManagerModule { user = "vt"; homePath = ./home.nix; })
+    (homeManagerModule {
+      user = "vt";
+      homePath = ./home.nix;
+    })
   ];
 
   wsl.enable = true;
   wsl.defaultUser = "vt";
-  
+
   system.stateVersion = "24.05"; # Don't change
 
-  users.users.vt.packages = with pkgs; [
-    vt-nvim
-  ];
+  users.users.vt.packages = with pkgs; [ vt-nvim ];
 }

@@ -11,7 +11,7 @@ local function find_files()
 end
 
 vim.keymap.set("n", "<C-f>", find_files)
-vim.keymap.set("n", "<leader>g", fzf.live_grep)
+vim.keymap.set("n", "<C-g>", fzf.live_grep)
+vim.keymap.set("n", "<C-b>", fzf.buffers)
 vim.keymap.set("n", "<leader>e", fzf.lsp_document_diagnostics)
 vim.keymap.set("n", "<leader>a", fzf.lsp_code_actions)
-vim.keymap.set("n", "<leader>b", fzf.buffers)

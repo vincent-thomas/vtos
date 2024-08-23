@@ -1,5 +1,5 @@
 { pkgs, ... }:
-let coreModule = import ../../hosts/common/core { hostname = "vt-iso"; };
+let coreModule = import ../../hosts/common/nixos/core { hostname = "vt-iso"; };
 in {
   environment.systemPackages = with pkgs; [ vt-nvim ];
   system.stateVersion = "24.05";
