@@ -10,6 +10,9 @@ in lib.nixosSystem {
     config = import ../nixpkgsConfig.nix { inherit lib; };
   };
   specialArgs = { inherit inputs outputs; };
-  modules = extraModules
-    ++ [ ../hosts/${hostname} outputs.nixosModules.default ];
+  modules = extraModules ++ [
+    ../hosts/${hostname}
+    outputs.nixosModules.default
+    { nixpkgs.hostPlatform = lib.mkDefault system; }
+  ];
 }

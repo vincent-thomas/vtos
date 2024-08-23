@@ -6,4 +6,7 @@
     pulse.enable = true;
     audio.enable = true;
   };
+
+  # Used by pipewire
+  security.rtkit.enable = true;
 }

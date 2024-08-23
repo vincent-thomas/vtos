@@ -2,11 +2,11 @@
 let
   coreModule = import ../common/nixos/core { hostname = "vt-pc"; };
 
-  homeManagerModule =
-    import ../common/home/setup.nix { inherit inputs outputs; };
-
   _1passwordModule =
     import ../common/nixos/optional/1password.nix { user = "vt"; };
+
+  homeManagerModule =
+    import ../common/home/setup.nix { inherit inputs outputs; };
 in {
   imports = [
     coreModule
@@ -23,7 +23,7 @@ in {
     ../common/nixos/optional/services/printing.nix
     ../common/nixos/optional/services/polkit.nix
     ../common/nixos/optional/services/bluetooth.nix
-    ../common/nixos/optional/services/audio.nix
+    ../common/nixos/optional/services/pipewire.nix
     _1passwordModule
 
     # Chosen user
@@ -40,8 +40,6 @@ in {
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  security.rtkit.enable = true;
-
   vt.xserver = {
     enable = true;
     gdm = true;
@@ -49,24 +47,20 @@ in {
     nvidiaDrivers = true;
   };
 
-  programs.gnupg.agent = {
-    enable = true;
-    enableSSHSupport = true;
-  };
-
   users.users.vt.packages = with pkgs; [
+    # Apps
     localsend
     todoist-electron
     discord
     spotify
+    davinci-resolve
+    pcmanfm
 
     # Own packages
     vt-nvim
     tmux-sessionizer
     powertools
 
-    pcmanfm
     networkmanagerapplet
-    davinci-resolve
   ];
 }
