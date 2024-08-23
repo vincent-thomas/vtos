@@ -59,7 +59,10 @@ in {
     todoist-electron
     discord
     spotify
+
+    # Own packages
     vt-nvim
+    tmux-sessionizer
 
     pcmanfm
     networkmanagerapplet

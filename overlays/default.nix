@@ -7,4 +7,5 @@ in {
   };
   nur = import ./nur.nix { inherit inputs; };
   vt-nvim = import ./vt-nvim.nix { inherit outputs; };
+  tmux-sessionizer = import ./tmux-sessionizer.nix { inherit outputs; };
 }
