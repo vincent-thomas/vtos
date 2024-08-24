@@ -55,12 +55,10 @@
 
           ${config.vt.zsh.extraConfig}
 
-          nerdfetch
+          ${pkgs.nerdfetch}/bin/nerdfetch
         '';
       };
 
     };
-
-    home.packages = with pkgs; [ nerdfetch ];
   };
 }

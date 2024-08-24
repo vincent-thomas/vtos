@@ -3,7 +3,7 @@
 
   imports = [ ../common/home/git.nix ];
 
-  home.packages = with pkgs; [ nerdfetch cargo gcc ];
+  home.packages = with pkgs; [ unstable.cargo gcc ];
 
   programs.btop.enable = true;
 

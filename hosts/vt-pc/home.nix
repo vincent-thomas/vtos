@@ -38,13 +38,10 @@
     zellij.enable = true;
     tmux.enable = true;
 
-    # Setup
-    picom.enable = true;
-    qtile.config.enable = true;
     firefox.enable = true;
   };
 
-  home.packages = with pkgs; [ nerdfetch unstable.cargo gcc vlc ];
+  home.packages = with pkgs; [ unstable.cargo gcc vlc ];
 
   programs.btop.enable = true;
 
