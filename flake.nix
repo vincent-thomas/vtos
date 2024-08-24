@@ -43,18 +43,11 @@
 
       overlays = import ./overlays { inherit inputs outputs; };
 
-      mkSystem = import ./lib/mksystem.nix { inherit inputs outputs; };
       forAllSystems = import ./lib/forAllSystems.nix { inherit lib; };
       mkPkgs = import ./lib/mkPkgs.nix {
         inherit inputs lib;
         overlays = builtins.attrValues overlays;
       };
-
-      sharedModules = [
-        inputs.agenix.nixosModules.default
-        inputs.home-manager.nixosModules.home-manager
-      ];
-
     in {
       nixosModules.default = import ./modules/nixos;
       homeManagerModules.default = import ./modules/home;
@@ -70,19 +63,6 @@
       devShells = forAllSystems
         (system: import ./devShells.nix { inherit inputs system; });
 
-      nixosConfigurations = {
-        vt-pc = mkSystem "vt-pc" {
-          system = "x86_64-linux";
-          overlays = builtins.attrValues overlays;
-          extraModules = sharedModules
-            ++ [ inputs.catppuccin.nixosModules.catppuccin ];
-        };
-        vt-skol-laptop = mkSystem "vt-skol-laptop" {
-          system = "x86_64-linux";
-          overlays = builtins.attrValues overlays;
-          extraModules = sharedModules
-            ++ [ inputs.nixos-wsl.nixosModules.default ];
-        };
-      };
+      nixosConfigurations = import ./hosts { inherit inputs outputs overlays; };
     };
 }
