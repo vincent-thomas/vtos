@@ -13,6 +13,7 @@ in {
     # Optional
     ../common/nixos/optional/hyprland.nix
     ../common/nixos/optional/fonts.nix
+    ../common/nixos/optional/qmk.nix
     ../common/nixos/optional/virt-manager.nix
     (homeManagerModule {
       user = "vt";
@@ -24,6 +25,7 @@ in {
     ../common/nixos/optional/services/polkit.nix
     ../common/nixos/optional/services/bluetooth.nix
     ../common/nixos/optional/services/pipewire.nix
+    ../common/nixos/optional/services/flatpak.nix
     _1passwordModule
 
     # Chosen user
