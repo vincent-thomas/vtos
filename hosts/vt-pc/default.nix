@@ -7,25 +7,26 @@ let
 
   homeManagerModule =
     import ../common/home/setup.nix { inherit inputs outputs; };
+
+  # dockerModule =
+  #   import ../common/nixos/optional/services/docker.nix { username = "vt"; };
 in {
   imports = [
     coreModule
     # Optional
     ../common/nixos/optional/hyprland.nix
     ../common/nixos/optional/fonts.nix
-    ../common/nixos/optional/qmk.nix
-    ../common/nixos/optional/virt-manager.nix
     (homeManagerModule {
       user = "vt";
       homePath = ./home.nix;
     })
 
     # Services (background)
-    ../common/nixos/optional/services/printing.nix
     ../common/nixos/optional/services/polkit.nix
     ../common/nixos/optional/services/bluetooth.nix
     ../common/nixos/optional/services/pipewire.nix
     _1passwordModule
+    # dockerModule
 
     # Chosen user
     ../common/nixos/users/vt
@@ -33,6 +34,9 @@ in {
     # Hardware related config (real hardware/drivers)
     ./hardware.nix
     ../common/nixos/hardware/nvidia.nix
+
+    # Test
+    ../common/server/services/k3s.nix
 
   ];
 
@@ -44,17 +48,14 @@ in {
   vt.xserver = {
     enable = true;
     gdm = true;
-    plasma = true;
     nvidiaDrivers = true;
   };
 
   users.users.vt.packages = with pkgs; [
     # Apps
     localsend
-    todoist-electron
     discord
     spotify
-    davinci-resolve
     pcmanfm
 
     # Own packages
@@ -63,5 +64,8 @@ in {
     powertools
 
     networkmanagerapplet
+
+    kubernetes-helm
+    helmfile-wrapped
   ];
 }
