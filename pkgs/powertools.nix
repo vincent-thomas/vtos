@@ -1,4 +1,4 @@
-{ pkgs }:
+{ pkgs, ... }:
 pkgs.writeShellScriptBin "powertools" ''
   chosen=$(printf "Power Off\nRestart\nLock" | fuzzel --dmenu -i)
 

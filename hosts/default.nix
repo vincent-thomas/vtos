@@ -1,20 +1,20 @@
-{ inputs, outputs, overlays, ... }:
+{ inputs, overlays, myLib, ... }:
 let
-  mkSystem = import ../lib/mksystem.nix { inherit inputs outputs; };
+  inherit (myLib) mkNixSystem mkWslSystem;
   sharedModules = [
     inputs.agenix.nixosModules.default
     inputs.home-manager.nixosModules.home-manager
   ];
 in {
-  vt-pc = mkSystem "vt-pc" {
+  vt-pc = mkNixSystem "vt-pc" {
     system = "x86_64-linux";
     overlays = builtins.attrValues overlays;
     extraModules = sharedModules
       ++ [ inputs.catppuccin.nixosModules.catppuccin ];
   };
-  vt-skol-laptop = mkSystem "vt-skol-laptop" {
+  vt-skol-laptop = mkWslSystem "vt-skol-laptop" {
     system = "x86_64-linux";
     overlays = builtins.attrValues overlays;
-    extraModules = sharedModules ++ [ inputs.nixos-wsl.nixosModules.default ];
+    extraModules = sharedModules;
   };
 }

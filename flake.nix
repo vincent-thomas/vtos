@@ -40,28 +40,46 @@
       inherit (nixpkgs) lib;
       inherit (self) outputs;
 
-      overlays = import ./overlays { inherit inputs outputs; };
+      # Automatically include all under the ./lib directory
+      myLib = builtins.listToAttrs (map (folder: {
+        name = lib.strings.removeSuffix ".nix" folder;
+        value = import ./lib/${folder} {
+          inherit lib inputs outputs;
+          self = myLib;
+        };
+      }) (import ./lib/listFiles.nix { } ./lib));
 
-      forAllSystems = import ./lib/forAllSystems.nix { inherit lib; };
-      mkPkgs = import ./lib/mkPkgs.nix {
-        inherit inputs lib;
-        overlays = builtins.attrValues overlays;
-      };
+      # Automatically include all under the ./overlays directory
+      overlays = builtins.listToAttrs (map (folder: {
+        name = lib.strings.removeSuffix ".nix" folder;
+        value = import ./overlays/${folder} { inherit inputs outputs lib; };
+      }) (myLib.listFiles ./overlays));
+
+      overlaysList = builtins.attrValues overlays;
+
+      forAllSystemsWithPkgs = myLib.forAllPkgs { overlays = overlaysList; };
     in {
-      devShells = forAllSystems
-        (system: import ./devShells.nix { inherit inputs system; });
-
-      packages = forAllSystems (system:
-        import ./pkgs {
-          inherit inputs system outputs;
-          pkgs = mkPkgs { inherit system; };
-        });
-
+      # Overlays
       inherit overlays;
 
+      # Modules
       nixosModules.default = import ./modules/nixos;
       homeManagerModules.default = import ./modules/home;
 
-      nixosConfigurations = import ./hosts { inherit inputs outputs overlays; };
+      # NixOS configuration
+      nixosConfigurations = import ./hosts { inherit inputs overlays myLib; };
+
+      # DevShell
+      devShells = forAllSystemsWithPkgs ({ pkgs, system }:
+        import ./devShells.nix { inherit inputs system pkgs; });
+
+      # Packages, automatically include all under ./packages directory
+      packages = forAllSystemsWithPkgs ({ pkgs, system }:
+        builtins.listToAttrs (map (folder: {
+          name = lib.strings.removeSuffix ".nix" folder;
+          value = pkgs.callPackage ./pkgs/${folder} {
+            inherit inputs system outputs pkgs;
+          };
+        }) (myLib.listFiles ./pkgs)));
     };
 }
