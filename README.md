@@ -1,7 +1,6 @@
-<div align="center">
-# vtOS
-</div>
+<table align="center"><tr><td align="center" width="9999">
 
+# vtOS
 
 <div align="center">
   <img src="https://raw.githubusercontent.com/catppuccin/catppuccin/main/assets/palette/macchiato.png" width="400" />
@@ -9,6 +8,7 @@
 <div align="center">
   Vincents nixOS configuration
 </div>
+</td></tr></table>
 
 <div align="center">
   <a href="https://nixos.org/">
