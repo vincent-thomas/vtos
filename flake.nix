@@ -67,7 +67,10 @@
       homeManagerModules.default = import ./modules/home;
 
       # NixOS configuration
-      nixosConfigurations = import ./hosts { inherit inputs overlays myLib; };
+      nixosConfigurations = import ./hosts {
+        inherit inputs myLib;
+        overlays = overlaysList;
+      };
 
       # DevShell
       devShells = forAllSystemsWithPkgs ({ pkgs, system }:

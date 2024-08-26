@@ -7,14 +7,16 @@ let
   ];
 in {
   vt-pc = mkNixSystem "vt-pc" {
+    inherit overlays;
+
     system = "x86_64-linux";
-    overlays = builtins.attrValues overlays;
     extraModules = sharedModules
       ++ [ inputs.catppuccin.nixosModules.catppuccin ];
   };
   vt-skol-laptop = mkWslSystem "vt-skol-laptop" {
+    inherit overlays;
+
     system = "x86_64-linux";
-    overlays = builtins.attrValues overlays;
     extraModules = sharedModules;
   };
 }
