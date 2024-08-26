@@ -1,7 +1,6 @@
 add_newline = false
-format = "[$time](black) [>>](bright-black) $directory $character"
+format = "$time $hostname [::](black) $directory $character"
 palette = "catppuccin_macchiato"
-
 
 [character]
 error_symbol = "[µ](red)"
@@ -9,11 +8,16 @@ success_symbol = "[λ](yellow)"
 
 [directory]
 disabled = false
-format = "[$path](blue)"
+format = "[$path](blue bold)"
 
 [time]
 disabled = false
-format = "[$time](dimmed)"
+format = "[$time](overlay2 bold)"
+
+[hostname]
+ssh_only = false
+format = "[$hostname](mauve)"
+disabled = false
 
 [palettes.catppuccin_macchiato]
 rosewater = "#f4dbd6"

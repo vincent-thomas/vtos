@@ -14,7 +14,7 @@
     wm.hyprland.enable = true;
 
     # Terminal / Shell
-    kitty.enable = true;
+    foot.enable = true;
 
     starship.enable = true;
     zsh = {

@@ -25,7 +25,6 @@ in {
     ../common/nixos/optional/services/polkit.nix
     ../common/nixos/optional/services/bluetooth.nix
     ../common/nixos/optional/services/pipewire.nix
-    ../common/nixos/optional/services/flatpak.nix
     _1passwordModule
 
     # Chosen user
