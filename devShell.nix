@@ -5,7 +5,6 @@ pkgs.mkShell {
     inputs.agenix.packages.${system}.default
     pkgs.age
     pkgs.statix
-    pkgs.vt-nvim
     # My shortcut
     pkgs.vtos-rebuild
   ];
