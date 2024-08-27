@@ -18,6 +18,8 @@
       extraConfig = ''
         eval $(ssh-agent) &> /dev/null
         ssh-add ~/.ssh/gitlab &> /dev/null
+
+        tmux new -Asroot
       '';
     };
     cliTools = {
@@ -25,6 +27,7 @@
       zshIntegration = true;
     };
 
-    zellij.enable = true;
+    tmux.enable = true;
+
   };
 }
