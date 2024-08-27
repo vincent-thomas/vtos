@@ -1,6 +1,6 @@
-{ inputs, overlays, myLib, ... }:
+{ inputs, overlays, vtLib, ... }:
 let
-  inherit (myLib) mkNixSystem mkWslSystem;
+  inherit (vtLib) mkNixSystem mkWslSystem;
   sharedModules = [
     inputs.agenix.nixosModules.default
     inputs.home-manager.nixosModules.home-manager

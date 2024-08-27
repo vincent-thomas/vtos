@@ -7,9 +7,6 @@ let
 
   homeManagerModule =
     import ../common/home/setup.nix { inherit inputs outputs; };
-
-  # dockerModule =
-  #   import ../common/nixos/optional/services/docker.nix { username = "vt"; };
 in {
   imports = [
     coreModule
@@ -51,6 +48,13 @@ in {
     nvidiaDrivers = true;
   };
 
+  environment.etc."resolv.conf".text = ''
+    nameserver 45.90.28.165
+    nameserver 45.90.30.165
+  '';
+
+  # networking.nameservers = [ "45.90.28.165" "45.90.30.165" ];
+
   users.users.vt.packages = with pkgs; [
     # Apps
     localsend
@@ -66,6 +70,5 @@ in {
     networkmanagerapplet
 
     kubernetes-helm
-    helmfile-wrapped
   ];
 }

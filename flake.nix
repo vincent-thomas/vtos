@@ -41,48 +41,27 @@
       inherit (self) outputs;
 
       # Automatically include all under the ./lib directory
-      myLib = builtins.listToAttrs (map (folder: {
+      vtLib = builtins.listToAttrs (map (folder: {
         name = lib.strings.removeSuffix ".nix" folder;
         value = import ./lib/${folder} {
           inherit lib inputs outputs;
-          self = myLib;
+          self = vtLib;
         };
       }) (import ./lib/listFiles.nix { } ./lib));
 
-      # Automatically include all under the ./overlays directory
-      overlays = builtins.listToAttrs (map (folder: {
-        name = lib.strings.removeSuffix ".nix" folder;
-        value = import ./overlays/${folder} { inherit inputs outputs lib; };
-      }) (myLib.listFiles ./overlays));
+    in vtLib.mkFlake {
+      vtLibSrc = vtLib;
 
-      overlaysList = builtins.attrValues overlays;
+      pkgsDir = ./pkgs;
 
-      forAllSystemsWithPkgs = myLib.forAllPkgs { overlays = overlaysList; };
-    in {
-      # Overlays
-      inherit overlays;
+      extraOverlays = [ inputs.nur.overlay ];
 
-      # Modules
       nixosModules.default = import ./modules/nixos;
       homeManagerModules.default = import ./modules/home;
+      nixosConfigurations = overlays:
+        import ./hosts { inherit inputs vtLib overlays; };
 
-      # NixOS configuration
-      nixosConfigurations = import ./hosts {
-        inherit inputs myLib;
-        overlays = overlaysList;
-      };
-
-      # DevShell
-      devShells = forAllSystemsWithPkgs ({ pkgs, system }:
-        import ./devShells.nix { inherit inputs system pkgs; });
-
-      # Packages, automatically include all under ./packages directory
-      packages = forAllSystemsWithPkgs ({ pkgs, system }:
-        builtins.listToAttrs (map (folder: {
-          name = lib.strings.removeSuffix ".nix" folder;
-          value = pkgs.callPackage ./pkgs/${folder} {
-            inherit inputs system outputs pkgs;
-          };
-        }) (myLib.listFiles ./pkgs)));
+      devShell = { pkgs, system }:
+        import ./devShells.nix { inherit inputs system pkgs; };
     };
 }
