@@ -14,7 +14,7 @@
     wm.hyprland.enable = true;
 
     # Terminal / Shell
-    foot.enable = true;
+    alacritty.enable = true;
 
     starship.enable = true;
     zsh = {

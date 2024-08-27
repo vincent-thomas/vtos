@@ -4,6 +4,7 @@
 
   config.programs.foot = {
     enable = config.vt.foot.enable;
+    server.enable = true;
     package = pkgs.foot;
     settings = {
       main = {

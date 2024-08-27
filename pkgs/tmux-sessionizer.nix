@@ -3,12 +3,13 @@ pkgs.writeShellScriptBin "tmux-sessionizer" ''
   if [[ $# -eq 1 ]]; then
       selected=$1
   else
-      selected=$(find ~/ ~/p -mindepth 1 -maxdepth 1 -type d | fzf)
+      selected=$(fd --min-depth 1 --max-depth 1 . '/home/vt' '/home/vt/p' -x sh -c 'test -d {}/.git && echo {}' | fzf)
   fi
 
   if [[ -z $selected ]]; then
       exit 0
   fi
+  printf $selected
 
   selected_name=$(basename "$selected" | tr . _)
   tmux_running=$(pgrep tmux)
@@ -24,3 +25,4 @@ pkgs.writeShellScriptBin "tmux-sessionizer" ''
 
   tmux switch-client -t $selected_name
 ''
+
