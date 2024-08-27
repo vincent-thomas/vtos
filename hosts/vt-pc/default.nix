@@ -70,7 +70,5 @@ in {
     networkmanagerapplet
 
     kubernetes-helm
-    zellij-switch-session
-    zellij-sessioniser
   ];
 }

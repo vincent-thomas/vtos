@@ -1,5 +1,5 @@
 { lib, config, pkgs, ... }: {
-  options = { vt.tmux.enable = lib.mkEnableOption "Enables zellij"; };
+  options = { vt.tmux.enable = lib.mkEnableOption "Enables tmux"; };
   config = {
     programs.tmux = lib.mkIf config.vt.tmux.enable {
       enable = true;

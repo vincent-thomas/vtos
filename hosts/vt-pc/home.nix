@@ -35,7 +35,6 @@
       zshIntegration = true;
     };
 
-    zellij.enable = true;
     tmux.enable = true;
 
     firefox.enable = true;

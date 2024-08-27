@@ -1,1 +1,1 @@
-{ imports = [ ./neovim ./zellij ./tmux ]; }
+{ imports = [ ./neovim ./tmux ]; }

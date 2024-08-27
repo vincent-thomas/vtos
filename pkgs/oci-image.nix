@@ -2,7 +2,7 @@
 let
   vtosEnv = pkgs.buildEnv {
     name = "vt-env";
-    paths = with pkgs; [ coreutils vt-nvim zellij ripgrep fd git yazi ];
+    paths = with pkgs; [ coreutils vt-nvim tmux ripgrep fd git yazi ];
     pathsToLink = [ "/bin" ];
   };
 in pkgs.dockerTools.buildImage {
