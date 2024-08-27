@@ -4,7 +4,7 @@
 
   config.programs.foot = {
     enable = config.vt.foot.enable;
-    package = pkgs.unstable.foot;
+    package = pkgs.foot;
     settings = {
       main = {
         term = "xterm-256color";

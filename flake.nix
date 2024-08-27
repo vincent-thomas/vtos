@@ -66,7 +66,7 @@
         import ./hosts { inherit inputs vtLib overlays; };
 
       devShells = { pkgs, system }: {
-        default = import ./devShells.nix { inherit inputs system pkgs; };
+        default = import ./devShell.nix { inherit inputs system pkgs; };
       };
     };
 }

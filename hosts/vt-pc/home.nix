@@ -41,7 +41,7 @@
     firefox.enable = true;
   };
 
-  home.packages = with pkgs; [ unstable.cargo gcc vlc ];
+  home.packages = with pkgs; [ cargo gcc vlc ];
 
   programs.btop.enable = true;
 
