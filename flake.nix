@@ -35,10 +35,10 @@
     catppuccin.url = "github:catppuccin/nix";
   };
 
-  outputs = { nixpkgs, self, ... }@inputs:
+  outputs = inputs:
     let
-      inherit (nixpkgs) lib;
-      inherit (self) outputs;
+      inherit (inputs.nixpkgs) lib;
+      inherit (inputs.self) outputs;
 
       # Automatically include all under the ./lib directory
       vtLib = builtins.listToAttrs (map (folder: {
@@ -52,8 +52,12 @@
     in vtLib.mkFlake {
       vtLibSrc = vtLib;
 
+      # Automatically import packages using their filename as the package name,
+      # Then including them into the pkgs namespace using an overlay which it
+      # automatically hands to nixosConfigurations.
       pkgsDir = ./pkgs;
 
+      # Extra overlays to and into nixosConfigurations
       extraOverlays = [ inputs.nur.overlay ];
 
       nixosModules.default = import ./modules/nixos;
@@ -61,7 +65,8 @@
       nixosConfigurations = overlays:
         import ./hosts { inherit inputs vtLib overlays; };
 
-      devShell = { pkgs, system }:
-        import ./devShells.nix { inherit inputs system pkgs; };
+      devShells = { pkgs, system }: {
+        default = import ./devShells.nix { inherit inputs system pkgs; };
+      };
     };
 }
