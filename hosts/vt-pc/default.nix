@@ -53,8 +53,6 @@ in {
     nameserver 45.90.30.165
   '';
 
-  # networking.nameservers = [ "45.90.28.165" "45.90.30.165" ];
-
   users.users.vt.packages = with pkgs; [
     # Apps
     localsend
@@ -64,7 +62,6 @@ in {
 
     # Own packages
     vt-nvim
-    tmux-sessionizer
     powertools
 
     networkmanagerapplet
