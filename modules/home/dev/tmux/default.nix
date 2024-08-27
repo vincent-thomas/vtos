@@ -1,4 +1,4 @@
-{ lib, config, ... }: {
+{ lib, config, pkgs, ... }: {
   options = { vt.tmux.enable = lib.mkEnableOption "Enables zellij"; };
   config = {
     programs.tmux = lib.mkIf config.vt.tmux.enable {
@@ -11,7 +11,7 @@
         setw -g automatic-rename on   # rename window to reflect current program
         set -g renumber-windows on    # renumber windows when a window is closed
 
-        bind-key -r f run-shell "tmux neww tmux-sessionizer"
+        bind-key -r f run-shell "tmux neww ${pkgs.tmux-sessionizer}/bin/tmux-sessionizer"
         bind r source-file ~/.config/tmux/tmux.conf
         bind D detach
         bind d switch-client -t root

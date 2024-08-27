@@ -28,6 +28,5 @@
     };
 
     tmux.enable = true;
-
   };
 }
