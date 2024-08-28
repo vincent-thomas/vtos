@@ -19,11 +19,11 @@ in {
     })
 
     # Services (background)
+    ../common/nixos/optional/services/pull-config-update.nix
     ../common/nixos/optional/services/polkit.nix
     ../common/nixos/optional/services/bluetooth.nix
     ../common/nixos/optional/services/pipewire.nix
     _1passwordModule
-    # dockerModule
 
     # Chosen user
     ../common/nixos/users/vt
