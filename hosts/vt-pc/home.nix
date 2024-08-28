@@ -40,7 +40,7 @@
     firefox.enable = true;
   };
 
-  home.packages = with pkgs; [ cargo gcc vlc obsidian cowsay ];
+  home.packages = with pkgs; [ cargo gcc vlc obsidian ];
 
   programs.btop.enable = true;
 
