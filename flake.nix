@@ -57,7 +57,7 @@
 
       # Automatically import packages using their filename as the package name,
       # Then including them into the pkgs namespace using an overlay which it
-      # automatically hands to nixosConfigurations.
+      # automatically hands to nixosConfigurations and devShells.
       pkgsDir = ./pkgs;
 
       # Extra overlays to and into nixosConfigurations
