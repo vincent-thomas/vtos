@@ -60,8 +60,9 @@
       # Extra overlays to and into nixosConfigurations
       extraOverlays = [ inputs.nur.overlay ];
 
-      nixosModules.default = import ./modules/nixos;
-      homeManagerModules.default = import ./modules/home;
+      nixosModules.default = import ./modules/nixos { inherit vtLib; };
+      homeManagerModules.default = import ./modules/home { inherit vtLib; };
+
       nixosConfigurations = overlays:
         import ./hosts { inherit inputs vtLib overlays; };
 

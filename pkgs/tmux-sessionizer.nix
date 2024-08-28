@@ -3,7 +3,7 @@ pkgs.writeShellScriptBin "tmux-sessionizer" ''
   if [[ $# -eq 1 ]]; then
       selected=$1
   else
-      selected=$(fd --min-depth 1 --max-depth 1 . '/home/vt' '/home/vt/p' -x sh -c 'test -d {}/.git && echo {}' | fzf)
+      selected=$(fd --min-depth 1 --max-depth 1 . '/home/vt' '/home/vt/personal' -x sh -c 'test -d {}/.git && echo {}' | fzf)
   fi
 
   if [[ -z $selected ]]; then

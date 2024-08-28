@@ -15,6 +15,7 @@
         "temperature",
         "battery",
         "clock",
+        "tray"
     ],
     "hyprland/workspaces": {
         "format": "{icon}",
@@ -75,5 +76,10 @@
             "default": ["", "", ""]
         },
         "on-click": "pavucontrol"
+        "scroll-step": 5,
+    },
+    "tray": {
+        "icon-size": 21,
+        "spacing": 10
     },
 }

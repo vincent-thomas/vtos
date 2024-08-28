@@ -9,6 +9,7 @@
       "discord"
       "spotify"
       "davinci-resolve"
+      "obsidian"
     ];
 }
 

@@ -6,6 +6,7 @@
     ./no-docs.nix
     ./nix-settings.nix
     ./services/ssh.nix
-    (import ./services/networking.nix { inherit hostname; })
   ];
+
+  vt.services.networking.hostname = hostname;
 }

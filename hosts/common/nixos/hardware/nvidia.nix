@@ -1,4 +1,5 @@
 { config, ... }: {
+  boot.kernelPackages = [ "nvidia-drm.fbdev=1" ];
   hardware.nvidia = {
     package = config.boot.kernelPackages.nvidiaPackages.stable;
     modesetting.enable = true;
