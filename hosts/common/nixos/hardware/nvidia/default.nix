@@ -1,7 +1,7 @@
 { config, ... }: {
-  boot.kernelPackages = [ "nvidia-drm.fbdev=1" ];
+  boot.kernelParams = [ "nvidia-drm.fbdev=1" ];
   hardware.nvidia = {
-    package = config.boot.kernelPackages.nvidiaPackages.stable;
+    package = import ./pkg.nix { inherit config; };
     modesetting.enable = true;
 
     # Don't change this.

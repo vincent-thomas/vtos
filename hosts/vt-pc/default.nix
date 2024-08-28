@@ -30,7 +30,8 @@ in {
 
     # Hardware related config (real hardware/drivers)
     ./hardware.nix
-    ../common/nixos/hardware/nvidia.nix
+    ../common/nixos/hardware/nvidia
+    ../common/nixos/hardware/opengl.nix
 
     # Test
     ../common/server/services/k3s.nix
