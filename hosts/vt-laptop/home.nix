@@ -39,6 +39,7 @@
     gcc
     vlc
     obsidian
+    spotify
 
     localsend
   ];

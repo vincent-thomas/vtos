@@ -75,11 +75,11 @@
             "car": "",
             "default": ["", "", ""]
         },
-        "on-click": "pavucontrol"
-        "scroll-step": 5,
+        "on-click": "pavucontrol",
+        "scroll-step": 5
     },
     "tray": {
         "icon-size": 21,
         "spacing": 10
-    },
+    }
 }
