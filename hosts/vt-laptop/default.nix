@@ -34,7 +34,6 @@ in {
   vt.xserver = {
     enable = true;
     gdm = true;
-    gnome = true;
     nvidiaDrivers = false;
   };
 
