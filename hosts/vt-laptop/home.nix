@@ -1,7 +1,7 @@
 { pkgs, ... }: {
   home.stateVersion = "24.05"; # Did you read the comment?
 
-  imports = [ ../common/home/git.nix ];
+  imports = [ ../common/home/git.nix ../common/home/cursor.nix ];
 
   # General
   vt = {
