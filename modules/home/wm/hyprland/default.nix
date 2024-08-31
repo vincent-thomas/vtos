@@ -16,6 +16,15 @@
 
     playerctl = "${pkgs.playerctl}/bin/playerctl";
 
+    brightnessConfig = ''
+      # Increase Brightness
+      bind = ,XF86MonBrightnessUp, exec, ${pkgs.brightnessctl}/bin/brightnessctl set +10%
+
+      # Decrease Brightness
+      bind = ,XF86MonBrightnessDown, exec, ${pkgs.brightnessctl}/bin/brightnessctl set 10%-
+
+    '';
+
     mediaKeysConfig = ''
       # Volume Up
       bind = ,XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+
@@ -37,7 +46,6 @@
 
       # Previous Track
       bind = ,XF86AudioPrev, exec, ${playerctl} previous
-
     '';
   in {
     wayland.windowManager.hyprland = {
@@ -46,6 +54,7 @@
       extraConfig = ''
         ${config.vt.wm.hyprland.extraConfig}
         ${builtins.readFile ./hyprland.conf}
+        ${brightnessConfig}
         ${if config.vt.wm.hyprland.enableMediaKeys then mediaKeysConfig else ""}
       '';
     };
