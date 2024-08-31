@@ -18,25 +18,25 @@
 
     mediaKeysConfig = ''
       # Volume Up
-      bind = XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+
+      bind = ,XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+
 
       # Volume Down
-      bind = XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-
+      bind = ,XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-
 
       # Mute/Unmute
-      bind = XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
+      bind = ,XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
 
       # Microphone Mute/Unmute
-      bind = XF86AudioMicMute, exec, wpctl set-mute @DEFAULT_SOURCE@ toggle
+      bind = ,XF86AudioMicMute, exec, wpctl set-mute @DEFAULT_SOURCE@ toggle
 
       # Play/Pause
-      bind = XF86AudioPlay, exec, ${playerctl} play-pause
+      bind = ,XF86AudioPlay, exec, ${playerctl} play-pause
 
       # Next Track
-      bind = XF86AudioNext, exec, ${playerctl} next
+      bind = ,XF86AudioNext, exec, ${playerctl} next
 
       # Previous Track
-      bind = XF86AudioPrev, exec, ${playerctl} previous
+      bind = ,XF86AudioPrev, exec, ${playerctl} previous
 
     '';
   in {
