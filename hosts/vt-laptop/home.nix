@@ -34,7 +34,14 @@
     firefox.enable = true;
   };
 
-  home.packages = with pkgs; [ cargo gcc vlc obsidian ];
+  home.packages = with pkgs; [
+    cargo
+    gcc
+    vlc
+    obsidian
+
+    localsend
+  ];
 
   programs.btop.enable = true;
 
