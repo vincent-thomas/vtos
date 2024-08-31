@@ -28,6 +28,7 @@ in {
     ../common/nixos/optional/services/bluetooth.nix
 
     ./hardware.nix
+    inputs.nixos-hardware.nixosModules.lenovo-thinkpad-t480s
   ];
 
   vt.xserver = {
@@ -53,6 +54,6 @@ in {
 
   environment.systemPackages = with pkgs; [ vt-nvim powertools ];
 
-  system.stateVersion = "24.05"; # Did you read the comment?
+  system.stateVersion = "24.05";
 
 }

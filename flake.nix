@@ -12,10 +12,6 @@
     nixos-wsl.url = "github:nix-community/NixOS-WSL/main";
     nixos-wsl.inputs.nixpkgs.follows = "nixpkgs";
 
-    # Home manager
-    home-manager.url = "github:nix-community/home-manager/release-24.05";
-    home-manager.inputs.nixpkgs.follows = "nixpkgs";
-
     # Agenix
     agenix.url = "github:ryantm/agenix";
     agenix.inputs = {
@@ -23,16 +19,22 @@
       darwin.follows = "";
     };
 
+    # Nixvim
+    nixvim.url = "github:nix-community/nixvim/nixos-24.05";
+    nixvim.inputs.nixpkgs.follows = "nixpkgs";
+
+    nixos-hardware.url = "github:NixOS/nixos-hardware";
+
+    # Home manager
+    home-manager.url = "github:nix-community/home-manager/release-24.05";
+    home-manager.inputs.nixpkgs.follows = "nixpkgs";
+
     comin.url = "github:nlewo/comin";
     comin.inputs.nixpkgs.follows = "nixpkgs";
 
     # ISO Generations
     nixos-generators.url = "github:nix-community/nixos-generators";
     nixos-generators.inputs.nixpkgs.follows = "nixpkgs";
-
-    # Nixvim
-    nixvim.url = "github:nix-community/nixvim/nixos-24.05";
-    nixvim.inputs.nixpkgs.follows = "nixpkgs";
 
     # Catppuccin
     catppuccin.url = "github:catppuccin/nix";
