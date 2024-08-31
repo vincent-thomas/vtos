@@ -23,7 +23,7 @@
       zoxideIntegration = true;
       nvimAlias = true;
       envVars = ''
-        EDITOR = "nvim"
+        export EDITOR = "nvim"
       '';
     };
 
