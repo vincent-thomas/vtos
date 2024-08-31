@@ -8,6 +8,7 @@
     wallpapers = true;
     wm.hyprland = {
       enable = true;
+      enableMediaKeys = true;
       extraConfig = ''
         monitor=,1920x1080@60.03,auto,auto
       '';
