@@ -6,6 +6,7 @@
   # General
   vt = {
     wallpapers = true;
+    wm.hyprland.enable = true;
 
     # Terminal / Shell
     alacritty.enable = true;

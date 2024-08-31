@@ -15,6 +15,7 @@ in {
 
     # Optional
     ../common/nixos/optional/fonts.nix
+    ../common/nixos/optional/hyprland.nix
     _1passwordModule
 
     (homeManagerModule {
