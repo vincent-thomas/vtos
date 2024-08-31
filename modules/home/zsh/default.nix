@@ -11,6 +11,11 @@
         description = "Enables zoxide";
       };
 
+      envVars = lib.mkOption {
+        type = lib.types.attrs;
+        default = "";
+      };
+
       extraConfig = lib.mkOption {
         type = lib.types.str;
         default = "";
@@ -36,7 +41,7 @@
       };
       zsh = {
         enable = true;
-        sessionVariables = { HOME_MNGR_DIR = "$HOME/nix"; };
+        envExtra = config.vt.zsh.envVars;
         dotDir = ".config/zsh";
 
         shellAliases = { v = lib.mkIf config.vt.zsh.nvimAlias "nvim"; };
