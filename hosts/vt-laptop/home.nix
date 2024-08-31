@@ -32,7 +32,7 @@
 
     tmux.enable = true;
 
-    firefox.enable = true;
+    firefox.enable = false;
   };
 
   home.packages = with pkgs; [
