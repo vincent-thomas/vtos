@@ -22,7 +22,6 @@
 
       # Decrease Brightness
       bind = ,XF86MonBrightnessDown, exec, ${pkgs.brightnessctl}/bin/brightnessctl set 10%-
-
     '';
 
     mediaKeysConfig = ''
@@ -62,8 +61,13 @@
     programs.fuzzel.enable = true;
 
     home = lib.mkIf config.vt.wm.hyprland.enable {
-      packages =
-        [ pkgs.wpaperd pkgs.waybar pkgs.pavucontrol pkgs.wl-clipboard ];
+      packages = [
+        pkgs.wpaperd
+        pkgs.waybar
+        pkgs.pavucontrol
+        pkgs.wl-clipboard
+        pkgs.bibata-cursors
+      ];
       file = {
         ".config/wpaperd/config.toml".text = ''
           [any]
