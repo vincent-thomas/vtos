@@ -11,7 +11,12 @@
   vt = {
     wallpapers = true;
 
-    wm.hyprland.enable = true;
+    wm.hyprland = {
+      enable = true;
+      extraConfig = ''
+        monitor=,3440x1440@99.98,auto,auto
+      '';
+    };
 
     # Terminal / Shell
     alacritty.enable = true;

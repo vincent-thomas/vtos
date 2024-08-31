@@ -1,12 +1,21 @@
 { config, lib, pkgs, ... }: {
   options = {
-    vt.wm.hyprland.enable = lib.mkEnableOption "Enable hyprland wm";
+    vt.wm.hyprland = {
+      enable = lib.mkEnableOption "Enable hyprland wm";
+      extraConfig = lib.mkOption {
+        type = lib.string;
+        default = "";
+      };
+    };
   };
   config = {
     wayland.windowManager.hyprland = {
       inherit (config.vt.wm.hyprland) enable;
       xwayland.enable = true;
-      extraConfig = builtins.readFile ./hyprland.conf;
+      extraConfig = ''
+        ${config.vt.wm.hyprland.extraConfig}
+        ${builtins.readFile ./hyprland.conf}
+      '';
     };
 
     programs.fuzzel.enable = true;

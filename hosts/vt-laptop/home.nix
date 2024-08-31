@@ -6,7 +6,12 @@
   # General
   vt = {
     wallpapers = true;
-    wm.hyprland.enable = true;
+    wm.hyprland = {
+      enable = true;
+      extraConfig = ''
+        monitor=,1920x1080@60.03,auto,auto
+      '';
+    };
 
     # Terminal / Shell
     alacritty.enable = true;
