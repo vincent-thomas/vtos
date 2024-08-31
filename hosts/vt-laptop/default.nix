@@ -25,6 +25,7 @@ in {
 
     ../common/nixos/optional/services/pipewire.nix
     ../common/nixos/optional/services/pull-config-update.nix
+    ../common/nixos/optional/services/bluetooth.nix
 
     ./hardware.nix
   ];
