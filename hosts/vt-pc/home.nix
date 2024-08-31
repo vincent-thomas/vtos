@@ -27,7 +27,9 @@
       starshipIntegration = true;
       zoxideIntegration = true;
       nvimAlias = true;
-      envVars = { EDITOR = "nvim"; };
+      envVars = ''
+        EDITOR = "nvim"
+      '';
     };
 
     config.onepassword = {

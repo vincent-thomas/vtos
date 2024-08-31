@@ -12,7 +12,7 @@
       };
 
       envVars = lib.mkOption {
-        type = lib.types.attrs;
+        type = lib.types.str;
         default = "";
       };
 
