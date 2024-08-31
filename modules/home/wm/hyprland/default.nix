@@ -3,7 +3,7 @@
     vt.wm.hyprland = {
       enable = lib.mkEnableOption "Enable hyprland wm";
       extraConfig = lib.mkOption {
-        type = lib.str;
+        type = lib.types.str;
         default = "";
       };
     };
