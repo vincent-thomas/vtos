@@ -1,9 +1,9 @@
 {
-  nixConfig = {
-    substituters = [ "https://hyprland.cachix.org" ];
-    trusted-public-keys =
-      [ "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc=" ];
-  };
+  # nixConfig = {
+  #   substituters = [ "https://hyprland.cachix.org" ];
+  #   trusted-public-keys =
+  #     [ "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc=" ];
+  # };
   inputs = {
     # Nixpkgs
     nixpkgs.url = "nixpkgs/nixos-24.05";
@@ -44,10 +44,10 @@
     catppuccin.url = "github:catppuccin/nix";
 
     # Fix for fingerprint sensor to work on T480s. 
-    nixos-06cb-009a-fingerprint-sensor = {
-      url = "github:ahbnr/nixos-06cb-009a-fingerprint-sensor";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # nixos-06cb-009a-fingerprint-sensor = {
+    #   url = "github:ahbnr/nixos-06cb-009a-fingerprint-sensor";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
   };
 
   outputs = inputs:

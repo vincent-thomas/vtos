@@ -31,12 +31,12 @@ in {
     inputs.nixos-hardware.nixosModules.lenovo-thinkpad-t480s
 
     # Fingerprint sensor
-    inputs.nixos-06cb-009a-fingerprint-sensor.nixosModules.open-fprintd
-    inputs.nixos-06cb-009a-fingerprint-sensor.nixosModules.python-validity
+    # inputs.nixos-06cb-009a-fingerprint-sensor.nixosModules.open-fprintd
+    # inputs.nixos-06cb-009a-fingerprint-sensor.nixosModules.python-validity
   ];
 
-  services.open-fprintd.enable = true;
-  services.python-validity.enable = true;
+  # services.open-fprintd.enable = true;
+  # services.python-validity.enable = true;
 
   vt.xserver = {
     enable = true;
