@@ -1,7 +1,7 @@
 { config, ... }: {
-  hardware.opengl = {
+  hardware.graphics = {
     enable = true;
-    driSupport = true;
+    # driSupport = true;
     package = import ./nvidia/pkg.nix { inherit config; };
   };
 }

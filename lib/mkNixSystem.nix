@@ -6,7 +6,15 @@ in lib.nixosSystem {
   inherit system;
 
   pkgs = self.mkPkgs { inherit system overlays; };
-  specialArgs = { inherit inputs outputs; };
+  specialArgs = {
+    inherit inputs outputs;
+
+    pkgs-stable = import inputs.nixpkgs-stable {
+      inherit system overlays;
+      config = import ../nixpkgsConfig.nix { inherit lib; };
+    };
+  };
+
   modules = extraModules ++ [
     ../hosts/${hostname}
     outputs.nixosModules.default

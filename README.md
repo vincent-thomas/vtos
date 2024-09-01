@@ -26,6 +26,6 @@ Planned:
 ## Available Components
 * Neovim config
 * Shell setup (zsh, fzf, yazi, starship, custom scripts)
-* ColorScheme: Catppuccin frappe
+* ColorScheme: Catppuccin macchiato
 * Nerd Fonts
 * Window Managers: (Hyprland, qtile)

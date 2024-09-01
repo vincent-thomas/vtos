@@ -1,6 +1,6 @@
 {
   colorschemes.catppuccin = {
     enable = true;
-    settings = { flavour = "frappe"; };
+    settings = { flavour = "macchiato"; };
   };
 }

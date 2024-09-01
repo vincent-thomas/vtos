@@ -1,8 +1,5 @@
 {
-  plugins.fzf-lua = {
-    enable = true;
-    iconsEnabled = true;
-  };
+  plugins.fzf-lua = { enable = true; };
 
   # Custom keymap lua functions
   extraConfigLua = builtins.readFile ./fzf.lua;
