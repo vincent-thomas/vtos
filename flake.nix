@@ -42,6 +42,12 @@
 
     # Catppuccin
     catppuccin.url = "github:catppuccin/nix";
+
+    # Fix for fingerprint sensor to work on T480s. 
+    nixos-06cb-009a-fingerprint-sensor = {
+      url = "github:ahbnr/nixos-06cb-009a-fingerprint-sensor";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = inputs:
