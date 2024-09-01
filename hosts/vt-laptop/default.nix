@@ -51,7 +51,11 @@ in {
   # Enable touchpad support.
   services.libinput.enable = true;
 
-  environment.systemPackages = with pkgs; [ vt-nvim powertools ];
+  environment.systemPackages = with pkgs; [
+    vt-nvim
+    powertools
+    networkmanagerapplet
+  ];
 
   system.stateVersion = "24.05";
 
