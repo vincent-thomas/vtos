@@ -4,13 +4,13 @@
   imports = [
     ../common/home/desktop
     ../common/home/git.nix
+    ../common/home/cursor.nix
     ../common/home/virt-manager.nix
   ];
 
   # General
   vt = {
     wallpapers = true;
-
     wm.hyprland = {
       enable = true;
       extraConfig = ''
@@ -28,7 +28,7 @@
       zoxideIntegration = true;
       nvimAlias = true;
       envVars = ''
-        export EDITOR = "nvim"
+        export EDITOR="nvim"
       '';
     };
 
@@ -51,7 +51,6 @@
   home.packages = with pkgs; [ cargo gcc vlc obsidian ];
 
   programs.btop.enable = true;
-
   services.blueman-applet.enable = true;
 
   programs.imv.enable = true;

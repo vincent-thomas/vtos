@@ -8,35 +8,34 @@ let
   homeManagerModule =
     import ../common/home/setup.nix { inherit inputs outputs; };
 in {
+  system.stateVersion = "24.05";
   imports = [
     coreModule
-
+    # User
     ../common/nixos/users/vt
 
     # Optional
-    ../common/nixos/optional/fonts.nix
     ../common/nixos/optional/hyprland.nix
-    _1passwordModule
-
+    ../common/nixos/optional/fonts.nix
     (homeManagerModule {
       user = "vt";
       homePath = ./home.nix;
     })
 
-    ../common/nixos/optional/services/pipewire.nix
-    ../common/nixos/optional/services/pull-config-update.nix
+    # Services (background)
+    ../common/nixos/optional/services/polkit.nix
     ../common/nixos/optional/services/bluetooth.nix
+    ../common/nixos/optional/services/pipewire.nix
+    _1passwordModule
 
+    # Hardware related config (real hardware/drivers)
     ./hardware.nix
     inputs.nixos-hardware.nixosModules.lenovo-thinkpad-t480s
-
-    # Fingerprint sensor
-    # inputs.nixos-06cb-009a-fingerprint-sensor.nixosModules.open-fprintd
-    # inputs.nixos-06cb-009a-fingerprint-sensor.nixosModules.python-validity
   ];
 
-  # services.open-fprintd.enable = true;
-  # services.python-validity.enable = true;
+  # Bootloader.
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
 
   vt.xserver = {
     enable = true;
@@ -44,26 +43,29 @@ in {
     nvidiaDrivers = false;
   };
 
-  # Bootloader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
+  environment.etc."resolv.conf".text = ''
+    nameserver 45.90.28.165
+    nameserver 45.90.30.165
+  '';
 
   services.xserver.xkb = {
     layout = "se";
     variant = "";
   };
 
-  console.keyMap = "sv-latin1";
-
   # Enable touchpad support.
   services.libinput.enable = true;
 
   environment.systemPackages = with pkgs; [
+    # Apps
+    localsend
+    spotify
+    pcmanfm
+
+    # Own apps
     vt-nvim
     powertools
+
     networkmanagerapplet
   ];
-
-  system.stateVersion = "24.05";
-
 }

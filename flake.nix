@@ -43,11 +43,8 @@
     # Catppuccin
     catppuccin.url = "github:catppuccin/nix";
 
-    # Fix for fingerprint sensor to work on T480s. 
-    # nixos-06cb-009a-fingerprint-sensor = {
-    #   url = "github:ahbnr/nixos-06cb-009a-fingerprint-sensor";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
+    deploy-rs.url = "github:serokell/deploy-rs";
+    deploy-rs.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = inputs:
@@ -73,10 +70,7 @@
       pkgsDir = ./pkgs;
 
       # Extra overlays to and into nixosConfigurations
-      extraOverlays = [ inputs.nur.overlay ];
-
-      nixosModules.default = import ./modules/nixos { inherit vtLib; };
-      homeManagerModules.default = import ./modules/home { inherit vtLib; };
+      extraOverlays = [ inputs.nur.overlay inputs.deploy-rs.overlay ];
 
       nixosConfigurations = overlays:
         import ./hosts { inherit inputs vtLib overlays; };
@@ -84,5 +78,13 @@
       devShells = { pkgs, system }: {
         default = import ./devShell.nix { inherit inputs system pkgs; };
       };
+    } // {
+      nixosModules.default = import ./modules/nixos { inherit vtLib; };
+      homeManagerModules.default = import ./modules/home { inherit vtLib; };
+
+      deploy = vtLib.mkDeploy { inherit (inputs) self; };
+      checks = builtins.mapAttrs
+        (system: deployLib: deployLib.deployChecks inputs.self.deploy)
+        inputs.deploy-rs.lib;
     };
 }

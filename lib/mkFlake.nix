@@ -1,9 +1,7 @@
 { inputs, lib, outputs, ... }:
 
-{ vtLibSrc, pkgsDir,
-# Extra overlays to apply
-extraOverlays ? [ ], nixosModules ? { }, homeManagerModules ? { }
-, nixosConfigurations, devShells ? { ... }: { } }:
+{ vtLibSrc, pkgsDir, extraOverlays ? [ ], nixosConfigurations
+, devShells ? { ... }: { } }:
 let
 
   vtLib = vtLibSrc;
@@ -28,10 +26,7 @@ let
 
 in {
   inherit packages;
-  inherit nixosModules;
-  inherit homeManagerModules;
   nixosConfigurations = nixosConfigurations overlays;
-
   devShells = forAllSystemsWithPkgs
     ({ pkgs, system }: devShells { inherit pkgs system; });
 }

@@ -8,8 +8,12 @@ let
   homeManagerModule =
     import ../common/home/setup.nix { inherit inputs outputs; };
 in {
+  system.stateVersion = "24.05";
   imports = [
     coreModule
+    # User
+    ../common/nixos/users/vt
+
     # Optional
     ../common/nixos/optional/hyprland.nix
     ../common/nixos/optional/fonts.nix
@@ -19,26 +23,16 @@ in {
     })
 
     # Services (background)
-    ../common/nixos/optional/services/pull-config-update.nix
     ../common/nixos/optional/services/polkit.nix
     ../common/nixos/optional/services/bluetooth.nix
     ../common/nixos/optional/services/pipewire.nix
     _1passwordModule
 
-    # Chosen user
-    ../common/nixos/users/vt
-
     # Hardware related config (real hardware/drivers)
     ./hardware.nix
     ../common/nixos/hardware/nvidia
     ../common/nixos/hardware/opengl.nix
-
-    # Test
-    ../common/server/services/k3s.nix
-
   ];
-
-  system.stateVersion = "24.05";
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -66,7 +60,6 @@ in {
     powertools
 
     networkmanagerapplet
-
-    kubernetes-helm
+    deploy-rs.deploy-rs
   ];
 }

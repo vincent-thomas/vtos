@@ -44,17 +44,12 @@
     firefox.enable = true;
   };
 
-  home.packages = with pkgs; [
-    cargo
-    gcc
-    vlc
-    obsidian
-
-    localsend
-  ];
+  home.packages = with pkgs; [ cargo gcc vlc obsidian ];
 
   programs.btop.enable = true;
   services.blueman-applet.enable = true;
+
+  programs.imv.enable = true;
 
   xdg.userDirs.desktop = null;
 }
