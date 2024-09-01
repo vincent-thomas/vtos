@@ -6,8 +6,7 @@
   # };
   inputs = {
     # Nixpkgs
-    nixpkgs.url = "nixpkgs/nixos-24.05";
-    nixpkgs-unstable.url = "nixpkgs/nixos-unstable";
+    nixpkgs.url = "nixpkgs/nixos-unstable";
 
     # NUR
     nur.url = "github:nix-community/NUR";
