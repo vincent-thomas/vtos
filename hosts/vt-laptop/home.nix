@@ -10,7 +10,8 @@
       enable = true;
       enableMediaKeys = true;
       extraConfig = ''
-        monitor=,1920x1080@60.03,auto,1
+        monitor=eDP-1,1920x1080@60.03,0x0,1
+        monitor=HDMI-A-2,2560x1440@59.95,0x-1440,1
       '';
     };
 
