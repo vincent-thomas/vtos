@@ -10,7 +10,6 @@
 
   # General
   vt = {
-    wallpapers = true;
     wm.hyprland = {
       enable = true;
       extraConfig = ''
