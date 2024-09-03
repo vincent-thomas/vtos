@@ -1,9 +1,9 @@
-image: nixos/nix
+image: docker.nix-community.org/nixpkgs/cachix-flakes
 
-stages:
-  - check
-
-check:
-  stage: check
+build:
+  variables:
+    CACHIX_CACHE_NAME: vtos
+  before_script:
+    - cachix use "$CACHIX_CACHE_NAME"
   script:
-    - nix flake check --extra-experimental-features nix-command --extra-experimental-features flakes --all-systems
+    - cachix watch-exec $CACHIX_CACHE_NAME -- nix flake check --extra-experimental-features nix-command --extra-experimental-features flakes --all-systems
