@@ -18,7 +18,6 @@ in lib.nixosSystem {
   modules = extraModules ++ [
     ../hosts/${hostname}
     outputs.nixosModules.default
-    inputs.comin.nixosModules.comin
     { nixpkgs.hostPlatform = lib.mkDefault system; }
   ];
 }

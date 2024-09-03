@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }: {
+{ config, lib, pkgs, inputs, ... }: {
   options = {
     vt.wm.hyprland = {
       enable = lib.mkEnableOption "Enable hyprland wm";
@@ -66,7 +66,7 @@
       file = {
         ".config/wpaperd/config.toml".text = ''
           [any]
-          path = '~/.vt/wallpapers'
+          path = "${inputs.vt-wallpapers}"
         '';
         ".config/waybar".source = ./waybar;
       };

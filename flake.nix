@@ -33,9 +33,6 @@
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
-    comin.url = "github:nlewo/comin";
-    comin.inputs.nixpkgs.follows = "nixpkgs";
-
     # ISO Generations
     nixos-generators.url = "github:nix-community/nixos-generators";
     nixos-generators.inputs.nixpkgs.follows = "nixpkgs";
@@ -45,6 +42,9 @@
 
     deploy-rs.url = "github:serokell/deploy-rs";
     deploy-rs.inputs.nixpkgs.follows = "nixpkgs";
+
+    vt-wallpapers.url = "gitlab:vincent_thomas1/wallpapers";
+    vt-wallpapers.flake = false;
   };
 
   outputs = inputs:

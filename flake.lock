@@ -38,26 +38,6 @@
         "type": "github"
       }
     },
-    "comin": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1724145018,
-        "narHash": "sha256-6R5CeMgr3EGKhqWPkqtteOtix7hBaurfpjHepiq2OrU=",
-        "owner": "nlewo",
-        "repo": "comin",
-        "rev": "84ef9af404b9157eab2c5e3e44d7c29239329901",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nlewo",
-        "repo": "comin",
-        "type": "github"
-      }
-    },
     "deploy-rs": {
       "inputs": {
         "flake-compat": "flake-compat",
@@ -514,7 +494,6 @@
       "inputs": {
         "agenix": "agenix",
         "catppuccin": "catppuccin",
-        "comin": "comin",
         "deploy-rs": "deploy-rs",
         "home-manager": "home-manager_2",
         "nixos-generators": "nixos-generators",
@@ -523,7 +502,8 @@
         "nixpkgs": "nixpkgs",
         "nixpkgs-stable": "nixpkgs-stable",
         "nixvim": "nixvim",
-        "nur": "nur"
+        "nur": "nur",
+        "vt-wallpapers": "vt-wallpapers"
       }
     },
     "systems": {
@@ -623,6 +603,22 @@
         "owner": "numtide",
         "repo": "flake-utils",
         "type": "github"
+      }
+    },
+    "vt-wallpapers": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1725394191,
+        "narHash": "sha256-EMUYWT6zGT9plKnv8jDTvhWNkvykJFZiyVT35/8KL+M=",
+        "owner": "vincent_thomas1",
+        "repo": "wallpapers",
+        "rev": "ed20a439746604deb60ab569d9dd3a610dfb5332",
+        "type": "gitlab"
+      },
+      "original": {
+        "owner": "vincent_thomas1",
+        "repo": "wallpapers",
+        "type": "gitlab"
       }
     }
   },
