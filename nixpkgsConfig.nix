@@ -10,6 +10,9 @@
       "spotify"
       "davinci-resolve"
       "obsidian"
+      "steam"
+      "steam-original"
+      "steam-run"
     ];
 }
 
