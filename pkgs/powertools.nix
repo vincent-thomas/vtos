@@ -1,6 +1,6 @@
 { pkgs, ... }:
 pkgs.writeShellScriptBin "powertools" ''
-  chosen=$(printf "Hibernate\nPower Off\nRestart\nLock" | fuzzel --dmenu -i)
+  chosen=$(printf "Hibernate\nPower Off\nRestart\nLock" | ${pkgs.fuzzel}/bin/fuzzel --dmenu -i)
 
   case "$chosen" in
     "Hibernate") systemctl hibernate ;;

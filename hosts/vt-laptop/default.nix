@@ -64,7 +64,6 @@ in {
 
     # Own apps
     vt-nvim
-    powertools
 
     networkmanagerapplet
   ];

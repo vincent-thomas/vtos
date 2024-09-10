@@ -52,13 +52,17 @@
       xwayland.enable = true;
       extraConfig = ''
         ${config.vt.wm.hyprland.extraConfig}
+
+        $menu = ${pkgs.fuzzel}/bin/fuzzel
         ${builtins.readFile ./hyprland.conf}
+
+        bind = $mainMod, P, exec, ${pkgs.powertools}/bin/powertools
         ${brightnessConfig}
         ${if config.vt.wm.hyprland.enableMediaKeys then mediaKeysConfig else ""}
       '';
     };
 
-    programs.fuzzel.enable = true;
+    programs.fuzzel.catppuccin.enable = true;
 
     home = lib.mkIf config.vt.wm.hyprland.enable {
       packages =

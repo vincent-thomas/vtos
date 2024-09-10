@@ -7,9 +7,4 @@ in {
   system.stateVersion = "24.05";
 
   imports = [ coreModule ../../hosts/common/nixos/users/vt ];
-
-  users.users.vt = {
-    initialPassword = "vt";
-    hashedPasswordFile = lib.mkForce null;
-  };
 }

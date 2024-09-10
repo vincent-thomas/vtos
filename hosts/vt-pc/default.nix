@@ -64,7 +64,6 @@ in {
 
     # Own packages
     vt-nvim
-    powertools
 
     networkmanagerapplet
     deploy-rs.deploy-rs
