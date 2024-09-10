@@ -23,6 +23,7 @@ in {
     inherit overlays;
 
     system = "x86_64-linux";
-    extraModules = sharedModules;
+    extraModules = sharedModules ++ [
+    ];
   };
 }

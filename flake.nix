@@ -53,6 +53,7 @@
 
     vt-wallpapers.url = "gitlab:vincent_thomas1/wallpapers";
     vt-wallpapers.flake = false;
+    vscode-server.url = "github:nix-community/nixos-vscode-server";
   };
 
   outputs = inputs:

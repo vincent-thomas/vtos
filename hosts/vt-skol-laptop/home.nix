@@ -3,7 +3,7 @@
 
   imports = [ ../common/home/git.nix ];
 
-  home.packages = with pkgs; [ cargo gcc ];
+  home.packages = with pkgs; [ cargo gcc nodejs_22 nodePackages.pnpm wget ];
 
   programs.btop.enable = true;
 
