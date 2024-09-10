@@ -47,7 +47,7 @@
     firefox.enable = true;
   };
 
-  home.packages = with pkgs; [ cargo gcc vlc obsidian ];
+  home.packages = with pkgs; [ cargo gcc vlc obsidian vesktop ];
 
   programs.btop.enable = true;
   services.blueman-applet.enable = true;

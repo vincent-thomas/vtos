@@ -5,5 +5,6 @@ pkgs.mkShell {
     inputs.agenix.packages.${system}.default
     pkgs.age
     pkgs.statix
+    pkgs.terraform
   ];
 }
