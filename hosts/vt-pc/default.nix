@@ -1,13 +1,17 @@
-{ inputs, pkgs, outputs, ... }:
+{
+  inputs,
+  pkgs,
+  outputs,
+  ...
+}:
 let
   coreModule = import ../common/nixos/core { hostname = "vt-pc"; };
 
-  _1passwordModule =
-    import ../common/nixos/optional/1password.nix { user = "vt"; };
+  _1passwordModule = import ../common/nixos/optional/1password.nix { user = "vt"; };
 
-  homeManagerModule =
-    import ../common/home/setup.nix { inherit inputs outputs; };
-in {
+  homeManagerModule = import ../common/home/setup.nix { inherit inputs outputs; };
+in
+{
   system.stateVersion = "24.05";
   imports = [
     coreModule
@@ -38,11 +42,11 @@ in {
   boot.loader.efi.canTouchEfiVariables = true;
 
   programs.steam = {
-  enable = true;
-  remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
-  dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
-  localNetworkGameTransfers.openFirewall = true; # Open ports in the firewall for Steam Local Network Game Transfers
-};
+    enable = true;
+    remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
+    dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
+    localNetworkGameTransfers.openFirewall = true; # Open ports in the firewall for Steam Local Network Game Transfers
+  };
 
   vt.xserver = {
     enable = true;

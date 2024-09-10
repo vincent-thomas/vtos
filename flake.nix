@@ -52,24 +52,32 @@
 
     vt-wallpapers.url = "gitlab:vincent_thomas1/wallpapers";
     vt-wallpapers.flake = false;
+
+    vt-nvim.url = "github:vincent-thomas/nvim";
+    vt-nvim.inputs.nixpkgs.follows = "nixpkgs";
+
     vscode-server.url = "github:nix-community/nixos-vscode-server";
   };
 
-  outputs = inputs:
+  outputs =
+    inputs:
     let
       inherit (inputs.nixpkgs) lib;
       inherit (inputs.self) outputs;
 
       # Automatically include all under the ./lib directory
-      vtLib = builtins.listToAttrs (map (folder: {
-        name = lib.strings.removeSuffix ".nix" folder;
-        value = import ./lib/${folder} {
-          inherit lib inputs outputs;
-          self = vtLib;
-        };
-      }) (import ./lib/listFiles.nix { } ./lib));
+      vtLib = builtins.listToAttrs (
+        map (folder: {
+          name = lib.strings.removeSuffix ".nix" folder;
+          value = import ./lib/${folder} {
+            inherit lib inputs outputs;
+            self = vtLib;
+          };
+        }) (import ./lib/listFiles.nix { } ./lib)
+      );
 
-    in vtLib.mkFlake {
+    in
+    vtLib.mkFlake {
       vtLibSrc = vtLib;
 
       # Automatically import packages using their filename as the package name,
@@ -78,21 +86,27 @@
       pkgsDir = ./pkgs;
 
       # Extra overlays to and into nixosConfigurations
-      extraOverlays = [ inputs.nur.overlay inputs.deploy-rs.overlay ];
+      extraOverlays = [
+        inputs.nur.overlay
+        inputs.deploy-rs.overlay
+        inputs.vt-nvim.overlays.default
+      ];
 
-      nixosConfigurations = overlays:
-        import ./hosts { inherit inputs vtLib overlays; };
+      nixosConfigurations = overlays: import ./hosts { inherit inputs vtLib overlays; };
 
-      devShells = { pkgs, system }: {
-        default = import ./devShell.nix { inherit inputs system pkgs; };
-      };
-    } // {
+      devShells =
+        { pkgs, system }:
+        {
+          default = import ./devShell.nix { inherit inputs system pkgs; };
+        };
+    }
+    // {
       nixosModules.default = import ./modules/nixos { inherit vtLib; };
       homeManagerModules.default = import ./modules/home { inherit vtLib; };
 
       deploy = vtLib.mkDeploy { inherit (inputs) self; };
-      checks = builtins.mapAttrs
-        (system: deployLib: deployLib.deployChecks inputs.self.deploy)
-        inputs.deploy-rs.lib;
+      checks = builtins.mapAttrs (
+        system: deployLib: deployLib.deployChecks inputs.self.deploy
+      ) inputs.deploy-rs.lib;
     };
 }
