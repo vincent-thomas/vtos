@@ -780,11 +780,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1726009540,
-        "narHash": "sha256-fEQ1DsgCbB9tpyikcRbMeL2tKILC0hf+LLiI/7LG5h0=",
+        "lastModified": 1726011168,
+        "narHash": "sha256-3FmGRvMxiJpB2c877Kq+2o0jsFmWLmsnBuMWB4zY4os=",
         "owner": "vincent-thomas",
         "repo": "nvim",
-        "rev": "d82658d9401aeedc93fe65f3fbbc19d1b647f0dd",
+        "rev": "aacf8d7ed5d12f8368b950e040f9d2c52aeef75f",
         "type": "github"
       },
       "original": {
@@ -796,17 +796,17 @@
     "vt-wallpapers": {
       "flake": false,
       "locked": {
-        "lastModified": 1725394191,
-        "narHash": "sha256-EMUYWT6zGT9plKnv8jDTvhWNkvykJFZiyVT35/8KL+M=",
-        "owner": "vincent_thomas1",
+        "lastModified": 1726010738,
+        "narHash": "sha256-SQjv4HvsNvEr0JWWEc3i9JwA/37gdoAaqDuGVo6LdlM=",
+        "owner": "vincent-thomas",
         "repo": "wallpapers",
-        "rev": "ed20a439746604deb60ab569d9dd3a610dfb5332",
-        "type": "gitlab"
+        "rev": "54d4e9a845fcea861de0b096e3b579714a42159f",
+        "type": "github"
       },
       "original": {
-        "owner": "vincent_thomas1",
+        "owner": "vincent-thomas",
         "repo": "wallpapers",
-        "type": "gitlab"
+        "type": "github"
       }
     }
   },
