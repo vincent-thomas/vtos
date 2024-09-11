@@ -14,4 +14,4 @@ jobs:
       with:
         name: vtos
         authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
-    - run: nix flake check --extra-experimental-features nix-command --extra-experimental-features flakes --all-systems --accept-config
+    - run: nix flake check --extra-experimental-features nix-command --extra-experimental-features flakes --all-systems --accept-flake-config
