@@ -1,4 +1,8 @@
-{ inputs, system, pkgs }:
+{
+  inputs,
+  system,
+  pkgs,
+}:
 pkgs.mkShell {
   NIX_CONFIG = "extra-experimental-features = nix-command flakes";
   packages = [
@@ -6,5 +10,6 @@ pkgs.mkShell {
     pkgs.age
     pkgs.statix
     pkgs.terraform
+
   ];
 }
