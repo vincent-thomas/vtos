@@ -30,10 +30,6 @@
       darwin.follows = "";
     };
 
-    # Nixvim
-    nixvim.url = "github:nix-community/nixvim";
-    nixvim.inputs.nixpkgs.follows = "nixpkgs";
-
     nixos-hardware.url = "github:NixOS/nixos-hardware";
 
     # Home manager
@@ -55,8 +51,6 @@
 
     vt-nvim.url = "github:vincent-thomas/nvim";
     vt-nvim.inputs.nixpkgs.follows = "nixpkgs";
-
-    vscode-server.url = "github:nix-community/nixos-vscode-server";
   };
 
   outputs =
