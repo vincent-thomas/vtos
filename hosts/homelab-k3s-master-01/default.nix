@@ -1,4 +1,5 @@
 {
+  lib,
   ...
 }:
 let
@@ -13,4 +14,6 @@ in
     ../common/nixos/users/root-ssh-keys
     ../common/server/optional/qemu.nix
   ];
+
+  users.users.root.hashedPasswordFile = lib.mkForce null;
 }
