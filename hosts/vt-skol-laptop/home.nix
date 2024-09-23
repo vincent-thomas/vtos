@@ -1,9 +1,16 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   home.stateVersion = "23.11";
 
   imports = [ ../common/home/git.nix ];
 
-  home.packages = with pkgs; [ cargo gcc nodejs_22 nodePackages.pnpm wget ];
+  home.packages = with pkgs; [
+    cargo
+    gcc
+    nodejs_22
+    nodePackages.pnpm
+    wget
+  ];
 
   programs.btop.enable = true;
 
@@ -16,8 +23,8 @@
       zoxideIntegration = true;
       nvimAlias = true;
       extraConfig = ''
-        eval $(ssh-agent) &> /dev/null
-        ssh-add ~/.ssh/gitlab &> /dev/null
+        # eval $(ssh-agent) &> /dev/null
+        # ssh-add ~/.ssh/gitlab &> /dev/null
 
         tmux new -Asroot
       '';
