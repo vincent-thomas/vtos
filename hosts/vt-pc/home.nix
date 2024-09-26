@@ -1,4 +1,5 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   home.stateVersion = "23.11";
 
   imports = [
@@ -47,7 +48,16 @@
     firefox.enable = true;
   };
 
-  home.packages = with pkgs; [ cargo gcc vlc obsidian vesktop ];
+  home.packages = with pkgs; [
+    cargo
+    rustc
+    gcc
+    vlc
+    obsidian
+    vesktop
+    vscode
+    stripe-cli
+  ];
 
   programs.btop.enable = true;
   services.blueman-applet.enable = true;

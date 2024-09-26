@@ -54,11 +54,6 @@ in
     nvidiaDrivers = true;
   };
 
-  environment.etc."resolv.conf".text = ''
-    nameserver 45.90.28.165
-    nameserver 45.90.30.165
-  '';
-
   users.users.vt.packages = with pkgs; [
     # Apps
     localsend
@@ -72,4 +67,10 @@ in
     networkmanagerapplet
     deploy-rs.deploy-rs
   ];
+
+  virtualisation.docker = {
+    enable = true;
+  };
+
+  users.users.vt.extraGroups = [ "docker" ];
 }
