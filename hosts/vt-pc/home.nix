@@ -36,6 +36,8 @@
       sshIntegration = true;
       zshOpPlugins.gh = true;
       zshOpPlugins.cargo = true;
+      zshOpPlugins.stripe = true;
+      zshOpPlugins.flyctl = true;
     };
 
     cliTools = {

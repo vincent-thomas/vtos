@@ -1,7 +1,12 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   home.stateVersion = "24.05"; # Did you read the comment?
 
-  imports = [ ../common/home/git.nix ../common/home/cursor.nix ../common/home/fuzzel-theme.nix ];
+  imports = [
+    ../common/home/git.nix
+    ../common/home/cursor.nix
+    ../common/home/fuzzel-theme.nix
+  ];
 
   # General
   vt = {
@@ -32,6 +37,8 @@
       sshIntegration = true;
       zshOpPlugins.gh = true;
       zshOpPlugins.cargo = true;
+      zshOpPlugins.flyctl = true;
+      zshOpPlugins.stripe = true;
     };
 
     cliTools = {
@@ -44,7 +51,12 @@
     firefox.enable = true;
   };
 
-  home.packages = with pkgs; [ cargo gcc vlc obsidian ];
+  home.packages = with pkgs; [
+    cargo
+    gcc
+    vlc
+    obsidian
+  ];
 
   programs.btop.enable = true;
   services.blueman-applet.enable = true;
