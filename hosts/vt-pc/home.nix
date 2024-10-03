@@ -59,6 +59,8 @@
     vesktop
     vscode
     stripe-cli
+
+    awscli2
   ];
 
   programs.btop.enable = true;

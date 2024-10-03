@@ -1,6 +1,15 @@
-{ user, lib, config, pkgs, ... }: {
+{
+  user,
+  lib,
+  config,
+  pkgs,
+  ...
+}:
+{
 
-  options = { vt.firefox.enable = lib.mkEnableOption "Enable firefox"; };
+  options = {
+    vt.firefox.enable = lib.mkEnableOption "Enable firefox";
+  };
 
   config = {
     programs.firefox = lib.mkIf config.vt.firefox.enable {
@@ -30,15 +39,18 @@
           default = "DuckDuckGo";
           engines = {
             "My nixOS" = {
-              urls = [{
-                template = "https://mynixos.com/search";
-                params = [{
-                  name = "q";
-                  value = "{searchTerms}";
-                }];
-              }];
-              icon =
-                "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
+              urls = [
+                {
+                  template = "https://mynixos.com/search";
+                  params = [
+                    {
+                      name = "q";
+                      value = "{searchTerms}";
+                    }
+                  ];
+                }
+              ];
+              icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
               definedAliases = [ "@mn" ];
             };
           };
