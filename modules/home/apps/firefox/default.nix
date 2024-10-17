@@ -24,7 +24,6 @@
           clearurls
           facebook-container
           multi-account-containers
-          addy_io
           decentraleyes
 
           # Essential
@@ -32,12 +31,42 @@
           sponsorblock
           firefox-color
           onepassword-password-manager
+          catppuccin-gh-file-explorer
         ];
 
         search = {
           force = true;
           default = "DuckDuckGo";
           engines = {
+            "Nordnet" = {
+              definedAliases = [ "@nn" ];
+              urls = [
+                {
+                  template = "https://www.nordnet.se/marknaden/aktiekurser";
+                  params = [
+                    {
+                      name = "freeTextSearch";
+                      value = "{searchTerms}";
+                    }
+                  ];
+                }
+              ];
+            };
+
+            "TradingView.com" = {
+              definedAliases = [ "@tv" ];
+              urls = [
+                {
+                  template = "https://www.tradingview.com/chart/";
+                  params = [
+                    {
+                      name = "symbol";
+                      value = "{searchTerms}";
+                    }
+                  ];
+                }
+              ];
+            };
             "My nixOS" = {
               urls = [
                 {

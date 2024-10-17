@@ -25,7 +25,9 @@
         bind -r h select-pane -L
         bind -r l select-pane -R
 
-        bind-key -r f run-shell "tmux neww ${pkgs.tmux-sessionizer}/bin/tmux-sessionizer"
+        bind-key -r f run-shell "tmux neww ${pkgs.tmux-tools}/bin/tmux-sessionizer"
+        bind-key -r F run-shell "tmux neww ${pkgs.tmux-tools}/bin/tmux-list-sessions"
+
         bind r source-file ~/.config/tmux/tmux.conf
         bind D detach
         bind d switch-client -t root

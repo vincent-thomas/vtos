@@ -52,6 +52,7 @@ in
     enable = true;
     gdm = true;
     nvidiaDrivers = true;
+    gnome = true;
   };
 
   users.users.vt.packages = with pkgs; [
