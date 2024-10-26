@@ -1,4 +1,10 @@
-{ pkgs, config, lib, ... }: {
+{
+  pkgs,
+  config,
+  lib,
+  ...
+}:
+{
 
   options = {
     vt.cliTools = {
@@ -8,8 +14,15 @@
   };
 
   config = {
-    home.packages =
-      lib.mkIf config.vt.cliTools.enable (with pkgs; [ ripgrep gh jq fd ]);
+    home.packages = lib.mkIf config.vt.cliTools.enable (
+      with pkgs;
+      [
+        ripgrep
+        gh
+        jq
+        fd
+      ]
+    );
 
     programs = {
       fzf = lib.mkIf config.vt.cliTools.enable {
@@ -19,7 +32,7 @@
       yazi.enable = config.vt.cliTools.enable;
       eza = lib.mkIf config.vt.cliTools.enable {
         enable = true;
-        icons = true;
+        icons = "auto";
         enableZshIntegration = config.vt.cliTools.zshIntegration;
         git = true;
       };

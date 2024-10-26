@@ -1,15 +1,20 @@
-{ inputs, pkgs, outputs, ... }:
+{
+  inputs,
+  pkgs,
+  outputs,
+  ...
+}:
 let
 
   username = "vt";
 
   coreModule = import ../common/nixos/core { hostname = "vt-skol-laptop"; };
-  homeManagerModule =
-    import ../common/home/setup.nix { inherit inputs outputs; };
+  homeManagerModule = import ../common/home/setup.nix { inherit inputs outputs; };
 
   wslModule = import ../common/nixos/hardware/wsl.nix { inherit username; };
 
-in {
+in
+{
   imports = [
     coreModule
     wslModule
@@ -21,6 +26,8 @@ in {
       homePath = ./home.nix;
     })
   ];
+
+  wsl.docker-desktop.enable = true;
 
   system.stateVersion = "24.05"; # Don't change
 
