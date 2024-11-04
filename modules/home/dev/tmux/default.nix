@@ -1,5 +1,13 @@
-{ lib, config, pkgs, ... }: {
-  options = { vt.tmux.enable = lib.mkEnableOption "Enables tmux"; };
+{
+  lib,
+  config,
+  pkgs,
+  ...
+}:
+{
+  options = {
+    vt.tmux.enable = lib.mkEnableOption "Enables tmux";
+  };
   config = {
     programs.tmux = lib.mkIf config.vt.tmux.enable {
       enable = true;
@@ -11,6 +19,11 @@
         set-option -ga terminal-overrides ",xterm-256color:Tc"
         set -g automatic-rename on   # rename window to reflect current program
         set -g renumber-windows on    # renumber windows when a window is closed
+
+        bind -r k select-pane -U
+        bind -r j select-pane -D
+        bind -r h select-pane -L
+        bind -r l select-pane -R
 
         bind-key -r f run-shell "tmux neww ${pkgs.tmux-sessionizer}/bin/tmux-sessionizer"
         bind r source-file ~/.config/tmux/tmux.conf
