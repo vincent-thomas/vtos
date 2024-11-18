@@ -16,6 +16,7 @@
       "steam-original"
       "steam-run"
       "terraform"
-      "vscode"
+      "tradingview"
+      "dropbox"
     ];
 }

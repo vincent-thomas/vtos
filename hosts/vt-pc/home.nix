@@ -53,14 +53,18 @@
   home.packages = with pkgs; [
     cargo
     rustc
+
+    pnpm_9
+    nodejs_22
+
     gcc
     vlc
     obsidian
     vesktop
-    vscode
-    stripe-cli
 
     awscli2
+
+    tradingview
   ];
 
   programs.btop.enable = true;

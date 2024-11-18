@@ -13,6 +13,10 @@ let
 in
 {
   system.stateVersion = "24.05";
+
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
+
   imports = [
     coreModule
     # User
@@ -21,15 +25,19 @@ in
     # Optional
     ../common/nixos/optional/hyprland.nix
     ../common/nixos/optional/fonts.nix
+    ../common/nixos/optional/localsend.nix
+
     (homeManagerModule {
       user = "vt";
       homePath = ./home.nix;
     })
+    ../common/home/steam.nix
 
     # Services (background)
     ../common/nixos/optional/services/polkit.nix
     ../common/nixos/optional/services/bluetooth.nix
     ../common/nixos/optional/services/pipewire.nix
+    ../common/nixos/optional/services/dropbox.nix
     _1passwordModule
 
     # Hardware related config (real hardware/drivers)
@@ -37,16 +45,6 @@ in
     ../common/nixos/hardware/nvidia
     ../common/nixos/hardware/opengl.nix
   ];
-
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-
-  programs.steam = {
-    enable = true;
-    remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
-    dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
-    localNetworkGameTransfers.openFirewall = true; # Open ports in the firewall for Steam Local Network Game Transfers
-  };
 
   vt.xserver = {
     enable = true;
@@ -57,8 +55,6 @@ in
 
   users.users.vt.packages = with pkgs; [
     # Apps
-    localsend
-    discord
     spotify
     pcmanfm
 

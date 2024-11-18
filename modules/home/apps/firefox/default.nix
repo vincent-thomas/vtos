@@ -32,6 +32,7 @@
           firefox-color
           onepassword-password-manager
           catppuccin-gh-file-explorer
+          raindropio
         ];
 
         search = {
