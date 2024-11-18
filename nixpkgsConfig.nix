@@ -13,6 +13,7 @@
       "davinci-resolve"
       "obsidian"
       "steam"
+      "steam-unwrapped"
       "steam-original"
       "steam-run"
       "terraform"
