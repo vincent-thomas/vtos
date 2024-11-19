@@ -2,6 +2,7 @@
   inputs,
   pkgs,
   outputs,
+  lib,
   ...
 }:
 let
@@ -9,7 +10,7 @@ let
 
   _1passwordModule = import ../common/nixos/optional/1password.nix { user = "vt"; };
 
-  homeManagerModule = import ../common/home/setup.nix { inherit inputs outputs; };
+  homeManagerModule = import ../common/home/setup.nix { inherit inputs outputs lib; };
 in
 {
   system.stateVersion = "24.05";

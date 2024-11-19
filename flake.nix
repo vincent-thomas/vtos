@@ -43,9 +43,6 @@
     # Catppuccin
     catppuccin.url = "github:catppuccin/nix";
 
-    deploy-rs.url = "github:serokell/deploy-rs";
-    deploy-rs.inputs.nixpkgs.follows = "nixpkgs";
-
     vt-wallpapers.url = "github:vincent-thomas/wallpapers";
     vt-wallpapers.flake = false;
 
@@ -82,7 +79,6 @@
       # Extra overlays to and into nixosConfigurations
       extraOverlays = [
         inputs.nur.overlay
-        inputs.deploy-rs.overlay
         inputs.vt-nvim.overlays.default
       ];
 
@@ -97,10 +93,5 @@
     // {
       nixosModules.default = import ./modules/nixos { inherit vtLib; };
       homeManagerModules.default = import ./modules/home { inherit vtLib; };
-
-      deploy = vtLib.mkDeploy { inherit (inputs) self; };
-      checks = builtins.mapAttrs (
-        system: deployLib: deployLib.deployChecks inputs.self.deploy
-      ) inputs.deploy-rs.lib;
     };
 }
