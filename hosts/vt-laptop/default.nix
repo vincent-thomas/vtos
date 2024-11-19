@@ -1,13 +1,18 @@
-{ pkgs, inputs, outputs, lib, ... }:
+{
+  pkgs,
+  inputs,
+  outputs,
+  lib,
+  ...
+}:
 let
   coreModule = import ../common/nixos/core { hostname = "vt-laptop"; };
 
-  _1passwordModule =
-    import ../common/nixos/optional/1password.nix { user = "vt"; };
+  _1passwordModule = import ../common/nixos/optional/1password.nix { user = "vt"; };
 
-  homeManagerModule =
-    import ../common/home/setup.nix { inherit inputs outputs lib; };
-in {
+  homeManagerModule = import ../common/home/setup.nix { inherit inputs outputs lib; };
+in
+{
   system.stateVersion = "24.05";
   imports = [
     coreModule
@@ -26,6 +31,7 @@ in {
     ../common/nixos/optional/services/polkit.nix
     ../common/nixos/optional/services/bluetooth.nix
     ../common/nixos/optional/services/pipewire.nix
+    ../common/nixos/optional/services/dropbox.nix
     _1passwordModule
 
     # Hardware related config (real hardware/drivers)
