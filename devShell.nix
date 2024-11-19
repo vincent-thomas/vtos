@@ -8,8 +8,6 @@ pkgs.mkShell {
   packages = [
     inputs.agenix.packages.${system}.default
     pkgs.age
-    pkgs.statix
-    pkgs.terraform
-
+    pkgs.just
   ];
 }

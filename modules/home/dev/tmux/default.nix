@@ -20,7 +20,11 @@
       ];
       extraConfig = ''
         set-option -ga terminal-overrides ",xterm-256color:Tc"
+
+        set-option -g status-style bg=default
+
         set -g @continuum-boot 'on'
+
         set -g automatic-rename on   # rename window to reflect current program
         set -g renumber-windows on    # renumber windows when a window is closed
 

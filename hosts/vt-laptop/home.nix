@@ -56,6 +56,7 @@
     gcc
     vlc
     obsidian
+
   ];
 
   programs.btop.enable = true;
