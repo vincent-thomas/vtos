@@ -1,4 +1,5 @@
-{ lib, config, ... }: {
+{ lib, config, ... }:
+{
   options = {
     vt.alacritty.enable = lib.mkEnableOption "Kitty terminal";
     vt.alacritty.zshDefault = lib.mkEnableOption "Default on zsh shell";
@@ -8,9 +9,12 @@
       enable = true;
       settings = {
         env.TERM = "xterm-256color";
-        shell = {
+        terminal.shell = {
           program = "tmux";
-          args = [ "new" "-Asroot" ];
+          args = [
+            "new"
+            "-Asroot"
+          ];
         };
         font = {
           size = 12;

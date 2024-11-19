@@ -62,7 +62,6 @@ in
     vt-nvim
 
     networkmanagerapplet
-    deploy-rs.deploy-rs
   ];
 
   virtualisation.docker = {

@@ -21,39 +21,7 @@
   };
   config =
     let
-
-      playerctl = "${pkgs.playerctl}/bin/playerctl";
-
-      brightnessConfig = ''
-        # Increase Brightness
-        bind = ,XF86MonBrightnessUp, exec, ${pkgs.brightnessctl}/bin/brightnessctl set +10%
-
-        # Decrease Brightness
-        bind = ,XF86MonBrightnessDown, exec, ${pkgs.brightnessctl}/bin/brightnessctl set 10%-
-      '';
-
-      mediaKeysConfig = ''
-        # Volume Up
-        bind = ,XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+ -l 1.0
-
-        # Volume Down
-        bind = ,XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-
-
-        # Mute/Unmute
-        bind = ,XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
-
-        # Microphone Mute/Unmute
-        bind = ,XF86AudioMicMute, exec, wpctl set-mute @DEFAULT_SOURCE@ toggle
-
-        # Play/Pause
-        bind = ,XF86AudioPlay, exec, ${playerctl} play-pause
-
-        # Next Track
-        bind = ,XF86AudioNext, exec, ${playerctl} next
-
-        # Previous Track
-        bind = ,XF86AudioPrev, exec, ${playerctl} previous
-      '';
+      extraConfig = import ./extra-config.nix { inherit pkgs; };
     in
     {
       wayland.windowManager.hyprland = {
@@ -63,14 +31,14 @@
 
           ${config.vt.wm.hyprland.extraConfig}
 
-          exec-once = ${pkgs.waybar}/bin/waybar &
+          ${extraConfig.waylandFix}
 
           $menu = ${pkgs.fuzzel}/bin/fuzzel
           ${builtins.readFile ./hyprland.conf}
 
           bind = $mainMod, P, exec, ${pkgs.powertools}/bin/powertools
-          ${brightnessConfig}
-          ${if config.vt.wm.hyprland.enableMediaKeys then mediaKeysConfig else ""}
+          ${extraConfig.brightnessConfig}
+          ${if config.vt.wm.hyprland.enableMediaKeys then extraConfig.mediaKeysConfig else ""}
         '';
       };
 
