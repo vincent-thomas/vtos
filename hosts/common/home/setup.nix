@@ -1,4 +1,4 @@
-{ inputs, outputs, ... }:
+{ inputs, outputs, lib, ... }:
 
 { user, homePath }: {
   home-manager = {
@@ -22,7 +22,7 @@
 
       home = {
         username = user;
-        homeDirectory = "/home/${user}";
+        homeDirectory = lib.mkForce "/home/${user}";
         sessionPath = [
           "$HOME/.nix-profile/bin" # binaries
           "$HOME/.nix-profile/share/applications" # .desktop files

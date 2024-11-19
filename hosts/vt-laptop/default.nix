@@ -1,4 +1,4 @@
-{ pkgs, inputs, outputs, ... }:
+{ pkgs, inputs, outputs, lib, ... }:
 let
   coreModule = import ../common/nixos/core { hostname = "vt-laptop"; };
 
@@ -6,7 +6,7 @@ let
     import ../common/nixos/optional/1password.nix { user = "vt"; };
 
   homeManagerModule =
-    import ../common/home/setup.nix { inherit inputs outputs; };
+    import ../common/home/setup.nix { inherit inputs outputs lib; };
 in {
   system.stateVersion = "24.05";
   imports = [
