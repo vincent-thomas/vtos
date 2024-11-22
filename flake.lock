@@ -207,11 +207,27 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1731676054,
-        "narHash": "sha256-OZiZ3m8SCMfh3B6bfGC/Bm4x3qc1m2SVEAlkV6iY7Yg=",
+        "lastModified": 1732137751,
+        "narHash": "sha256-EAL0dZuCXPPz3/AvZ5fbhvUozDBjbeIYVDNcTFLw34Y=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "5e4fbfb6b3de1aa2872b76d49fafc942626e2add",
+        "rev": "f9b758017c32fa79ada0b10fb42eb1ad684c8d44",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "release-24.11",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs-unstable": {
+      "locked": {
+        "lastModified": 1732014248,
+        "narHash": "sha256-y/MEyuJ5oBWrWAic/14LaIr/u5E0wRVzyYsouYY3W6w=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "23e89b7da85c3640bbc2173fe04f4bd114342367",
         "type": "github"
       },
       "original": {
@@ -221,29 +237,13 @@
         "type": "github"
       }
     },
-    "nixpkgs-stable": {
-      "locked": {
-        "lastModified": 1732037556,
-        "narHash": "sha256-a5b2k0wzru8ATUwVs/M0jx/NyLdJx2aYHWEdoq2l/i0=",
-        "owner": "nixos",
-        "repo": "nixpkgs",
-        "rev": "f720d577817eacee1239242b823804504596bf8d",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nixos",
-        "ref": "release-24.05",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
     "nur": {
       "locked": {
-        "lastModified": 1732034903,
-        "narHash": "sha256-83fCcCsW/f1DIBQoQfSvnp95L4WADvKTC+xMQFQ0RRI=",
+        "lastModified": 1732134607,
+        "narHash": "sha256-vWkWJWMujimxIan8vSSXmB6ujov6SgQca3wD4c2EGIk=",
         "owner": "nix-community",
         "repo": "NUR",
-        "rev": "a2712ed4e2e98c0e86ebc074acb2af8248941cc8",
+        "rev": "34ea536162b11e0db2449bd2eb248dccce1bb9e6",
         "type": "github"
       },
       "original": {
@@ -261,7 +261,7 @@
         "nixos-hardware": "nixos-hardware",
         "nixos-wsl": "nixos-wsl",
         "nixpkgs": "nixpkgs",
-        "nixpkgs-stable": "nixpkgs-stable",
+        "nixpkgs-unstable": "nixpkgs-unstable",
         "nur": "nur",
         "vt-nvim": "vt-nvim",
         "vt-wallpapers": "vt-wallpapers"

@@ -13,8 +13,8 @@
   };
   inputs = {
     # Nixpkgs
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    nixpkgs-stable.url = "github:nixos/nixpkgs/release-24.05";
+    nixpkgs.url = "github:nixos/nixpkgs/release-24.11";
+    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
 
     # NUR
     nur.url = "github:nix-community/NUR";
@@ -80,6 +80,12 @@
       extraOverlays = [
         inputs.nur.overlay
         inputs.vt-nvim.overlays.default
+
+        # (final: prev: {
+        #   unstable = import inputs.nixpkgs-unstable {
+        #     system = prev.system;
+        #   };
+        # })
       ];
 
       nixosConfigurations = overlays: import ./hosts { inherit inputs vtLib overlays; };

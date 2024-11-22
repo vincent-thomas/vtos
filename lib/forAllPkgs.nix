@@ -1,7 +1,13 @@
 { self, ... }:
 
-{ overlays ? [ ] }:
+{
+  overlays ? [ ],
+}:
 f:
-self.forAllSystems (system:
-  let pkgs = self.mkPkgs { inherit system overlays; };
-  in f { inherit system pkgs; })
+self.forAllSystems (
+  system:
+  let
+    pkgs = self.mkPkgs { inherit system overlays; };
+  in
+  f { inherit system pkgs; }
+)

@@ -1,18 +1,25 @@
-{ inputs, outputs, self, ... }:
+{
+  inputs,
+  outputs,
+  self,
+  ...
+}:
 hostname:
-{ system, overlays ? [ ], extraModules ? [ ] }:
-let inherit (inputs.nixpkgs) lib;
-in lib.nixosSystem {
+{
+  system,
+  overlays ? [ ],
+  extraModules ? [ ],
+}:
+let
+  # See issue: https://github.com/lilyinstarlight/nixos-cosmic/issues/226
+  inherit (inputs.nixpkgs-unstable) lib;
+in
+lib.nixosSystem {
   inherit system;
 
   pkgs = self.mkPkgs { inherit system overlays; };
   specialArgs = {
     inherit inputs outputs;
-
-    pkgs-stable = import inputs.nixpkgs-stable {
-      inherit system overlays;
-      config = import ../nixpkgsConfig.nix { inherit lib; };
-    };
   };
 
   modules = extraModules ++ [
