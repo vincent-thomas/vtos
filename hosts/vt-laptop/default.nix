@@ -20,7 +20,7 @@ in
     ../common/nixos/users/vt
 
     # Optional
-    ../common/nixos/optional/hyprland.nix
+    # ../common/nixos/optional/hyprland.nix
     ../common/nixos/optional/fonts.nix
     (homeManagerModule {
       user = "vt";
@@ -28,8 +28,8 @@ in
     })
 
     # Services (background)
-    ../common/nixos/optional/services/polkit.nix
-    ../common/nixos/optional/services/bluetooth.nix
+    # ../common/nixos/optional/services/polkit.nix
+    # ../common/nixos/optional/services/bluetooth.nix
     ../common/nixos/optional/services/pipewire.nix
     ../common/nixos/optional/services/dropbox.nix
     _1passwordModule
@@ -46,6 +46,7 @@ in
   vt.xserver = {
     enable = true;
     gdm = true;
+    gnome = true;
     nvidiaDrivers = false;
   };
 
