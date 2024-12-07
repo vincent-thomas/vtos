@@ -1,4 +1,3 @@
-{ hostname, ... }:
 {
   imports = [
     ./age.nix
@@ -9,6 +8,4 @@
     ./services/ssh.nix
     ./services/nix-gc.nix
   ];
-
-  vt.services.networking.hostname = hostname;
 }

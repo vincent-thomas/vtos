@@ -24,7 +24,6 @@ in
     ../common/nixos/users/vt
 
     # Optional
-    ../common/nixos/optional/hyprland.nix
     ../common/nixos/optional/fonts.nix
     ../common/nixos/optional/localsend.nix
 
@@ -35,8 +34,6 @@ in
     ../common/home/steam.nix
 
     # Services (background)
-    ../common/nixos/optional/services/polkit.nix
-    ../common/nixos/optional/services/bluetooth.nix
     ../common/nixos/optional/services/pipewire.nix
     ../common/nixos/optional/services/dropbox.nix
     _1passwordModule
@@ -50,24 +47,23 @@ in
   vt.xserver = {
     enable = true;
     gdm = true;
-    nvidiaDrivers = true;
     gnome = true;
+    nvidiaDrivers = true;
   };
 
-  users.users.vt.packages = with pkgs; [
-    # Apps
-    spotify
-    pcmanfm
+  users.users.vt = {
+    extraGroups = [ "docker" ];
+    packages = with pkgs; [
+      # Apps
+      spotify
 
-    # Own packages
-    vt-nvim
-
-    networkmanagerapplet
-  ];
+      # Own packages
+      vt-nvim
+      vesktop
+    ];
+  };
 
   virtualisation.docker = {
     enable = true;
   };
-
-  users.users.vt.extraGroups = [ "docker" ];
 }
