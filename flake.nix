@@ -47,7 +47,6 @@
     vt-wallpapers.flake = false;
 
     vt-nvim.url = "github:vincent-thomas/nvim";
-    vt-nvim.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs =
