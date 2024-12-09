@@ -49,6 +49,8 @@ in
     nvidiaDrivers = false;
   };
 
+  services.twingate.enable = true;
+
   users.users.vt.packages = with pkgs; [
     # Apps
     spotify

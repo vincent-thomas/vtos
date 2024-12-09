@@ -50,6 +50,7 @@ in
     gnome = true;
     nvidiaDrivers = true;
   };
+  services.twingate.enable = true;
 
   users.users.vt = {
     extraGroups = [ "docker" ];

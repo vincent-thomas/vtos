@@ -19,5 +19,6 @@
       "terraform"
       "tradingview"
       "dropbox"
+      "twingate"
     ];
 }
