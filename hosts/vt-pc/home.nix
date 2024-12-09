@@ -3,21 +3,12 @@
   home.stateVersion = "23.11";
 
   imports = [
-    ../common/home/desktop
-    ../common/home/devsetup
-    ../common/home/cursor.nix
-    ../common/home/virt-manager.nix
+    ../common/home/optional/devsetup
+    ../common/home/optional/virt-manager.nix
   ];
 
   # General
   vt = {
-    wm.hyprland = {
-      enable = true;
-      extraConfig = ''
-        monitor=,3440x1440@99.98,auto,auto
-      '';
-    };
-
     config.onepassword = {
       sshIntegration = true;
       zshOpPlugins.gh = true;

@@ -6,10 +6,10 @@
   ...
 }:
 let
-  coreModule = import ../common/nixos/core { hostname = "vt-pc"; };
 
   _1passwordModule = import ../common/nixos/optional/1password.nix { user = "vt"; };
 
+  nixosModule = import ../common/nixos/setup.nix { hostname = "vt-pc"; };
   homeManagerModule = import ../common/home/setup.nix { inherit inputs outputs lib; };
 in
 {
@@ -19,7 +19,7 @@ in
   boot.loader.efi.canTouchEfiVariables = true;
 
   imports = [
-    coreModule
+    nixosModule
     # User
     ../common/nixos/users/vt
 
@@ -31,7 +31,7 @@ in
       user = "vt";
       homePath = ./home.nix;
     })
-    ../common/home/steam.nix
+    ../common/home/optional/steam.nix
 
     # Services (background)
     ../common/nixos/optional/services/pipewire.nix
