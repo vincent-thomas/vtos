@@ -3,6 +3,7 @@
   pkgs,
   outputs,
   lib,
+  config,
   ...
 }:
 let
@@ -38,10 +39,12 @@ in
     ../common/nixos/optional/services/dropbox.nix
     _1passwordModule
 
+    ../common/server/services/k3s-server.nix
+
     # Hardware related config (real hardware/drivers)
-    ./hardware.nix
     ../common/nixos/hardware/nvidia
     ../common/nixos/hardware/opengl.nix
+    ./hardware.nix
   ];
 
   vt.xserver = {
@@ -67,4 +70,5 @@ in
   virtualisation.docker = {
     enable = true;
   };
+
 }

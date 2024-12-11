@@ -21,6 +21,8 @@
   };
 
   home.packages = with pkgs; [
+    angryipscanner
+
     cargo
     rustc
 

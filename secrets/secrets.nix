@@ -14,4 +14,8 @@ in
     vt-laptop
     homelab-k3s-master-01
   ];
+
+  "k3s-test-cluster.age".publicKeys = [ vt-pc ];
+
+  "gha-runner1-key.age".publicKeys = [ vt-pc ];
 }

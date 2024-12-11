@@ -16,10 +16,10 @@
     };
     zsh = {
       enable = true;
-      dotDir = "/home/vt";
       shellAliases = {
         v = "nvim";
         EDITOR = "nvim";
+        k = "kubectl";
       };
 
       initExtra = ''

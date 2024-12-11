@@ -30,17 +30,3 @@ provider "proxmox" {
   pm_api_token_secret = var.proxmox_api_token_secret
   pm_tls_insecure = true
 }
-
-# variable "tsig_key" {
-#   type = string
-#   sensitive = true
-# }
-#
-# provider "dns" {
-#   update {
-#     server = ""
-#     key_name = ""
-#     key_algorithm = ""
-#     key_secret = var.tsig_key
-#   }
-# }
