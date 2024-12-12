@@ -1,20 +1,25 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: the-deployment
+  name: whoami
+  labels:
+    app: traefiklabs
+    name: whoami
+
 spec:
   replicas: 2
   selector:
     matchLabels:
-      deployment: hello
+      app: traefiklabs
+      task: whoami
   template:
     metadata:
       labels:
-        deployment: hello
+        app: traefiklabs
+        task: whoami
     spec:
       containers:
-      - name: the-container
-        command: ["/whoami", "--verbose"]
-        image: traefik/whoami:latest
-        ports:
-        - containerPort: 80
+        - name: whoami
+          image: traefik/whoami
+          ports:
+            - containerPort: 80

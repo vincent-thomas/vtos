@@ -1,14 +1,11 @@
-
-kind: Service
 apiVersion: v1
+kind: Service
 metadata:
-  name: the-service
+  name: whoami
 spec:
-  selector:
-    deployment: hello
-  type: LoadBalancer
   ports:
-  - protocol: TCP
-    port: 8666
-    targetPort: 80
-  sessionAffinity: None
+    - name: http
+      port: 80
+  selector:
+    app: traefiklabs
+    task: whoami

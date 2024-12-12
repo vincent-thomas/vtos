@@ -4,4 +4,5 @@ kind: Kustomization
 resources:
 - ./apps/hello
 - ./core/cert-manager
-# - ./core/kube-vip # Only on server gear
+- ./core/metallb
+- ./core/traefik

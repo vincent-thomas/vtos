@@ -79,12 +79,6 @@
       extraOverlays = [
         inputs.nur.overlay
         inputs.vt-nvim.overlays.default
-
-        # (final: prev: {
-        #   unstable = import inputs.nixpkgs-unstable {
-        #     system = prev.system;
-        #   };
-        # })
       ];
 
       nixosConfigurations = overlays: import ./hosts { inherit inputs vtLib overlays; };

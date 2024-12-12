@@ -1,0 +1,6 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+  - https://raw.githubusercontent.com/metallb/metallb/ee34c275145ff10a8d117528f4c47c13435e665d/config/manifests/metallb-native.yaml
+  - ./ip-pool.yaml
