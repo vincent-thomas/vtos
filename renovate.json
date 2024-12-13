@@ -1,0 +1,9 @@
+{
+   "nix": {
+    "enabled": true
+  },
+  "kubernetes": {
+    "enabled": true,
+    "fileMatch": ["infra/manifests/.+\\.yaml$"]
+  }
+}

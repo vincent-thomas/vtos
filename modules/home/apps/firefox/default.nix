@@ -35,6 +35,14 @@
           raindropio
         ];
 
+        bookmarks = [
+          {
+            name = "k8s homelab stuff";
+            tags = [ "homelab" ];
+            url = "https://github.com/JamesTurland/JimsGarage";
+          }
+        ];
+
         search = {
           force = true;
           default = "DuckDuckGo";
