@@ -1,22 +1,10 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: whoami
-  labels:
-    app: traefiklabs
-    name: whoami
-
+  name: deploy
 spec:
   replicas: 2
-  selector:
-    matchLabels:
-      app: traefiklabs
-      task: whoami
   template:
-    metadata:
-      labels:
-        app: traefiklabs
-        task: whoami
     spec:
       containers:
         - name: whoami

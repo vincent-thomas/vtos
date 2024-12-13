@@ -2,7 +2,6 @@ apiVersion: metallb.io/v1beta1
 kind: IPAddressPool
 metadata:
   name: metallb-ip-pool
-  namespace: metallb-system
 spec:
   addresses:
     - 192.168.76.64/27 # IPs from 64 to 95
@@ -11,7 +10,6 @@ apiVersion: metallb.io/v1beta1
 kind: L2Advertisement
 metadata:
   name: l2-advertisement
-  namespace: metallb-system
 spec:
   ipAddressPools:
     - metallb-ip-pool

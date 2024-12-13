@@ -33,7 +33,7 @@ spec:
           ports:
             - name: web
               containerPort: 80
-            - name: web-dashboard
+            - name: webdashboard
               containerPort: 8080
 ---
 apiVersion: v1

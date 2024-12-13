@@ -1,26 +1,25 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: myingress
+  name: ingress
   annotations:
     traefik.ingress.kubernetes.io/router.entrypoints: web
-
 spec:
   rules:
-    - host: localhost
+    - host: whoami.localhost
       http:
         paths:
-          - path: /bar
-            pathType: Exact
+          - path: /
+            pathType: Prefix
             backend:
               service:
                 name:  whoami
                 port:
                   number: 80
-          - path: /foo
-            pathType: Exact
-            backend:
-              service:
-                name:  whoami
-                port:
-                  number: 80
+          # - path: /foo
+          #   pathType: Exact
+          #   backend:
+          #     service:
+          #       name:  whoami
+          #       port:
+          #         number: 80

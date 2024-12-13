@@ -20,6 +20,7 @@
         v = "nvim";
         EDITOR = "nvim";
         k = "kubectl";
+        j = "just --choose";
       };
 
       initExtra = ''
