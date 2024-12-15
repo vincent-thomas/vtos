@@ -37,6 +37,9 @@
     awscli2
 
     tradingview
+
+    kustomize
+    kubernetes-helm
   ];
 
   programs.btop.enable = true;

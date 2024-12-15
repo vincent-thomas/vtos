@@ -4,7 +4,7 @@ metadata:
   name: metallb-ip-pool
 spec:
   addresses:
-    - 192.168.76.64/27 # IPs from 64 to 95
+    - 192.168.76.64-192.168.76.99
 ---
 apiVersion: metallb.io/v1beta1
 kind: L2Advertisement

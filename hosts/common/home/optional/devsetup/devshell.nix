@@ -20,6 +20,8 @@
         v = "nvim";
         EDITOR = "nvim";
         k = "kubectl";
+        kga = "kubectl get all";
+        kl = "kubectl logs";
         j = "just --choose";
       };
 

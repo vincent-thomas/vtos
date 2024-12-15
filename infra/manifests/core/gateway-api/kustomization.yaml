@@ -1,0 +1,6 @@
+resources:
+  - https://github.com/kubernetes-sigs/gateway-api/releases/download/v1.2.0/standard-install.yaml
+  - https://raw.githubusercontent.com/traefik/traefik/v3.2/docs/content/reference/dynamic-configuration/kubernetes-gateway-rbac.yml # When using traefik
+  - gateway-class.yaml
+  - certificate.yaml
+

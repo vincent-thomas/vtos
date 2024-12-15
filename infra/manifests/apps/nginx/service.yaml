@@ -5,4 +5,5 @@ metadata:
 spec:
   ports:
     - name: http
+      protocol: TCP
       port: 80

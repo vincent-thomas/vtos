@@ -4,14 +4,12 @@ kind: Kustomization
 resources:
 - deployment.yaml
 - service.yaml
-- ingress.yaml
+- ingressroutes.yaml
+- certificate.yaml
 
-namePrefix: whoami-
+namePrefix: nginx-
 
 labels:
 - includeSelectors: true
   pairs:
-    app.kubernetes.io/name: whoami
-
-
-helmCharts: []
+    app.kubernetes.io/name: nginx

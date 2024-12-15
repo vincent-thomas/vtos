@@ -1,0 +1,24 @@
+providers:
+  kubernetesCRD: {}
+
+entryPoints:
+  web:
+    address: ":80"
+  websecure:
+    address: ":443"
+
+accesslog:
+  filePath: /var/log/traefik/access.log
+
+api:
+  insecure: true
+  dashboard: true
+log:
+  level: DEBUG
+#
+# providers:
+#   kubernetesGateway:
+#
+#     nativeLBByDefault: true
+#   # kubernetesIngress:
+#   #   nativeLBByDefault: true

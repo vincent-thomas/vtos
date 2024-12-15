@@ -1,4 +1,4 @@
 rebuild:
   sudo nixos-rebuild switch --flake .
 apply:
-  kubectl apply -k ./infra/manifests
+  kustomize build infra/manifests --enable-helm | kubectl apply --prune --all -f -

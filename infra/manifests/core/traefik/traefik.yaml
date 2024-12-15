@@ -2,39 +2,31 @@ apiVersion: v1
 kind: ServiceAccount
 metadata:
   name: traefik-ingress-controller
-
 ---
-apiVersion: apps/v1
 kind: Deployment
+apiVersion: apps/v1
 metadata:
   name: traefik
-  labels:
-    app: traefik
-
 spec:
   replicas: 2
-  selector:
-    matchLabels:
-      app: traefik
   template:
-    metadata:
-      labels:
-        app: traefik
     spec:
       serviceAccountName: traefik-ingress-controller
       containers:
         - name: traefik
           image: traefik:v3.2
-          args:
-            - --entryPoints.web.address=:80
-            - --providers.kubernetesingress
-            - --api.dashboard=true
-            - --api.insecure=true
           ports:
-            - name: web
-              containerPort: 80
-            - name: webdashboard
-              containerPort: 8080
+            - containerPort: 8080
+            - containerPort: 443
+          volumeMounts:
+            - name: traefik-config
+              mountPath: /etc/traefik/traefik.yaml  # Path inside the container where the file will be mounted
+              subPath: traefik.yaml
+              readOnly: true
+      volumes:
+        - name: traefik-config
+          configMap:
+            name: traefik-config  # Reference to the ConfigMap created by Kustomize
 ---
 apiVersion: v1
 kind: Service
@@ -42,15 +34,10 @@ metadata:
   name: traefik
 spec:
   type: LoadBalancer
-  selector:
-    app: traefik
   ports:
-    - protocol: TCP
-      port: 80
-      name: web
-      targetPort: 80
-
-    - protocol: TCP
-      port: 8080
-      name: webdashboard
+    - port: 443
+      name: secure
+      targetPort: 443
+    - port: 8080
+      name: dashboard
       targetPort: 8080
