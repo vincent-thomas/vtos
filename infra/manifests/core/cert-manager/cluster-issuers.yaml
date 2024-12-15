@@ -5,13 +5,13 @@ metadata:
 spec:
   acme:
     server: https://acme-staging-v02.api.letsencrypt.org/directory
-    email: kkj78mtwwt@privaterelay.appleid.com
+    email: 7p80u8m6@p.v-thomas.com
     privateKeySecretRef:
       name: letsencrypt-staging
     solvers:
     - dns01:
         cloudflare:
-          email: kkj78mtwwt@privaterelay.appleid.com
+          email: 7p80u8m6@p.v-thomas.com
           apiTokenSecretRef:
             name: cloudflare-api-token
             key: api-key
@@ -23,13 +23,13 @@ metadata:
 spec:
   acme:
     server: https://acme-v02.api.letsencrypt.org/directory
-    email: kkj78mtwwt@privaterelay.appleid.com
+    email: 7p80u8m6@p.v-thomas.com
     privateKeySecretRef:
       name: letsencrypt-prod
     solvers:
     - dns01:
         cloudflare:
-          email: kkj78mtwwt@privaterelay.appleid.com
+          email: 7p80u8m6@p.v-thomas.com
           apiTokenSecretRef:
             name: cloudflare-api-token
             key: api-key
