@@ -70,10 +70,4 @@ in
   virtualisation.docker = {
     enable = true;
   };
-
-  environment.etc."resolv.conf".text = ''
-    nameserver 45.90.28.165
-    nameserver 45.90.30.165
-  '';
-
 }

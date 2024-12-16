@@ -1,5 +1,6 @@
 providers:
-  kubernetesCRD: {}
+  kubernetesCRD:
+    nativeLBByDefault: true
 
 entryPoints:
   web:
@@ -15,10 +16,3 @@ api:
   dashboard: true
 log:
   level: DEBUG
-#
-# providers:
-#   kubernetesGateway:
-#
-#     nativeLBByDefault: true
-#   # kubernetesIngress:
-#   #   nativeLBByDefault: true

@@ -1,0 +1,18 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+
+namespace: cattle-system
+
+labels:
+- includeSelectors: true
+  pairs:
+    app.kubernetes.io/name: rancher
+
+resources:
+  - ./service.yaml
+  - ./deployment.yaml
+  - ./certificate.yaml
+  - ./ingressroutes.yaml
+  - ./namespace.yaml
+  - ./cluster-role.yaml

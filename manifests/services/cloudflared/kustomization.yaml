@@ -1,0 +1,12 @@
+kind: Kustomization
+
+namespace: cloudflared
+
+labels:
+- includeSelectors: true
+  pairs:
+    app.kubernetes.io/name: cloudflared
+
+resources:
+  - namespace.yaml
+  - deployment.yaml
