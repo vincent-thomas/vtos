@@ -11,6 +11,7 @@ configMapGenerator:
 - name: traefik-config
   files:
     - config/traefik.yaml
+    - config/dynamic.yaml
 resources:
   - https://raw.githubusercontent.com/traefik/traefik/v3.2/docs/content/reference/dynamic-configuration/kubernetes-crd-definition-v1.yml
   - https://raw.githubusercontent.com/traefik/traefik/v3.2/docs/content/reference/dynamic-configuration/kubernetes-crd-rbac.yml

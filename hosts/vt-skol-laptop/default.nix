@@ -9,7 +9,7 @@ let
 
   username = "vt";
 
-  coreModule = import ../common/nixos/core { hostname = "vt-skol-laptop"; };
+  coreModule = import ../common/nixos/setup.nix { hostname = "vt-skol-laptop"; };
   homeManagerModule = import ../common/home/setup.nix { inherit inputs outputs lib; };
 
   wslModule = import ../common/nixos/hardware/wsl.nix { inherit username; };

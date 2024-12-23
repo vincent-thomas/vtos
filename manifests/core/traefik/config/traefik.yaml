@@ -1,6 +1,16 @@
+api:
+  insecure: true
+  dashboard: true
+
+log:
+  level: DEBUG
+
 providers:
   kubernetesCRD:
     nativeLBByDefault: true
+  file:
+    filename: /etc/traefik/dynamic.yaml
+    watch: true
 
 entryPoints:
   web:
@@ -8,11 +18,13 @@ entryPoints:
   websecure:
     address: ":443"
 
-accesslog:
-  filePath: /var/log/traefik/access.log
+metrics:
+  prometheus:
+    addEntryPointsLabels: true
+    addServicesLabels: true
 
-api:
-  insecure: true
-  dashboard: true
-log:
-  level: DEBUG
+
+
+
+
+

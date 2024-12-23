@@ -12,7 +12,7 @@ hostname:
 }:
 let
   # See issue: https://github.com/lilyinstarlight/nixos-cosmic/issues/226
-  inherit (inputs.nixpkgs-unstable) lib;
+  inherit (inputs.nixpkgs) lib;
 in
 lib.nixosSystem {
   inherit system;

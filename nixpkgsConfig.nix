@@ -20,5 +20,6 @@
       "tradingview"
       "dropbox"
       "twingate"
+      "minecraft-launcher"
     ];
 }

@@ -3,7 +3,7 @@
   ...
 }:
 let
-  coreModule = import ../common/nixos/core { hostname = "homelab-k3s-master-01"; };
+  coreModule = import ../common/nixos/setup.nix { hostname = "homelab-k3s-master-01"; };
 in
 {
   system.stateVersion = "24.05";

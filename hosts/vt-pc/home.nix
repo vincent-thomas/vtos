@@ -17,7 +17,7 @@
       zshOpPlugins.flyctl = true;
     };
 
-    firefox.enable = true;
+    # firefox.enable = true;
   };
 
   home.packages = with pkgs; [
@@ -40,12 +40,14 @@
 
     kustomize
     kubernetes-helm
+
+    prismlauncher
   ];
 
   programs.btop.enable = true;
   services.blueman-applet.enable = true;
 
-  programs.imv.enable = true;
+  # programs.imv.enable = true;
 
   xdg.userDirs.desktop = null;
 }

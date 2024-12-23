@@ -2,7 +2,7 @@
 {
   home.stateVersion = "23.11";
 
-  imports = [ ../common/home/devsetup ];
+  imports = [ ../common/home/optional/devsetup ];
 
   home.packages = with pkgs; [
     cargo

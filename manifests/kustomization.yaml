@@ -5,9 +5,10 @@ resources:
 - ./core/cert-manager
 - ./core/metallb
 - ./core/traefik
+- ./core/grafana
+- ./core/prometheus
 
 # - ./services/cloudflared
 
 - ./apps/nginx
 - ./apps/rancher
-

@@ -18,22 +18,22 @@
         userChrome = builtins.readFile ./userChrome.css;
         extraConfig = builtins.readFile ./user.js;
 
-        extensions = with pkgs.nur.repos.rycee.firefox-addons; [
-          # Privacy
-          ublock-origin
-          clearurls
-          facebook-container
-          multi-account-containers
-          decentraleyes
-
-          # Essential
-          darkreader
-          sponsorblock
-          firefox-color
-          onepassword-password-manager
-          catppuccin-gh-file-explorer
-          raindropio
-        ];
+        # extensions = with pkgs.nur.repos.rycee.firefox-addons; [
+        #   # Privacy
+        #   ublock-origin
+        #   clearurls
+        #   facebook-container
+        #   multi-account-containers
+        #   decentraleyes
+        #
+        #   # Essential
+        #   darkreader
+        #   sponsorblock
+        #   firefox-color
+        #   onepassword-password-manager
+        #   catppuccin-gh-file-explorer
+        #   raindropio
+        # ];
 
         bookmarks = [
           {

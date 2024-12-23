@@ -13,11 +13,12 @@
   };
   inputs = {
     # Nixpkgs
-    nixpkgs.url = "github:nixos/nixpkgs/release-24.11";
-    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
+    # nixpkgs.url = "github:nixos/nixpkgs/release-24.11";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
     # NUR
     nur.url = "github:nix-community/NUR";
+    nur.inputs.nixpkgs.follows = "nixpkgs";
 
     # WSL
     nixos-wsl.url = "github:nix-community/NixOS-WSL/main";
@@ -77,7 +78,7 @@
 
       # Extra overlays to and into nixosConfigurations
       extraOverlays = [
-        inputs.nur.overlay
+        inputs.nur.overlays.default
         inputs.vt-nvim.overlays.default
       ];
 
