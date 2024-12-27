@@ -12,8 +12,6 @@
     ];
   };
   inputs = {
-    # Nixpkgs
-    # nixpkgs.url = "github:nixos/nixpkgs/release-24.11";
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
     # NUR
@@ -23,6 +21,9 @@
     # WSL
     nixos-wsl.url = "github:nix-community/NixOS-WSL/main";
     nixos-wsl.inputs.nixpkgs.follows = "nixpkgs";
+
+    sops-nix.url = "github:Mic92/sops-nix";
+    sops-nix.inputs.nixpkgs.follows = "nixpkgs";
 
     # Agenix
     agenix.url = "github:ryantm/agenix";
@@ -36,10 +37,6 @@
     # Home manager
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
-
-    # ISO Generations
-    nixos-generators.url = "github:nix-community/nixos-generators";
-    nixos-generators.inputs.nixpkgs.follows = "nixpkgs";
 
     # Catppuccin
     catppuccin.url = "github:catppuccin/nix";

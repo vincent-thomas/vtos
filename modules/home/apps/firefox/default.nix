@@ -18,22 +18,22 @@
         userChrome = builtins.readFile ./userChrome.css;
         extraConfig = builtins.readFile ./user.js;
 
-        # extensions = with pkgs.nur.repos.rycee.firefox-addons; [
-        #   # Privacy
-        #   ublock-origin
-        #   clearurls
-        #   facebook-container
-        #   multi-account-containers
-        #   decentraleyes
-        #
-        #   # Essential
-        #   darkreader
-        #   sponsorblock
-        #   firefox-color
-        #   onepassword-password-manager
-        #   catppuccin-gh-file-explorer
-        #   raindropio
-        # ];
+        extensions = with pkgs.nur.repos.rycee.firefox-addons; [
+          # Privacy
+          ublock-origin
+          clearurls
+          facebook-container
+          multi-account-containers
+          decentraleyes
+
+          # Essential
+          darkreader
+          sponsorblock
+          firefox-color
+          onepassword-password-manager
+          catppuccin-gh-file-explorer
+          raindropio
+        ];
 
         bookmarks = [
           {
@@ -41,11 +41,21 @@
             tags = [ "homelab" ];
             url = "https://github.com/JamesTurland/JimsGarage";
           }
+          {
+            name = "Proton Mail";
+            keyword = "mail";
+            url = "https://mail.proton.me";
+          }
+          {
+            name = "Google Calendar";
+            keyword = "cal";
+            url = "https://calendar.google.com";
+          }
         ];
 
         search = {
           force = true;
-          default = "DuckDuckGo";
+          default = "Google";
           engines = {
             "Nordnet" = {
               definedAliases = [ "@nn" ];

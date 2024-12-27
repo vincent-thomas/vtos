@@ -5,6 +5,7 @@
   imports = [
     ../common/home/optional/devsetup
     ../common/home/optional/virt-manager.nix
+    ../common/home/optional/sops.nix
   ];
 
   # General
@@ -17,7 +18,7 @@
       zshOpPlugins.flyctl = true;
     };
 
-    # firefox.enable = true;
+    firefox.enable = true;
   };
 
   home.packages = with pkgs; [
