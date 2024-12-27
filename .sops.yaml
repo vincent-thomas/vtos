@@ -3,9 +3,11 @@ keys:
     - &vt age1u3w64e6ezd5anyf2yapgtw24359e24grqwuvvtfspjf24yg55azqwhwwgw
   - &hosts:
     - &vt-pc age1sx62l9uf0e7ta0d4fmre5nttl95639eeeukf07yqnf55ms5z7f2s0nuzed
+    - &vt-laptop age1fjqnpmhr9cz0whpkdfp63q8cuwyfd6lhymycg3xut3txd6wprfqqrdwd72
 creation_rules:
   - path_regex: secrets.yaml$
     key_groups:
     - age:
       - *vt
       - *vt-pc
+      - *vt-laptop
