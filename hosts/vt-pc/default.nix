@@ -39,7 +39,7 @@ in
     ../common/nixos/optional/services/dropbox.nix
     _1passwordModule
 
-    ../common/server/services/k3s-server.nix
+    # ../common/server/services/k3s-server.nix
 
     # Hardware related config (real hardware/drivers)
     ../common/nixos/hardware/nvidia
