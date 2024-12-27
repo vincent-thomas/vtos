@@ -16,6 +16,7 @@ let
 
 in
 {
+  system.stateVersion = "24.05"; # Don't change
   imports = [
     coreModule
     wslModule
@@ -30,7 +31,4 @@ in
 
   wsl.docker-desktop.enable = true;
 
-  system.stateVersion = "24.05"; # Don't change
-
-  users.users.vt.packages = with pkgs; [ vt-nvim ];
 }

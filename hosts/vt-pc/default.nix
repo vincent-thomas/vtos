@@ -3,7 +3,6 @@
   pkgs,
   outputs,
   lib,
-  config,
   ...
 }:
 let
@@ -60,9 +59,6 @@ in
     packages = with pkgs; [
       # Apps
       spotify
-
-      # Own packages
-      vt-nvim
       vesktop
     ];
   };
