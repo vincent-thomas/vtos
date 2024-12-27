@@ -6,11 +6,8 @@
 }:
 let
   inherit (vtLib) mkNixSystem mkWslSystem;
-  sharedModules = [
-    inputs.agenix.nixosModules.default
-  ];
 
-  vtModules = sharedModules ++ [
+  vtModules = [
     inputs.home-manager.nixosModules.home-manager
   ];
 in
@@ -36,6 +33,6 @@ in
   homelab-k3s-master-01 = mkNixSystem "homelab-k3s-master-01" {
     inherit overlays;
     system = "x86_64-linux";
-    extraModules = sharedModules ++ [ ];
+    extraModules = [ ];
   };
 }

@@ -1,6 +1,5 @@
 {
   imports = [
-    ./age.nix
     ./sops.nix
     ./zsh.nix
     ./locales.nix
