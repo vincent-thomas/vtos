@@ -1,6 +1,5 @@
-{
-  lib,
-  ...
+{ lib
+, ...
 }:
 let
   coreModule = import ../common/nixos/setup.nix { hostname = "homelab-k3s-master-01"; };
@@ -11,7 +10,8 @@ in
     coreModule
     ./hardware.nix
 
-    ../common/nixos/users/root-ssh-keys
+    ../common/nixos/users
+
     ../common/server/optional/qemu.nix
   ];
 

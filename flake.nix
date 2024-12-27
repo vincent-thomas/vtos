@@ -15,16 +15,16 @@
     nur.url = "github:nix-community/NUR";
     nur.inputs.nixpkgs.follows = "nixpkgs";
 
+    nixos-hardware.url = "github:NixOS/nixos-hardware";
+
+    home-manager.url = "github:nix-community/home-manager";
+    home-manager.inputs.nixpkgs.follows = "nixpkgs";
+
     nixos-wsl.url = "github:nix-community/NixOS-WSL/main";
     nixos-wsl.inputs.nixpkgs.follows = "nixpkgs";
 
     sops-nix.url = "github:Mic92/sops-nix";
     sops-nix.inputs.nixpkgs.follows = "nixpkgs";
-
-    nixos-hardware.url = "github:NixOS/nixos-hardware";
-
-    home-manager.url = "github:nix-community/home-manager";
-    home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
     catppuccin.url = "github:catppuccin/nix";
 
@@ -33,50 +33,77 @@
 
     vt-nvim.url = "github:vincent-thomas/nvim";
     vt-nvim.inputs.nixpkgs.follows = "nixpkgs";
+
+    pre-commit-hooks.url = "github:cachix/git-hooks.nix";
   };
 
   outputs =
-    inputs:
+    inputs@{ self, ... }:
     let
       inherit (inputs.nixpkgs) lib;
-      inherit (inputs.self) outputs;
+      inherit (self) outputs;
 
       # Automatically include all under the ./lib directory
       vtLib = builtins.listToAttrs (
-        map (folder: {
-          name = lib.strings.removeSuffix ".nix" folder;
-          value = import ./lib/${folder} {
-            inherit lib inputs outputs;
-            self = vtLib;
-          };
-        }) (import ./lib/listFiles.nix { } ./lib)
+        map
+          (folder: {
+            name = lib.strings.removeSuffix ".nix" folder;
+            value = import ./lib/${folder} {
+              inherit lib inputs outputs;
+              self = vtLib;
+            };
+          })
+          (import ./lib/listFiles.nix { } ./lib)
       );
 
-    in
-    vtLib.mkFlake {
-      vtLibSrc = vtLib;
-
-      # Automatically import packages using their filename as the package name,
-      # Then including them into the pkgs namespace using an overlay which it
-      # automatically hands to nixosConfigurations and devShells.
-      pkgsDir = ./pkgs;
-
-      # Extra overlays to and into nixosConfigurations
       extraOverlays = [
         inputs.nur.overlays.default
         inputs.vt-nvim.overlays.default
       ];
 
-      nixosConfigurations = overlays: import ./hosts { inherit inputs vtLib overlays; };
+    in
+    vtLib.mkFlake
+      {
+        vtLibSrc = vtLib;
 
-      devShells =
-        { pkgs, system }:
-        {
-          default = import ./devShell.nix { inherit pkgs; };
-        };
-    }
+        # Automatically import packages using their filename as the package name,
+        # Then including them into the pkgs namespace using an overlay which it
+        # automatically hands to nixosConfigurations and devShells.
+        pkgsDir = ./pkgs;
+
+        # Extra overlays to and into nixosConfigurations
+        inherit extraOverlays;
+
+        nixosConfigurations = overlays: import ./hosts { inherit inputs vtLib overlays; };
+
+        devShells =
+          { pkgs, system }:
+          {
+            default = pkgs.mkShell {
+              NIX_CONFIG = "extra-experimental-features = nix-command flakes";
+              inherit (self.checks.${system}.pre-commit-check) shellHook;
+              buildInputs = self.checks.${system}.pre-commit-check.enabledPackages;
+              packages = with pkgs; [
+                just
+                sops
+              ];
+            };
+          };
+
+      }
     // {
       nixosModules.default = import ./modules/nixos { inherit vtLib; };
       homeManagerModules.default = import ./modules/home { inherit vtLib; };
+      checks = vtLib.forAllSystems (system: {
+        pre-commit-check = inputs.pre-commit-hooks.lib.${system}.run {
+          src = ./.;
+          hooks = {
+            nixpkgs-fmt.enable = true;
+          };
+        };
+      });
+      formatter = (
+        vtLib.forAllPkgs { overlays = extraOverlays; } ({ system, pkgs }: pkgs.nixfmt-rfc-style)
+      );
     };
 }
