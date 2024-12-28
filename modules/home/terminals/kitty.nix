@@ -1,4 +1,5 @@
-{ lib, config, ... }: {
+{ lib, config, ... }:
+{
   options = {
     vt.kitty.enable = lib.mkEnableOption "Kitty terminal";
     vt.kitty.zshDefault = lib.mkEnableOption "Default on zsh shell";
@@ -11,7 +12,9 @@
         size = 12;
       };
 
-      settings = { confirm_os_window_close = 0; };
+      settings = {
+        confirm_os_window_close = 0;
+      };
     };
   };
 }

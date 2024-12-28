@@ -1,1 +1,1 @@
-{ ... }: folder: builtins.attrNames (builtins.readDir folder)
+_: folder: builtins.attrNames (builtins.readDir folder)

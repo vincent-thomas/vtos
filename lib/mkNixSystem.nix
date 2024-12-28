@@ -1,13 +1,14 @@
-{ inputs
-, outputs
-, self
-, ...
+{
+  inputs,
+  outputs,
+  self,
+  ...
 }:
 hostname:
-{ system
-, overlays ? [ ]
-, extraModules ? [ ]
-,
+{
+  system,
+  overlays ? [ ],
+  extraModules ? [ ],
 }:
 let
   # See issue: https://github.com/lilyinstarlight/nixos-cosmic/issues/226

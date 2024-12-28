@@ -8,9 +8,9 @@ spec:
     spec:
       serviceAccountName: rancher
       containers:
-      - name: rancher
-        image: rancher/rancher:latest
-        args:
-          - --no-cacerts
-        ports:
-        - containerPort: 80
+        - name: rancher
+          image: rancher/rancher:latest
+          args:
+            - --no-cacerts
+          ports:
+            - containerPort: 80

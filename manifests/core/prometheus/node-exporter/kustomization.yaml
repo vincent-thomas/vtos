@@ -1,8 +1,7 @@
 resources:
   - ./node-exporter.yaml
-
 labels:
-- includeSelectors: true
-  pairs:
-    app.kubernetes.io/part-of: monitoring
-    app.kubernetes.io/name: node-exporter
+  - includeSelectors: true
+    pairs:
+      app.kubernetes.io/part-of: monitoring
+      app.kubernetes.io/name: node-exporter

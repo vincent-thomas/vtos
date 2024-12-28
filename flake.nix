@@ -26,6 +26,9 @@
     sops-nix.url = "github:Mic92/sops-nix";
     sops-nix.inputs.nixpkgs.follows = "nixpkgs";
 
+    treefmt-nix.url = "github:numtide/treefmt-nix";
+    treefmt-nix.inputs.nixpkgs.follows = "nixpkgs";
+
     catppuccin.url = "github:catppuccin/nix";
 
     pre-commit-hooks.url = "github:cachix/git-hooks.nix";
@@ -61,6 +64,8 @@
       };
 
       forAllPkgs = vtLib.forAllPkgs { inherit (myStuff) overlays; };
+
+      treefmtEval = forAllPkgs (pkgs: inputs.treefmt-nix.lib.evalModule pkgs ./treefmt.nix);
     in
     {
       inherit (myStuff) packages;
@@ -73,29 +78,28 @@
       nixosModules.default = import ./modules/nixos { inherit vtLib; };
       homeManagerModules.default = import ./modules/home { inherit vtLib; };
 
-      formatter = vtLib.forAllPkgs { inherit (myStuff) overlays; } ({ pkgs, ... }: pkgs.nixfmt-rfc-style);
+      formatter = forAllPkgs (pkgs: treefmtEval.${pkgs.system}.config.build.wrapper);
 
       checks = vtLib.forAllSystems (system: {
         pre-commit-check = inputs.pre-commit-hooks.lib.${system}.run {
           src = ./.;
-          hooks.nixpkgs-fmt.enable = true;
+          hooks.treefmt = {
+            enable = true;
+            package = outputs.formatter.${system};
+          };
         };
       });
 
-      devShells = forAllPkgs (
-        { pkgs, system }:
-        {
-          default = pkgs.mkShell {
-            NIX_CONFIG = "extra-experimental-features = nix-command flakes";
-            inherit (self.checks.${system}.pre-commit-check) shellHook;
-            buildInputs = self.checks.${system}.pre-commit-check.enabledPackages;
-            packages = with pkgs; [
-              just
-              sops
-            ];
-          };
-        }
-      );
-
+      devShells = forAllPkgs (pkgs: {
+        default = pkgs.mkShell {
+          NIX_CONFIG = "extra-experimental-features = nix-command flakes";
+          inherit (self.checks.${pkgs.system}.pre-commit-check) shellHook;
+          buildInputs = self.checks.${pkgs.system}.pre-commit-check.enabledPackages;
+          packages = with pkgs; [
+            just
+            sops
+          ];
+        };
+      });
     };
 }

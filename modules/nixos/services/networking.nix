@@ -1,4 +1,5 @@
-{ config, lib, ... }: {
+{ config, lib, ... }:
+{
 
   options = {
     vt.services.networking.hostname = lib.mkOption {

@@ -1,4 +1,10 @@
-{ config, lib, pkgs, ... }: {
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+{
   options = {
     vt.qtile.config.enable = lib.mkEnableOption "Enables Qtile configuration";
   };

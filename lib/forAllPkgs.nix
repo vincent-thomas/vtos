@@ -9,5 +9,5 @@ self.forAllSystems (
   let
     pkgs = self.mkPkgs { inherit system overlays; };
   in
-  f { inherit system pkgs; }
+  f pkgs
 )

@@ -20,13 +20,13 @@ spec:
             - containerPort: 443
           volumeMounts:
             - name: traefik-config
-              mountPath: /etc/traefik/traefik.yaml  # Path inside the container where the file will be mounted
+              mountPath: /etc/traefik/traefik.yaml # Path inside the container where the file will be mounted
               subPath: traefik.yaml
               readOnly: true
       volumes:
         - name: traefik-config
           configMap:
-            name: traefik-config  # Reference to the ConfigMap created by Kustomize
+            name: traefik-config # Reference to the ConfigMap created by Kustomize
 ---
 apiVersion: v1
 kind: Service

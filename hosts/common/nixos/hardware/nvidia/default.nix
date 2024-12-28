@@ -1,4 +1,5 @@
-{ config, ... }: {
+{ config, ... }:
+{
   boot.kernelParams = [ "nvidia-drm.fbdev=1" ];
   hardware.nvidia = {
     package = import ./pkg.nix { inherit config; };

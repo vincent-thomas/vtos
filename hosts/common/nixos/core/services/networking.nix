@@ -1,1 +1,4 @@
-{ hostname }: { vt.services.networking.hostname = hostname; }
+{ hostname }:
+{
+  vt.services.networking.hostname = hostname;
+}

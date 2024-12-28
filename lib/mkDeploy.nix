@@ -1,6 +1,9 @@
 { inputs, ... }:
-let inherit (inputs) deploy-rs;
-in { self }: {
+let
+  inherit (inputs) deploy-rs;
+in
+{ self }:
+{
   nodes = builtins.mapAttrs (_: machine: {
     hostname = machine.config.networking.hostName;
     remoteBuild = false;

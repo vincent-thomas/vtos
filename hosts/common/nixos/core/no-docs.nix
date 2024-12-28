@@ -1,7 +1,9 @@
 {
-  documentation.enable = false;
-  documentation.doc.enable = false;
-  documentation.info.enable = false;
-  documentation.man.enable = false;
-  documentation.nixos.enable = false;
+  documentation = {
+    enable = false;
+    doc.enable = false;
+    info.enable = false;
+    man.enable = false;
+    nixos.enable = false;
+  };
 }

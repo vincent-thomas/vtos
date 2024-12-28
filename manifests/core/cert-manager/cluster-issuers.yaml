@@ -9,12 +9,12 @@ spec:
     privateKeySecretRef:
       name: letsencrypt-staging
     solvers:
-    - dns01:
-        cloudflare:
-          email: 7p80u8m6@p.v-thomas.com
-          apiTokenSecretRef:
-            name: cloudflare-api-token
-            key: api-key
+      - dns01:
+          cloudflare:
+            email: 7p80u8m6@p.v-thomas.com
+            apiTokenSecretRef:
+              name: cloudflare-api-token
+              key: api-key
 ---
 apiVersion: cert-manager.io/v1
 kind: ClusterIssuer
@@ -27,9 +27,9 @@ spec:
     privateKeySecretRef:
       name: letsencrypt-prod
     solvers:
-    - dns01:
-        cloudflare:
-          email: 7p80u8m6@p.v-thomas.com
-          apiTokenSecretRef:
-            name: cloudflare-api-token
-            key: api-key
+      - dns01:
+          cloudflare:
+            email: 7p80u8m6@p.v-thomas.com
+            apiTokenSecretRef:
+              name: cloudflare-api-token
+              key: api-key

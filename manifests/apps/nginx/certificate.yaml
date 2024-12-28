@@ -4,10 +4,8 @@ metadata:
   name: nginx-cert
 spec:
   secretName: nginx-cert
-
   dnsNames:
     - nginx.homelab.v-thomas.com
-
   issuerRef:
     name: letsencrypt-prod
     kind: ClusterIssuer

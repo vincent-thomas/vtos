@@ -3,15 +3,14 @@ kind: IngressRoute
 metadata:
   name: grafana-ingressroute
   namespace: default
-
 spec:
   entryPoints:
     - websecure
   tls:
     secretName: grafana-cert
   routes:
-  - match: Host(`grafana.homelab.v-thomas.com`)
-    kind: Rule
-    services:
-    - name: grafana
-      port: 3000
+    - match: Host(`grafana.homelab.v-thomas.com`)
+      kind: Rule
+      services:
+        - name: grafana
+          port: 3000

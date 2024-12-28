@@ -721,6 +721,7 @@
         "nur": "nur",
         "pre-commit-hooks": "pre-commit-hooks",
         "sops-nix": "sops-nix",
+        "treefmt-nix": "treefmt-nix_2",
         "vt-nvim": "vt-nvim",
         "vt-wallpapers": "vt-wallpapers"
       }
@@ -826,6 +827,26 @@
         "type": "github"
       }
     },
+    "treefmt-nix_2": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1735135567,
+        "narHash": "sha256-8T3K5amndEavxnludPyfj3Z1IkcFdRpR23q+T0BVeZE=",
+        "owner": "numtide",
+        "repo": "treefmt-nix",
+        "rev": "9e09d30a644c57257715902efbb3adc56c79cf28",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "treefmt-nix",
+        "type": "github"
+      }
+    },
     "vt-nvim": {
       "inputs": {
         "flake-utils": "flake-utils_4",
@@ -837,11 +858,11 @@
         "oil": "oil"
       },
       "locked": {
-        "lastModified": 1735305527,
-        "narHash": "sha256-H66Tp17tameUjInFR85rfVNPv98irE9tYdbY+C8fjvg=",
+        "lastModified": 1735402983,
+        "narHash": "sha256-0QNcacUf8FuKCLIzvzP6R7Pq9KC1nnmNiEiGGHpeh5g=",
         "owner": "vincent-thomas",
         "repo": "nvim",
-        "rev": "5f81472a61fdca8d7bbe34d973983e9a79895811",
+        "rev": "8412a4dd022d5edc70f313a08ff64690c91f0328",
         "type": "github"
       },
       "original": {

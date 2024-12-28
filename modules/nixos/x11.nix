@@ -23,7 +23,7 @@
   };
   config = {
     services.xserver = {
-      enable = config.vt.xserver.enable;
+      inherit (config.vt.xserver) enable;
       videoDrivers = lib.mkIf config.vt.xserver.nvidiaDrivers [ "nvidia" ];
       xkb = {
         layout = "se";

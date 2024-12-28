@@ -1,4 +1,5 @@
-{ lib, config, ... }: {
+{ lib, config, ... }:
+{
   options = {
     vt.apps.onepassword = {
       enable = lib.mkEnableOption "1Password";

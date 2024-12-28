@@ -1,4 +1,5 @@
-{ config, ... }: {
+{ config, ... }:
+{
   hardware.graphics = {
     enable = true;
     # driSupport = true;

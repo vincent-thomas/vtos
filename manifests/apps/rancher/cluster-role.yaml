@@ -7,10 +7,9 @@ roleRef:
   kind: ClusterRole
   name: cluster-admin
 subjects:
-- kind: ServiceAccount
-  name: rancher
-  namespace: cattle-system
-
+  - kind: ServiceAccount
+    name: rancher
+    namespace: cattle-system
 ---
 apiVersion: v1
 kind: ServiceAccount

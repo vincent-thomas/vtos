@@ -3,23 +3,21 @@ kind: IngressRoute
 metadata:
   name: traefik-ingressroute
   namespace: default
-
 spec:
   entryPoints:
     - websecure
   tls:
     secretName: traefik-cert
   routes:
-  - match: Host(`traefik.homelab.v-thomas.com`) && PathPrefix(`/api`)
-    kind: Rule
-    services:
-    - name: traefik
-      port: 8080
-
-  - match: Host(`traefik.homelab.v-thomas.com`)
-    kind: Rule
-    services:
-    - name: traefik
-      port: 8080
-    middlewares:
-      - name: add-prefix-dashboard
+    - match: Host(`traefik.homelab.v-thomas.com`) && PathPrefix(`/api`)
+      kind: Rule
+      services:
+        - name: traefik
+          port: 8080
+    - match: Host(`traefik.homelab.v-thomas.com`)
+      kind: Rule
+      services:
+        - name: traefik
+          port: 8080
+      middlewares:
+        - name: add-prefix-dashboard

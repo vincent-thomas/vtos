@@ -1,7 +1,8 @@
-{ inputs
-, overlays
-, vtLib
-, ...
+{
+  inputs,
+  overlays,
+  vtLib,
+  ...
 }:
 let
   inherit (vtLib) mkNixSystem mkWslSystem;

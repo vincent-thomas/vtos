@@ -1,8 +1,8 @@
-{ self
-, lib
-, inputs
-, outputs
-,
+{
+  self,
+  lib,
+  inputs,
+  outputs,
 }:
 { dir, extraOverlays }:
 # final: _prev:
@@ -25,22 +25,20 @@ let
 
   forAllPkgs = self.forAllPkgs { inherit overlays; };
   packages = forAllPkgs (
-    { pkgs, system }:
+    pkgs:
     builtins.listToAttrs (
-      map
-        (folder: {
-          # What the name of the pkgs name is, if file "nvim.nix" package name is "nvim".
-          name = lib.strings.removeSuffix ".nix" folder;
-          value = pkgs.callPackage (lib.path.append dir folder) {
-            inherit
-              inputs
-              system
-              outputs
-              pkgs
-              ;
-          };
-        })
-        (self.listFiles dir)
+      map (folder: {
+        # What the name of the pkgs name is, if file "nvim.nix" package name is "nvim".
+        name = lib.strings.removeSuffix ".nix" folder;
+        value = pkgs.callPackage (lib.path.append dir folder) {
+          inherit (pkgs) system;
+          inherit
+            inputs
+            outputs
+            pkgs
+            ;
+        };
+      }) (self.listFiles dir)
     )
   );
 in

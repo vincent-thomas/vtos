@@ -1,6 +1,7 @@
 If cloning.
 
 Add
+
 ```yaml
 # File: secret.yaml
 
@@ -14,6 +15,7 @@ stringData:
 ```
 
 Permissions:
+
 - Zone - DNS - Edit
 - Zone - Zone - Read
 

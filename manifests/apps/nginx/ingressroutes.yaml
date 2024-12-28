@@ -3,16 +3,14 @@ kind: IngressRoute
 metadata:
   name: nginx-ingressroute
   namespace: default
-
 spec:
   entryPoints:
     - websecure
   tls:
     secretName: nginx-cert
-
   routes:
-  - match: Host(`nginx.homelab.v-thomas.com`)
-    kind: Rule
-    services:
-    - name: nginx-service
-      port: 80
+    - match: Host(`nginx.homelab.v-thomas.com`)
+      kind: Rule
+      services:
+        - name: nginx-service
+          port: 80

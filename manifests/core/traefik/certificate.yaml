@@ -9,19 +9,13 @@ spec:
       app.kubernetes.io/part-of: ingress
       app.kubernetes.io/name: traefik
       app.kubernetes.io/component: certificate
-
   dnsNames:
     - traefik.homelab.v-thomas.com
-
   issuerRef:
     name: letsencrypt-prod
     kind: ClusterIssuer
-
 ---
-
 # Other certs
-
-
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
@@ -32,10 +26,8 @@ spec:
     labels:
       app.kubernetes.io/name: dad-nas
       app.kubernetes.io/component: certificate
-
   dnsNames:
     - dad-nas.homelab.v-thomas.com
   issuerRef:
     name: letsencrypt-prod
     kind: ClusterIssuer
-

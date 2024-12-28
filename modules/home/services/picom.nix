@@ -1,5 +1,8 @@
-{ config, lib, ... }: {
-  options = { vt.picom.enable = lib.mkEnableOption "Enable picom"; };
+{ config, lib, ... }:
+{
+  options = {
+    vt.picom.enable = lib.mkEnableOption "Enable picom";
+  };
 
   config = lib.mkIf config.vt.picom.enable {
     services.picom = {

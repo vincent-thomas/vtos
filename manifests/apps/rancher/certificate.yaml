@@ -4,10 +4,8 @@ metadata:
   name: rancher-cert
 spec:
   secretName: rancher-cert
-
   dnsNames:
     - rancher.homelab.v-thomas.com
-
   issuerRef:
     name: letsencrypt-prod
     kind: ClusterIssuer

@@ -14,19 +14,21 @@
 </td></tr>
 </table>
 
-
 This repo is my Nix configuration which right now contains:
+
 1. NixOS config for desktops.
 1. WSL config for a nixOS terminal experience
 
 Planned:
+
 1. Servers (k3s)
 
 ## Available Components
-* Shell setup (zsh, tmux, fzf, yazi, starship)
-* ColorScheme: Catppuccin macchiato
-* Nerd Fonts
-* Window Managers: (Hyprland, qtile)
-* Custom nix/shell packages:
-    1. tmux-tools
-    1. Custom neovim package
+
+- Shell setup (zsh, tmux, fzf, yazi, starship)
+- ColorScheme: Catppuccin macchiato
+- Nerd Fonts
+- Window Managers: (Hyprland, qtile)
+- Custom nix/shell packages:
+  1. tmux-tools
+  1. Custom neovim package
