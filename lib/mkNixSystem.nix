@@ -1,14 +1,13 @@
-{
-  inputs,
-  outputs,
-  self,
-  ...
+{ inputs
+, outputs
+, self
+, ...
 }:
 hostname:
-{
-  system,
-  overlays ? [ ],
-  extraModules ? [ ],
+{ system
+, overlays ? [ ]
+, extraModules ? [ ]
+,
 }:
 let
   # See issue: https://github.com/lilyinstarlight/nixos-cosmic/issues/226
@@ -25,6 +24,6 @@ lib.nixosSystem {
   modules = extraModules ++ [
     ../hosts/${hostname}
     outputs.nixosModules.default
-    { nixpkgs.hostPlatform = lib.mkDefault system; }
+    { nixpkgs.hostPlatform = system; }
   ];
 }

@@ -1,9 +1,8 @@
-{
-  inputs,
-  pkgs,
-  outputs,
-  lib,
-  ...
+{ inputs
+, pkgs
+, outputs
+, lib
+, ...
 }:
 let
 
@@ -37,8 +36,7 @@ in
     ../common/nixos/optional/services/pipewire.nix
     ../common/nixos/optional/services/dropbox.nix
     _1passwordModule
-
-    # ../common/server/services/k3s-server.nix
+    ../common/nixos/optional/hyprland.nix
 
     # Hardware related config (real hardware/drivers)
     ../common/nixos/hardware/nvidia
@@ -62,6 +60,8 @@ in
       vesktop
     ];
   };
+
+  services.flatpak.enable = true;
 
   virtualisation.docker = {
     enable = true;

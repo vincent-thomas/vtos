@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
 {
   home.stateVersion = "23.11";
 
@@ -6,6 +6,8 @@
     ../common/home/optional/devsetup
     ../common/home/optional/virt-manager.nix
     ../common/home/optional/sops.nix
+
+    (import ../common/home/optional/wm/hyprland { inherit inputs pkgs; } { extraConfig = ""; })
   ];
 
   # General
@@ -41,8 +43,6 @@
 
     kustomize
     kubernetes-helm
-
-    prismlauncher
   ];
 
   programs.btop.enable = true;

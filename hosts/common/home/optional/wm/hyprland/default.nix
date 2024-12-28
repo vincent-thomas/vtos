@@ -1,17 +1,14 @@
-{
-  config,
-  lib,
-  pkgs,
-  inputs,
-  ...
+{ pkgs
+, inputs
+, ...
 }:
 { extraConfig }:
 let
   moreConfig = import ./extra-config.nix { inherit pkgs; };
 in
 {
-  programs.fuzzel.catppuccin.enable = true;
-  home = lib.mkIf config.vt.wm.hyprland.enable {
+  catppuccin.fuzzel.enable = true;
+  home = {
     packages = [
       pkgs.wpaperd
       pkgs.waybar

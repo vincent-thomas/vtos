@@ -1,23 +1,16 @@
-{ inputs
+{ self
 , lib
+, inputs
 , outputs
-, ...
-}:
-
-{ vtLibSrc
-, pkgsDir
-, extraOverlays ? [ ]
-, nixosConfigurations
-, devShells ? { ... }: { }
 ,
 }:
+{ dir, extraOverlays }:
+# final: _prev:
 let
-
-  vtLib = vtLibSrc;
   generatedOverlayFromPackages =
     final: _prev:
-    vtLib.mergeObjects (
-      lib.lists.forEach (vtLib.listFiles pkgsDir) (
+    self.mergeObjects (
+      lib.lists.forEach (self.listFiles dir) (
         package:
         # What the name of the pkgs name is, if file "nvim.nix" package is "pkgs.nvim".
         let
@@ -28,19 +21,17 @@ let
         }
       )
     );
-
   overlays = extraOverlays ++ [ generatedOverlayFromPackages ];
 
-  forAllSystemsWithPkgs = vtLib.forAllPkgs { inherit overlays; };
-
-  packages = forAllSystemsWithPkgs (
+  forAllPkgs = self.forAllPkgs { inherit overlays; };
+  packages = forAllPkgs (
     { pkgs, system }:
     builtins.listToAttrs (
       map
         (folder: {
           # What the name of the pkgs name is, if file "nvim.nix" package name is "nvim".
           name = lib.strings.removeSuffix ".nix" folder;
-          value = pkgs.callPackage (lib.path.append pkgsDir folder) {
+          value = pkgs.callPackage (lib.path.append dir folder) {
             inherit
               inputs
               system
@@ -49,13 +40,10 @@ let
               ;
           };
         })
-        (vtLib.listFiles pkgsDir)
+        (self.listFiles dir)
     )
   );
-
 in
 {
-  inherit packages;
-  nixosConfigurations = nixosConfigurations overlays;
-  devShells = forAllSystemsWithPkgs ({ pkgs, system }: devShells { inherit pkgs system; });
+  inherit overlays packages;
 }
