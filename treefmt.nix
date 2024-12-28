@@ -7,7 +7,7 @@
   ];
 
   # Nix
-  programs.nixfmt-rfc-style.enable = true;
+  programs.nixfmt.enable = true;
   # YAML
   programs.yamlfmt.enable = true;
   # MD
