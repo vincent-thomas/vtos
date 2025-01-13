@@ -43,6 +43,7 @@
     # Other stuff
     vt-wallpapers.url = "github:vincent-thomas/wallpapers";
     vt-wallpapers.flake = false;
+
   };
 
   outputs =

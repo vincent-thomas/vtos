@@ -19,6 +19,7 @@
       shellAliases = {
         v = "nvim";
         k = "kubectl";
+        c = "cargo";
         kga = "kubectl get all";
         kl = "kubectl logs";
         j = "just --choose";
