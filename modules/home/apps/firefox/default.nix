@@ -55,13 +55,12 @@
 
         search = {
           force = true;
-          default = "Kagi";
+          default = "Qwant";
           engines = {
-
-            "Kagi" = {
+            "Qwant" = {
               urls = [
                 {
-                  template = "https://kagi.com/search";
+                  template = "https://www.qwant.com";
                   params = [
                     {
                       name = "q";
