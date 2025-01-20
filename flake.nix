@@ -34,9 +34,6 @@
     pre-commit-hooks.url = "github:cachix/git-hooks.nix";
 
     # Additional applications
-    ghostty.url = "github:ghostty-org/ghostty";
-    ghostty.inputs.nixpkgs-unstable.follows = "nixpkgs";
-
     vt-nvim.url = "github:vincent-thomas/nvim";
     vt-nvim.inputs.nixpkgs.follows = "nixpkgs";
 

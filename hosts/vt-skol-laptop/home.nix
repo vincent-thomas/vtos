@@ -10,6 +10,7 @@
     nodejs_22
     nodePackages.pnpm
     wget
+    docker
   ];
 
   programs.btop.enable = true;
