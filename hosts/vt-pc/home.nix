@@ -43,6 +43,11 @@
 
     kustomize
     kubernetes-helm
+
+    # For school
+    ungoogled-chromium
+
+    go
   ];
 
   programs.btop.enable = true;

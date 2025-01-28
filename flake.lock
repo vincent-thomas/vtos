@@ -837,11 +837,11 @@
         "oil": "oil"
       },
       "locked": {
-        "lastModified": 1737321980,
-        "narHash": "sha256-iYiw2D89UqiNuIfzLitVO263/9Rnviqkcx+G1q412kU=",
+        "lastModified": 1738017354,
+        "narHash": "sha256-UXLznBLuzfhLxb+VKCRQSjeJn5eDYiPFHTvYq8hb/90=",
         "owner": "vincent-thomas",
         "repo": "nvim",
-        "rev": "cfe6299c79661b8da70fa041f53b4d76d17d4dfa",
+        "rev": "5c6e6e5260e19db6aaa773091df6a1f32c6d787d",
         "type": "github"
       },
       "original": {

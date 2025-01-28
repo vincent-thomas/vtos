@@ -6,7 +6,6 @@
   ...
 }:
 {
-
   options = {
     vt.firefox.enable = lib.mkEnableOption "Enable firefox";
   };
@@ -51,25 +50,18 @@
             keyword = "cal";
             url = "https://calendar.google.com";
           }
+          {
+            name = "Google Classroom";
+            keyword = "class";
+            url = "https://classroom.google.com";
+          }
         ];
 
         search = {
           force = true;
-          default = "Qwant";
+          default = "Google";
           engines = {
-            "Qwant" = {
-              urls = [
-                {
-                  template = "https://www.qwant.com";
-                  params = [
-                    {
-                      name = "q";
-                      value = "{searchTerms}";
-                    }
-                  ];
-                }
-              ];
-            };
+
             "Nordnet" = {
               definedAliases = [ "@nn" ];
               urls = [
