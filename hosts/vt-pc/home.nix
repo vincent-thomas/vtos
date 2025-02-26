@@ -35,7 +35,6 @@
     gcc
     vlc
     obsidian
-    vesktop
 
     awscli2
 
