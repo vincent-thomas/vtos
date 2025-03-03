@@ -52,7 +52,6 @@
       inherit (self) outputs;
 
       utils = import ./utils.nix { inherit lib inputs outputs; };
-
       vtLib = utils.genVTLib ./lib;
 
       myStuff = vtLib.genFromPkgsDir {

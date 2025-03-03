@@ -38,8 +38,6 @@
 
     awscli2
 
-    tradingview
-
     kustomize
     kubernetes-helm
 
