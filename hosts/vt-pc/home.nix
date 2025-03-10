@@ -19,8 +19,6 @@
       zshOpPlugins.stripe = true;
       zshOpPlugins.flyctl = true;
     };
-
-    firefox.enable = true;
   };
 
   home.packages = with pkgs; [
@@ -43,6 +41,7 @@
 
     # For school
     ungoogled-chromium
+    brave
 
     go
   ];
