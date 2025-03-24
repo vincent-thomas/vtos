@@ -318,6 +318,23 @@
         "type": "github"
       }
     },
+    "harpoon": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1739222527,
+        "narHash": "sha256-L7FvOV6KvD58BnY3no5IudiKTdgkGqhpS85RoSxtl7U=",
+        "owner": "ThePrimeagen",
+        "repo": "harpoon",
+        "rev": "ed1f853847ffd04b2b61c314865665e1dadf22c7",
+        "type": "github"
+      },
+      "original": {
+        "owner": "ThePrimeagen",
+        "ref": "harpoon2",
+        "repo": "harpoon",
+        "type": "github"
+      }
+    },
     "home-manager": {
       "inputs": {
         "nixpkgs": [
@@ -729,6 +746,7 @@
         "flake-utils": "flake-utils",
         "gen-luarc": "gen-luarc",
         "gitsigns": "gitsigns",
+        "harpoon": "harpoon",
         "mini-nvim": "mini-nvim",
         "nixpkgs": [
           "nixpkgs"
@@ -740,11 +758,11 @@
         "treefmt-nix": "treefmt-nix_3"
       },
       "locked": {
-        "lastModified": 1742730355,
-        "narHash": "sha256-aoY0BhQSkCPLDl49hUEXBaKXVSuxIRbNmSbJn2AcFJE=",
+        "lastModified": 1742754465,
+        "narHash": "sha256-mSKxxpnnkrOFm52yjVnhgnQ5dQTed922FDR8zdKdomk=",
         "owner": "vincent-thomas",
         "repo": "nvim",
-        "rev": "d259f39df60e2b47a142662314d26ce96c4f321b",
+        "rev": "a4cc7b6873e16ac01047613211bcbefffda359e8",
         "type": "github"
       },
       "original": {
