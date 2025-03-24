@@ -13,7 +13,6 @@
       cm = "commit -m";
       a = "add";
       l = "log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(r) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative";
-      c = "checkout $(git branch --format='%(refname:short)' | fzf)";
     };
 
     extraConfig = {

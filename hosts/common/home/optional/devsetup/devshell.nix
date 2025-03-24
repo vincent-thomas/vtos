@@ -23,6 +23,7 @@
         kga = "kubectl get all";
         kl = "kubectl logs";
         j = "just --choose";
+        gc = "git checkout $(git branch --format='%(refname:short)' | fzf)";
       };
 
       localVariables = {
