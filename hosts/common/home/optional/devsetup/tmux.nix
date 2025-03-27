@@ -4,8 +4,8 @@
     enable = true;
     keyMode = "vi";
     baseIndex = 1;
-    mouse = true;
     terminal = "xterm-256color";
+    prefix = "C-a";
     extraConfig = ''
       set -sa terminal-overrides ",xterm*:Tc" # Color issue fix.
 
@@ -14,6 +14,9 @@
 
       bind f run-shell "tmux neww ${pkgs.tmux-tools}/bin/tmux-sessionizer"
       bind F run-shell "tmux neww ${pkgs.tmux-tools}/bin/tmux-list-sessions"
+
+      bind g run-shell "tmux display-popup -h 80% -w 80% -y 100% -E ${pkgs.lazygit}/bin/lazygit"
+      bind t run-shell "tmux display-popup -h 80% -w 80% -y 100% -E ${pkgs.btop}/bin/btop"
 
       bind r source-file ~/.config/tmux/tmux.conf
       bind D detach
