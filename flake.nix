@@ -97,6 +97,7 @@
           packages = with pkgs; [
             just
             sops
+            age
           ];
         };
       });

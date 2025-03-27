@@ -4,6 +4,7 @@
   settings.global.excludes = [
     ".direnv"
     ".git"
+    "secrets.yaml"
   ];
 
   # Nix
