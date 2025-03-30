@@ -17,49 +17,54 @@
         userChrome = builtins.readFile ./userChrome.css;
         extraConfig = builtins.readFile ./user.js;
 
-        extensions = with pkgs.nur.repos.rycee.firefox-addons; [
-          # Privacy
-          ublock-origin
-          clearurls
-          facebook-container
-          multi-account-containers
-          decentraleyes
+        extensions = {
+          packages = with pkgs.nur.repos.rycee.firefox-addons; [
+            # Privacy
+            ublock-origin
+            clearurls
+            facebook-container
+            multi-account-containers
+            decentraleyes
 
-          # Essential
-          darkreader
-          sponsorblock
-          firefox-color
-          onepassword-password-manager
-          catppuccin-gh-file-explorer
-          raindropio
-        ];
+            # Essential
+            darkreader
+            sponsorblock
+            firefox-color
+            onepassword-password-manager
+            catppuccin-gh-file-explorer
+            raindropio
+          ];
+        };
 
-        bookmarks = [
-          {
-            name = "k8s homelab stuff";
-            tags = [ "homelab" ];
-            url = "https://github.com/JamesTurland/JimsGarage";
-          }
-          {
-            name = "Proton Mail";
-            keyword = "mail";
-            url = "https://mail.proton.me";
-          }
-          {
-            name = "Google Calendar";
-            keyword = "cal";
-            url = "https://calendar.google.com";
-          }
-          {
-            name = "Google Classroom";
-            keyword = "class";
-            url = "https://classroom.google.com";
-          }
-        ];
+        bookmarks = {
+          force = true;
+          settings = [
+            {
+              name = "k8s homelab stuff";
+              tags = [ "homelab" ];
+              url = "https://github.com/JamesTurland/JimsGarage";
+            }
+            {
+              name = "Proton Mail";
+              keyword = "mail";
+              url = "https://mail.proton.me";
+            }
+            {
+              name = "Google Calendar";
+              keyword = "cal";
+              url = "https://calendar.google.com";
+            }
+            {
+              name = "Google Classroom";
+              keyword = "class";
+              url = "https://classroom.google.com";
+            }
+          ];
+        };
 
         search = {
           force = true;
-          default = "Google";
+          default = "brave";
           engines = {
 
             "Nordnet" = {

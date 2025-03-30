@@ -4,7 +4,7 @@
     ../.
   ];
 
-  sops.secrets."ssh_keys/vt".path = "/home/vt/.ssh/id_ed25519";
+  # sops.secrets."ssh_keys/vt".path = "/home/vt/.ssh/id_ed25519";
 
   users.users.vt = {
     home = "/home/vt";

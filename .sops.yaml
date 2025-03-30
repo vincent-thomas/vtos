@@ -1,9 +1,6 @@
 keys:
-  - &vt-pc age1sx62l9uf0e7ta0d4fmre5nttl95639eeeukf07yqnf55ms5z7f2s0nuzed
-  - &vt-pc-new age1xdn4fj5nr69tz5ejmqq48jq6gxkfrzfjemacwqdn6lcgszt3svmq6kwe3a
+  - &vt-pc age1xdn4fj5nr69tz5ejmqq48jq6gxkfrzfjemacwqdn6lcgszt3svmq6kwe3a
 creation_rules:
   - path_regex: secrets.yaml$
     key_groups:
-      - age:
-          - *vt-pc
-          - *vt-pc-new
+      - age: [*vt-pc]
