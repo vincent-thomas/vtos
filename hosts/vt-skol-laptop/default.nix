@@ -22,12 +22,18 @@ in
     wslModule
 
     ../common/nixos/users/${username}
+    inputs.vscode-server.nixosModules.default
 
     (homeManagerModule {
       user = username;
       homePath = ./home.nix;
     })
   ];
+
+  services.vscode-server = {
+    enable = true;
+    installPath = "$HOME/.cursor-server";
+  };
 
   wsl.docker-desktop.enable = true;
 

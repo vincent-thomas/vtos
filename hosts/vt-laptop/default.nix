@@ -19,6 +19,7 @@ in
   boot.loader.efi.canTouchEfiVariables = true;
 
   imports = [
+
     coreModule
     # User
     ../common/nixos/users/vt

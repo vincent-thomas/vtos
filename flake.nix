@@ -31,6 +31,8 @@
     treefmt-nix.url = "github:numtide/treefmt-nix";
     treefmt-nix.inputs.nixpkgs.follows = "nixpkgs";
 
+    vscode-server.url = "github:nix-community/nixos-vscode-server";
+
     catppuccin.url = "github:catppuccin/nix";
 
     pre-commit-hooks.url = "github:cachix/git-hooks.nix";
