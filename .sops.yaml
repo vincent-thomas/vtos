@@ -1,7 +1,8 @@
 keys:
   - &vt-pc age1xdn4fj5nr69tz5ejmqq48jq6gxkfrzfjemacwqdn6lcgszt3svmq6kwe3a
   - &vt-skol-laptop age1xm3wd57kh52pw7nn092034y77ly2zskf8qugkq0clyuq9h7jnq3qsgypry
+  - &vt-pc-wsl age17j8gawax764p07py8enw6ls4r4gftlff6acnm7ds0xznljpyrg5q3e90ge
 creation_rules:
   - path_regex: secrets.yaml$
     key_groups:
-      - age: [*vt-pc, *vt-skol-laptop]
+      - age: [*vt-pc, *vt-skol-laptop, *vt-pc-wsl]
