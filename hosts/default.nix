@@ -29,4 +29,10 @@ in
     system = "x86_64-linux";
     extraModules = vtModules;
   };
+
+  vt-pc-wsl = mkWslSystem "vt-pc-wsl" {
+    inherit overlays;
+    system = "x86_64-linux";
+    extraModules = vtModules;
+  };
 }

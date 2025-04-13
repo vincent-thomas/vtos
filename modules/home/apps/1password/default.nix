@@ -13,6 +13,12 @@
         description = "Ssh";
       };
 
+      disableWslIntegration = lib.mkOption {
+        type = lib.types.bool;
+        default = false;
+        description = "install socket";
+      };
+
       zshOpPlugins = {
         gh = lib.mkOption {
           type = lib.types.bool;
@@ -47,8 +53,11 @@
       '';
     };
 
-    programs.git.extraConfig."gpg \"ssh\"" = lib.mkIf config.vt.config.onepassword.sshIntegration {
-      program = "${lib.getExe' pkgs._1password-gui "op-ssh-sign"}";
+    programs.git.extraConfig = lib.mkIf config.vt.config.onepassword.sshIntegration {
+      commit.gpgsign = true;
+      "gpg \"ssh\"" = lib.mkIf (config.vt.config.onepassword.sshIntegration) {
+        program = lib.getExe' pkgs._1password-gui "op-ssh-sign";
+      };
     };
 
     programs.zsh.shellAliases = {
