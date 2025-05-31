@@ -11,6 +11,7 @@
     nodePackages.pnpm
     wget
     docker
+    _1password-cli
   ];
 
   home.file.".ssh/config".text = ''

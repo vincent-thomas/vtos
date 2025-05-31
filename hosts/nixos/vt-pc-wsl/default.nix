@@ -15,9 +15,16 @@ let
 in
 {
   system.stateVersion = "24.05"; # Don't change
+
+  virtualisation.docker = {
+    enable = true;
+    enableOnBoot = true;
+  };
+
   imports = [
     coreModule
     wslModule
+    inputs.vscode-server.nixosModules.default
 
     ../../common/nixos/users/${username}
 
@@ -28,8 +35,8 @@ in
     })
   ];
 
-  # services.vscode-server = {
-  #   enable = true;
-  #   installPath = "$HOME/.cursor-server";
-  # };
+  services.vscode-server = {
+    enable = true;
+  };
+
 }
