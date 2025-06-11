@@ -14,6 +14,10 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
+    # Nix darwin
+    nix-darwin.url = "github:LnL7/nix-darwin";
+    nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
+
     nur.url = "github:nix-community/NUR";
     nur.inputs.nixpkgs.follows = "nixpkgs";
 
@@ -74,6 +78,31 @@
       nixosConfigurations = import ./hosts {
         inherit inputs vtLib;
         inherit (myStuff) overlays;
+      };
+
+      darwinConfigurations = {
+        vt-mcp = inputs.nix-darwin.lib.darwinSystem {
+          modules = [
+            (
+              { pkgs, ... }:
+              {
+                programs.zsh.enable = true;
+                system.configurationRevision = self.rev or self.dirtyRev or null;
+                system.stateVersion = 5;
+                nixpkgs.hostPlatform = "x86_64-darwin";
+                environment.systemPackages = [ pkgs.vt-nvim ];
+              }
+            )
+          ];
+          pkgs = vtLib.mkPkgs {
+            inherit (myStuff) overlays;
+            system = "x86_64-darwin";
+          };
+          specialArgs = {
+            inherit inputs;
+          };
+        };
+
       };
 
       nixosModules.default = import ./modules/nixos { inherit vtLib; };
