@@ -1,6 +1,5 @@
 {
   inputs,
-  pkgs,
   outputs,
   lib,
   ...
@@ -9,10 +8,10 @@ let
 
   username = "vt";
 
-  coreModule = import ../common/nixos/setup.nix { hostname = "vt-pc-wsl"; };
-  homeManagerModule = import ../common/home/setup.nix { inherit inputs outputs lib; };
+  coreModule = import ../../common/nixos/setup.nix { hostname = "vt-pc-wsl"; };
+  homeManagerModule = import ../../common/home/setup.nix { inherit inputs outputs lib; };
 
-  wslModule = import ../common/nixos/hardware/wsl.nix { inherit username; };
+  wslModule = import ../../common/nixos/hardware/wsl.nix { inherit username; };
 in
 {
   system.stateVersion = "24.05"; # Don't change
@@ -20,10 +19,11 @@ in
     coreModule
     wslModule
 
-    ../common/nixos/users/${username}
+    ../../common/nixos/users/${username}
 
     (homeManagerModule {
       user = username;
+      userPath = "/home/${username}";
       homePath = ./home.nix;
     })
   ];

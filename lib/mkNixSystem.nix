@@ -23,7 +23,7 @@ lib.nixosSystem {
   };
 
   modules = extraModules ++ [
-    ../hosts/${hostname}
+    ../hosts/nixos/${hostname}
     outputs.nixosModules.default
     { nixpkgs.hostPlatform = system; }
   ];

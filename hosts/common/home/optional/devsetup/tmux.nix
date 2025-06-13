@@ -6,7 +6,7 @@
     baseIndex = 1;
     mouse = true;
     terminal = "xterm-256color";
-    prefix = "C-a";
+    prefix = "C-b";
     extraConfig = ''
       set -sa terminal-overrides ",xterm*:Tc" # Color issue fix.
 

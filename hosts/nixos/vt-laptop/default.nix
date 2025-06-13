@@ -7,10 +7,10 @@
 }:
 let
 
-  _1passwordModule = import ../common/nixos/optional/1password.nix { user = "vt"; };
+  _1passwordModule = import ../../common/nixos/optional/1password.nix { user = "vt"; };
 
-  coreModule = import ../common/nixos/setup.nix { hostname = "vt-laptop"; };
-  homeManagerModule = import ../common/home/setup.nix { inherit inputs outputs lib; };
+  coreModule = import ../../common/nixos/setup.nix { hostname = "vt-laptop"; };
+  homeManagerModule = import ../../common/home/setup.nix { inherit inputs outputs lib; };
 in
 {
   system.stateVersion = "24.05";
@@ -22,20 +22,21 @@ in
 
     coreModule
     # User
-    ../common/nixos/users/vt
+    ../../common/nixos/users/vt
 
     # Optional
-    ../common/nixos/optional/fonts.nix
-    ../common/nixos/optional/localsend.nix
+    ../../common/nixos/optional/fonts.nix
+    ../../common/nixos/optional/localsend.nix
 
     (homeManagerModule {
       user = "vt";
+      userPath = "/home/vt";
       homePath = ./home.nix;
     })
 
     # Services (background)
-    ../common/nixos/optional/services/pipewire.nix
-    ../common/nixos/optional/services/dropbox.nix
+    ../../common/nixos/optional/services/pipewire.nix
+    ../../common/nixos/optional/services/dropbox.nix
     _1passwordModule
 
     # Hardware related config (real hardware/drivers)

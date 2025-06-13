@@ -5,7 +5,11 @@
   ...
 }:
 
-{ user, homePath }:
+{
+  userPath,
+  user,
+  homePath,
+}:
 {
   home-manager = {
     useGlobalPkgs = true;
@@ -32,7 +36,7 @@
 
       home = {
         username = user;
-        homeDirectory = lib.mkForce "/home/${user}";
+        homeDirectory = lib.mkForce userPath;
         sessionPath = [
           "$HOME/.nix-profile/bin" # binaries
           "$HOME/.nix-profile/share/applications" # .desktop files

@@ -1,6 +1,9 @@
 rebuild:
     sudo nixos-rebuild switch --flake .
 
+mb-rebuild:
+    sudo darwin-rebuild switch --flake .
+
 apply:
     kustomize build manifests | kubectl apply --prune --all -f -
 

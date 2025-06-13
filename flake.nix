@@ -17,6 +17,17 @@
     # Nix darwin
     nix-darwin.url = "github:LnL7/nix-darwin";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
+    nix-homebrew.url = "github:zhaofengli/nix-homebrew";
+
+    # Optional: Declarative tap management
+    homebrew-core = {
+      url = "github:homebrew/homebrew-core";
+      flake = false;
+    };
+    homebrew-cask = {
+      url = "github:homebrew/homebrew-cask";
+      flake = false;
+    };
 
     nur.url = "github:nix-community/NUR";
     nur.inputs.nixpkgs.follows = "nixpkgs";
@@ -57,8 +68,7 @@
       inherit (inputs.nixpkgs) lib;
       inherit (self) outputs;
 
-      utils = import ./utils.nix { inherit lib inputs outputs; };
-      vtLib = utils.genVTLib ./lib;
+      vtLib = (import ./utils.nix { inherit lib inputs outputs; }).genVTLib ./lib;
 
       myStuff = vtLib.genFromPkgsDir {
         dir = ./pkgs;
@@ -75,34 +85,13 @@
     {
       inherit (myStuff) packages;
 
-      nixosConfigurations = import ./hosts {
+      nixosConfigurations = import ./hosts/nixos {
         inherit inputs vtLib;
         inherit (myStuff) overlays;
       };
-
-      darwinConfigurations = {
-        vt-mcp = inputs.nix-darwin.lib.darwinSystem {
-          modules = [
-            (
-              { pkgs, ... }:
-              {
-                programs.zsh.enable = true;
-                system.configurationRevision = self.rev or self.dirtyRev or null;
-                system.stateVersion = 5;
-                nixpkgs.hostPlatform = "x86_64-darwin";
-                environment.systemPackages = [ pkgs.vt-nvim ];
-              }
-            )
-          ];
-          pkgs = vtLib.mkPkgs {
-            inherit (myStuff) overlays;
-            system = "x86_64-darwin";
-          };
-          specialArgs = {
-            inherit inputs;
-          };
-        };
-
+      darwinConfigurations = import ./hosts/darwin {
+        inherit inputs vtLib self;
+        inherit (myStuff) overlays;
       };
 
       nixosModules.default = import ./modules/nixos { inherit vtLib; };

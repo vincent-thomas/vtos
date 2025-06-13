@@ -3,10 +3,10 @@
   home.stateVersion = "23.11";
 
   imports = [
-    ../common/home/optional/devsetup
-    ../common/home/optional/virt-manager.nix
+    ../../common/home/optional/devsetup
+    ../../common/home/optional/virt-manager.nix
 
-    (import ../common/home/optional/wm/hyprland { inherit inputs pkgs; } { extraConfig = ""; })
+    (import ../../common/home/optional/wm/hyprland { inherit inputs pkgs; } { extraConfig = ""; })
   ];
 
   # General

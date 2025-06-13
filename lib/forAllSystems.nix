@@ -1,1 +1,5 @@
-{ lib, ... }: lib.genAttrs [ "x86_64-linux" ]
+{ lib, ... }:
+lib.genAttrs [
+  "x86_64-linux"
+  "x86_64-darwin"
+]

@@ -7,10 +7,10 @@
 }:
 let
 
-  _1passwordModule = import ../common/nixos/optional/1password.nix { user = "vt"; };
+  _1passwordModule = import ../../common/nixos/optional/1password.nix { user = "vt"; };
 
-  nixosModule = import ../common/nixos/setup.nix { hostname = "vt-pc"; };
-  homeManagerModule = import ../common/home/setup.nix { inherit inputs outputs lib; };
+  nixosModule = import ../../common/nixos/setup.nix { hostname = "vt-pc"; };
+  homeManagerModule = import ../../common/home/setup.nix { inherit inputs outputs lib; };
 in
 {
   system.stateVersion = "24.05";
@@ -21,27 +21,28 @@ in
   imports = [
     nixosModule
     # User
-    ../common/nixos/users/vt
+    ../../common/nixos/users/vt
 
     # Optional
-    ../common/nixos/optional/fonts.nix
-    ../common/nixos/optional/localsend.nix
+    ../../common/nixos/optional/fonts.nix
+    ../../common/nixos/optional/localsend.nix
 
     (homeManagerModule {
       user = "vt";
+      userPath = "/home/vt";
       homePath = ./home.nix;
     })
-    ../common/home/optional/steam.nix
+    ../../common/home/optional/steam.nix
 
     # Services (background)
-    ../common/nixos/optional/services/pipewire.nix
-    ../common/nixos/optional/services/dropbox.nix
+    ../../common/nixos/optional/services/pipewire.nix
+    ../../common/nixos/optional/services/dropbox.nix
     _1passwordModule
-    ../common/nixos/optional/hyprland.nix
+    ../../common/nixos/optional/hyprland.nix
 
     # Hardware related config (real hardware/drivers)
-    ../common/nixos/hardware/nvidia
-    ../common/nixos/hardware/opengl.nix
+    ../../common/nixos/hardware/nvidia
+    ../../common/nixos/hardware/opengl.nix
     ./hardware.nix
   ];
 
