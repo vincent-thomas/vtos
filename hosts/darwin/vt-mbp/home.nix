@@ -3,11 +3,7 @@
   home.stateVersion = "25.05";
 
   imports = [
-    ../../common/home/optional/devsetup/git.nix
-    ../../common/home/optional/devsetup/devshell.nix
-    ../../common/home/optional/devsetup/starship.nix
-    ../../common/home/optional/devsetup/tmux.nix
-    ../../common/home/optional/devsetup/alacritty.nix
+    ../../common/home/optional/devsetup
 
     # ../../common/home/optional/devsetup
   ];

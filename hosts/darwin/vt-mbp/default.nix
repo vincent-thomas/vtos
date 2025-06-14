@@ -16,7 +16,16 @@ in
   system.primaryUser = "vincent";
   system.stateVersion = 5;
 
-  services.aerospace.enable = true;
+  imports = [
+    inputs.nix-homebrew.darwinModules.nix-homebrew
+    ../common/optional/aerospace.nix
+    (homeManagerModule {
+      userPath = "/Users/vincent";
+      user = "vincent";
+      homePath = ./home.nix;
+    })
+  ];
+
   environment.systemPackages = with pkgs; [
     vt-nvim
     alacritty
@@ -148,12 +157,4 @@ in
       };
     };
   };
-  imports = [
-    inputs.nix-homebrew.darwinModules.nix-homebrew
-    (homeManagerModule {
-      userPath = "/Users/vincent";
-      user = "vincent";
-      homePath = ./home.nix;
-    })
-  ];
 }

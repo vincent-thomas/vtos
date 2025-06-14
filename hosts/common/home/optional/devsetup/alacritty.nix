@@ -9,6 +9,8 @@
         args = [
           "new"
           "-Asroot"
+          "-f"
+          "~/.config/tmux/tmux.conf"
         ];
       };
       font = {
