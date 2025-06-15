@@ -1,9 +1,12 @@
+{
+  isDarwin ? false,
+}:
 { pkgs, ... }:
 {
   imports = [
     ./tmux.nix
     ./starship.nix
-    ./git.nix
+    (import ./git.nix { inherit isDarwin; })
     ./alacritty.nix
     ./devshell.nix
   ];

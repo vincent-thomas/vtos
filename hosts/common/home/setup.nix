@@ -9,8 +9,19 @@
   userPath,
   user,
   homePath,
+  isDarwin ? false,
 }:
+let
+  # homeManagerModule =
+  #   if (isDarwin == true) then
+  #     inputs.home-manager.darwinModules.home-manager
+  #   else
+  #     inputs.home-manager.nixosModules.home-manager;
+in
 {
+  # imports = [
+  #   homeManagerModule
+  # ];
   home-manager = {
     useGlobalPkgs = true;
     useUserPackages = true;

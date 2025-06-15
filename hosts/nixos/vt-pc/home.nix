@@ -3,7 +3,7 @@
   home.stateVersion = "23.11";
 
   imports = [
-    ../../common/home/optional/devsetup
+    (import ../../common/home/optional/devsetup { isDarwin = false; })
     ../../common/home/optional/virt-manager.nix
 
     (import ../../common/home/optional/wm/hyprland { inherit inputs pkgs; } { extraConfig = ""; })

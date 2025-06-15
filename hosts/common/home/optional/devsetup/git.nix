@@ -1,4 +1,10 @@
-{ pkgs, config, ... }:
+{ isDarwin }:
+{
+  pkgs,
+  config,
+  lib,
+  ...
+}:
 {
   home.packages = with pkgs; [
     git-lfs
@@ -18,7 +24,12 @@
     extraConfig = {
       init.defaultBranch = "main";
       core.askpass = ""; # Disable git credential manager
-      gpg.format = "ssh";
+      gpg = {
+        format = "ssh";
+        ssh = lib.mkIf (isDarwin == true) {
+          program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign";
+        };
+      };
       commit.gpgsign = true;
       user = {
         email = "77443389+vincent-thomas@users.noreply.github.com";

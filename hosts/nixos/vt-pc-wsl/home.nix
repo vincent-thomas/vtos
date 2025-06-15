@@ -2,7 +2,9 @@
 {
   home.stateVersion = "23.11";
 
-  imports = [ ../../common/home/optional/devsetup ];
+  imports = [
+    (import ../../common/home/optional/devsetup { isDarwin = false; })
+  ];
 
   home.packages = with pkgs; [
     cargo

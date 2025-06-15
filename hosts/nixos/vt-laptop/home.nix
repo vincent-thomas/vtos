@@ -3,7 +3,7 @@
   home.stateVersion = "24.05"; # Did you read the comment?
 
   imports = [
-    ../../common/home/optional/devsetup
+    (import ../../common/home/optional/devsetup { isDarwin = false; })
   ];
 
   # General

@@ -16,11 +16,11 @@ hostname:
 }:
 let
   inherit (inputs.nix-darwin) lib;
+  pkgs = outerSelf.mkPkgs { inherit system overlays; };
 in
 lib.darwinSystem {
-  inherit system;
+  inherit system pkgs;
 
-  pkgs = outerSelf.mkPkgs { inherit system overlays; };
   specialArgs = {
     inherit inputs outputs self;
   };
@@ -30,6 +30,7 @@ lib.darwinSystem {
     {
       nixpkgs.hostPlatform = system;
       networking.hostName = hostname;
+      nix.package = pkgs.nix;
     }
   ];
 }

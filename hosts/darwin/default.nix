@@ -12,9 +12,9 @@ let
   ];
 in
 {
-  vt-mbp = mkDarwinSystem "vt-mbp" {
+  vt-mba = mkDarwinSystem "vt-mba" {
     inherit overlays self;
-    system = "x86_64-darwin";
+    system = "aarch64-darwin";
     extraModules = vtModules ++ [ ];
   };
 }

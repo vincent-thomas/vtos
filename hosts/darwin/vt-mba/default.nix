@@ -8,30 +8,30 @@
   ...
 }:
 let
-  homeManagerModule = import ../../common/home/setup.nix { inherit inputs outputs lib; };
+  homeManagerModule = import ../../common/home/setup.nix {
+    inherit inputs outputs lib;
+    isDarwin = true;
+  };
 in
 {
   programs.zsh.enable = true;
   system.configurationRevision = self.rev or self.dirtyRev or null;
-  system.primaryUser = "vincent";
+  system.primaryUser = "vt";
   system.stateVersion = 5;
 
   imports = [
     inputs.nix-homebrew.darwinModules.nix-homebrew
     ../common/optional/aerospace.nix
     (homeManagerModule {
-      userPath = "/Users/vincent";
-      user = "vincent";
+      userPath = "/Users/vt";
+      user = "vt";
       homePath = ./home.nix;
     })
   ];
 
-  environment.systemPackages = with pkgs; [
-    vt-nvim
-    alacritty
-    brave
-  ];
   environment.pathsToLink = [ "/Applications" ];
+
+  environment.systemPackages = with pkgs; [ aldente ];
 
   fonts.packages = with pkgs; [
     nerd-fonts.jetbrains-mono
@@ -93,7 +93,11 @@ in
   homebrew = {
     enable = true;
 
-    casks = [ ];
+    casks = [
+      "1password"
+      "twingate"
+      "angry-ip-scanner"
+    ];
     onActivation.cleanup = "zap";
   };
 
@@ -123,7 +127,7 @@ in
     enable = true;
 
     # User owning the Homebrew prefix
-    user = "vincent";
+    user = "vt";
 
     taps = {
       "homebrew/homebrew-core" = inputs.homebrew-core;
@@ -150,7 +154,7 @@ in
           "${pkgs.brave}/Applications/Brave Browser.app"
           "/System/Applications/Notes.app"
           "/System/Applications/Reminders.app"
-          "/Applications/Spotify.app"
+          "${pkgs.spotify}/Applications/Spotify.app"
           "/Applications/1Password.app"
           "${pkgs.alacritty}/Applications/Alacritty.app"
         ];
