@@ -14,7 +14,7 @@ spec:
       serviceAccountName: traefik-ingress-controller
       containers:
         - name: traefik
-          image: traefik:v3.4
+          image: traefik:v3.5
           ports:
             - containerPort: 8080
             - containerPort: 443
