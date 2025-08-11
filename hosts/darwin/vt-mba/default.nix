@@ -22,6 +22,7 @@ in
   imports = [
     inputs.nix-homebrew.darwinModules.nix-homebrew
     ../common/optional/aerospace.nix
+    ../common/core
     (homeManagerModule {
       userPath = "/Users/vt";
       user = "vt";
@@ -30,8 +31,6 @@ in
   ];
 
   environment.pathsToLink = [ "/Applications" ];
-
-  environment.systemPackages = with pkgs; [ aldente ];
 
   fonts.packages = with pkgs; [
     nerd-fonts.jetbrains-mono
@@ -97,6 +96,8 @@ in
       "1password"
       "twingate"
       "angry-ip-scanner"
+      "ollama"
+      "cursor"
     ];
     onActivation.cleanup = "zap";
   };

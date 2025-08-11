@@ -11,5 +11,10 @@
     ./devshell.nix
   ];
 
-  home.packages = with pkgs; [ vt-nvim ];
+  home.packages = with pkgs; [
+    vt-nvim
+    cargo
+    pnpm
+    nodejs_22
+  ];
 }
