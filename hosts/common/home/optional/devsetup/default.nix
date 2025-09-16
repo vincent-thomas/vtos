@@ -13,8 +13,13 @@
 
   home.packages = with pkgs; [
     vt-nvim
+
     cargo
+    rustc
+    bacon
+
     pnpm
     nodejs_22
+
   ];
 }

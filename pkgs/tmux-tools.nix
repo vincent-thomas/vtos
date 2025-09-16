@@ -14,7 +14,7 @@ let
     if [[ $# -eq 1 ]]; then
         selected=$1
     else
-        selected=$(${pkgs.fd}/bin/fd --min-depth 1 --max-depth 1 . $HOME/writeatest $HOME/personal -x sh -c 'test -d {}/.git && echo {}' | ${pkgs.fzf}/bin/fzf)
+        selected=$(${pkgs.fd}/bin/fd --min-depth 1 --max-depth 1 . $HOME/writeatest $HOME/personal $HOME/hdr -x sh -c 'test -d {}/.git && echo {}' | ${pkgs.fzf}/bin/fzf)
     fi
 
     if [[ -z "$selected" ]]; then
