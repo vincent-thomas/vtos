@@ -8,6 +8,26 @@
     # ../../common/home/optional/devsetup
   ];
 
+  programs.zsh.shellAliases = {
+    gh = "op plugin run -- gh";
+    cargo = "op plugin run -- cargo";
+    flyctl = "op plugin run -- flyctl";
+    stripe = "op plugin run -- stripe";
+    aws = "op plugin run -- aws";
+  };
+
+  home.packages = with pkgs; [ _1password-cli ];
+
+  # vt = {
+  #   config.onepassword = {
+  #     sshIntegration = false;
+  #     zshOpPlugins.gh = true;
+  #     zshOpPlugins.cargo = true;
+  #     zshOpPlugins.stripe = true;
+  #     zshOpPlugins.flyctl = true;
+  #   };
+  # };
+
   # home.packages = with pkgs; [
   #   angryipscanner
   #

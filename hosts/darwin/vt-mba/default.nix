@@ -19,6 +19,8 @@ in
   system.primaryUser = "vt";
   system.stateVersion = 5;
 
+  security.pam.services.sudo_local.touchIdAuth = true;
+
   imports = [
     inputs.nix-homebrew.darwinModules.nix-homebrew
     ../common/optional/aerospace.nix
@@ -88,40 +90,19 @@ in
     "com.apple.commerce".AutoUpdate = true;
   };
 
-  security.pam.services.sudo_local.touchIdAuth = true;
   homebrew = {
     enable = true;
-
     casks = [
       "1password"
-      "twingate"
       "angry-ip-scanner"
-      "ollama"
       "cursor"
+      "proton-mail"
+      "docker-desktop"
     ];
+    brews = [ ];
+    taps = builtins.attrNames config.nix-homebrew.taps;
     onActivation.cleanup = "zap";
   };
-
-  system.activationScripts.applications.text =
-    let
-      env = pkgs.buildEnv {
-        name = "system-applications";
-        paths = config.environment.systemPackages;
-        pathsToLink = "/Applications";
-      };
-    in
-    pkgs.lib.mkForce ''
-      # Set up applications.
-      echo "setting up /Applications..." >&2
-      rm -rf /Applications/Nix\ Apps
-      mkdir -p /Applications/Nix\ Apps
-      find ${env}/Applications -maxdepth 1 -type l -exec readlink '{}' + |
-      while read -r src; do
-        app_name=$(basename "$src")
-        echo "copying $src" >&2
-        ${pkgs.mkalias}/bin/mkalias "$src" "/Applications/Nix Apps/$app_name"
-      done
-    '';
 
   nix-homebrew = {
     # Install Homebrew under the default prefix
@@ -150,13 +131,13 @@ in
         orientation = "bottom";
         mru-spaces = false;
         persistent-apps = [
-          "/Users/${config.system.primaryUser}/Applications/Brave Browser Apps.localized/Proton Calendar.app"
-          "/Users/${config.system.primaryUser}/Applications/Brave Browser Apps.localized/Proton Mail.app"
+          "/Applications/Proton\ Mail.app"
           "${pkgs.brave}/Applications/Brave Browser.app"
           "/System/Applications/Notes.app"
           "/System/Applications/Reminders.app"
           "${pkgs.spotify}/Applications/Spotify.app"
           "/Applications/1Password.app"
+          "/Applications/Discord.app"
           "${pkgs.alacritty}/Applications/Alacritty.app"
         ];
       };

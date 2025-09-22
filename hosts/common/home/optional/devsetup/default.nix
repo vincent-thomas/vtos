@@ -16,10 +16,10 @@
 
     cargo
     rustc
-    bacon
 
     pnpm
     nodejs_22
 
+    awscli2
   ];
 }

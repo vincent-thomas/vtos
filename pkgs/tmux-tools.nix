@@ -10,31 +10,48 @@ let
     '';
   };
 
-  tmuxSessionizer = pkgs.writeShellScriptBin "tmux-sessionizer" ''
-    if [[ $# -eq 1 ]]; then
-        selected=$1
-    else
-        selected=$(${pkgs.fd}/bin/fd --min-depth 1 --max-depth 1 . $HOME/writeatest $HOME/personal $HOME/hdr -x sh -c 'test -d {}/.git && echo {}' | ${pkgs.fzf}/bin/fzf)
-    fi
+  tmuxSessionizer = pkgs.writeShellApplication {
+    name = "tmux-sessionizer";
+    runtimeInputs = with pkgs; [
+      fd
+      fzf
+    ];
+    text = ''
+      if [[ $# -eq 1 ]]; then
+          selected=$1
+      else
+          selected=$(fd --min-depth 1 --max-depth 1 . "$HOME"/writeatest "$HOME"/personal "$HOME"/hdr -x sh -c 'test -d {}/.git && echo {}' | fzf)
+      fi
 
-    if [[ -z "$selected" ]]; then
-        exit 0
-    fi
+      if [[ -z "$selected" ]]; then
+          exit 0
+      fi
 
-    selected_name=$(basename "$selected" | tr . _)
-    tmux_running=$(pgrep tmux)
+      selected_name=$(basename "$selected" | tr . _)
+      tmux_running=$(pgrep tmux)
 
-    if [[ -z $TMUX ]] && [[ -z "$tmux_running" ]]; then
-        tmux new-session -s "$selected_name" -c "$selected"
-        exit 0
-    fi
+      if [[ -z $TMUX ]] && [[ -z "$tmux_running" ]]; then
+          tmux new-session -s "$selected_name" -c "$selected"
+          exit 0
+      fi
 
-    if ! tmux has-session -t="$selected_name" 2> /dev/null; then
-        tmux new-session -ds "$selected_name" -c "$selected"
-    fi
+      if ! tmux has-session -t="$selected_name" 2> /dev/null; then
+          tmux new-session -ds "$selected_name" -c "$selected"
+      fi
 
-    tmux switch-client -t "$selected_name"
-  '';
+      tmux switch-client -t "$selected_name"
+    '';
+  };
+
+  baconator = pkgs.writeShellApplication {
+    name = "tmux-baconator";
+    runtimeInputs = with pkgs; [ bacon ];
+    text = ''
+      tmux split-window -h -p 35
+      tmux send-keys "bacon; tmux kill-pane" C-m
+      tmux select-pane -l
+    '';
+  };
 
 in
 pkgs.stdenv.mkDerivation {
@@ -51,6 +68,7 @@ pkgs.stdenv.mkDerivation {
 
     cp ${tmuxSessionizer}/bin/tmux-sessionizer $out/bin/
     cp ${tmuxSessionList}/bin/tmux-list-sessions $out/bin/
+    cp ${baconator}/bin/tmux-baconator $out/bin/
   '';
 
 }
