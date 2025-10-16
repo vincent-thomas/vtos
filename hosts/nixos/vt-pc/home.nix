@@ -31,18 +31,18 @@
 
     gcc
     vlc
-    obsidian
+    # obsidian
 
     awscli2
 
-    kustomize
-    kubernetes-helm
-
+    # kustomize
+    # kubernetes-helm
+    #
     # For school
     ungoogled-chromium
     brave
 
-    go
+    # go
   ];
 
   programs.btop.enable = true;

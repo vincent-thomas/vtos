@@ -9,7 +9,6 @@
   userPath,
   user,
   homePath,
-  isDarwin ? false,
 }:
 let
   # homeManagerModule =

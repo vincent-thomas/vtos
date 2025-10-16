@@ -98,8 +98,11 @@ in
       "cursor"
       "proton-mail"
       "docker-desktop"
+      "zen"
+      "obsidian"
+      "alacritty"
+      "spotify"
     ];
-    brews = [ ];
     taps = builtins.attrNames config.nix-homebrew.taps;
     onActivation.cleanup = "zap";
   };
@@ -132,13 +135,14 @@ in
         mru-spaces = false;
         persistent-apps = [
           "/Applications/Proton\ Mail.app"
-          "${pkgs.brave}/Applications/Brave Browser.app"
+          "/Applications/Zen.app"
+          "/Applications/Obsidian.app"
           "/System/Applications/Notes.app"
           "/System/Applications/Reminders.app"
-          "${pkgs.spotify}/Applications/Spotify.app"
+          "/Applications/Spotify.app"
           "/Applications/1Password.app"
           "/Applications/Discord.app"
-          "${pkgs.alacritty}/Applications/Alacritty.app"
+          "/Applications/Alacritty.app"
         ];
       };
     };

@@ -1,8 +1,11 @@
 { hostname, ... }:
 {
   imports = [
-    ./core
+    ./core.nix
   ];
 
-  vt.services.networking.hostname = hostname;
+  networking = {
+    networkmanager.enable = true;
+    hostName = hostname;
+  };
 }

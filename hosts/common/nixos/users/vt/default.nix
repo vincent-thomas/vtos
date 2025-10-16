@@ -12,7 +12,6 @@
     extraGroups = [
       "wheel"
       "networkmanager"
-      "docker"
     ];
     shell = pkgs.zsh;
     hashedPasswordFile = config.sops.secrets.password.path;

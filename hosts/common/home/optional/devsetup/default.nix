@@ -14,8 +14,9 @@
   home.packages = with pkgs; [
     vt-nvim
 
-    cargo
-    rustc
+    rustup
+
+    gcc
 
     pnpm
     nodejs_22
